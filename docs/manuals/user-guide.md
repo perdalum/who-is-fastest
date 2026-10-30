@@ -19,8 +19,11 @@ server; there is no backend and no runtime API call.
 3. Read the map:
    - **Driver A's colour** — A was quicker through that 100 m section.
    - **Driver B's colour** — B was quicker.
-   - **Neutral** — the estimated difference is below ±0.03 s, so the page will
-     not call it. Hover for the exact numbers.
+   - **Neutral** — the estimated difference is below 0.03 s (`|Δ| < 0.03 s`), so
+     the page will not call it. Hover for the exact numbers.
+   - **No telemetry** — dashed grey: one or both drivers have a missing 25 m
+     bin. This is not a tie and is excluded from the tally. Hover to see which
+     driver is missing data.
 4. The **official lap delta**, sector chips, lap/tyre/top-speed facts and the
    track-dominance bar sit beside the map.
 5. **Swap** flips A and B without changing the race.
@@ -39,7 +42,9 @@ server; there is no backend and no runtime API call.
   from ~4 Hz GPS speed; it is indicative, not timing-grade.
 - Each driver uses their **fastest lap with usable telemetry**. If that is not
   their official fastest lap, a **telemetry-limited** badge shows the official
-  best lap/time in the driver card and under the map.
+  best lap/time in the driver card and under the map. Below 100 % coverage, the
+  page says **partial telemetry** / **best covered laps** and shows the
+  percentage; it does not claim a complete-lap comparison.
 - Different laps happen at different fuel loads, tyre ages and traffic. A later,
   lighter lap can be quicker everywhere. The page does not correct for that.
 - Sections are 100 m, smoothed over three sections; a one-section lead is not
