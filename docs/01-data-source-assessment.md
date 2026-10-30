@@ -71,6 +71,12 @@ Relevant endpoints observed:
 - `laps[].date_start` is the lap start timestamp and is accurate enough to slice
   the position stream.
 - Official lap and sector times are present and internally consistent.
+- Position coverage was checked for all 18 completed races. **17 of 18** have
+  samples through the end of the race. **Monaco is truncated**: the stream stops
+  at 14:00 despite a 15:00 session end (8,087 samples vs 33k–39k elsewhere), so
+  only the first ~60 minutes of that race can be compared. Kuala Lumpur has an
+  unusually long stream (57k samples), which is harmless but further evidence
+  that coverage must be validated per race rather than assumed.
 
 ## 4. Feasibility prototype (evidence)
 
@@ -112,7 +118,8 @@ telemetry, indicative".
 - `car_data`: **~5.9 MB** per driver.
 - All 22 drivers: **~100 MB per race** raw. Fetching and computing a race takes
   ~1–2 minutes at the free-tier rate limit; all 18 completed 2026 races ≈
-  15–20 minutes, run offline and cached.
+  15–20 minutes, run offline and cached. A coverage survey of one full driver
+  stream per race took ~1.5 minutes for 18 races at 27 requests/minute.
 - Pre-computed output: ~50–100 KB per race; the page loads one race file on
   demand.
 
