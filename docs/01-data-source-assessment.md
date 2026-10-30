@@ -1,34 +1,34 @@
 # Data-source assessment: can OpenF1 support "Who is the fastest?"
 
+- **Version:** 1.1 (corrected after steering-board review)
 - **Prepared:** 2026-10-30
-- **Author:** Lead agent (project office)
-- **Source under review:** <https://github.com/br-g/openf1> — the OpenF1 API, <https://api.openf1.org/v1>
-- **Decision needed from:** Steering board (step 2 of the CEO brief)
+- **Source under review:** [OpenF1](https://openf1.org/) — repository
+  <https://github.com/br-g/openf1>, API <https://api.openf1.org/v1>
+- **Decision:** recorded in [02-steering-board-decision.md](02-steering-board-decision.md)
 
 ## 1. Executive summary
 
-**Verdict: OpenF1 can support the goal.** No additional external data source is
-required. The source provides, for every race since 2023, per-driver lap times,
-sector times, car telemetry and high-frequency car positions. That is exactly
-the raw material needed to reconstruct where one driver is faster than another
-around a circuit.
+**OpenF1 can support the goal.** No additional external data source is needed.
+It supplies, for every race since 2023, per-driver lap and sector times, car
+speed/throttle/brake telemetry and ~4 Hz car positions. That is enough to
+reconstruct, for two drivers, which one was quicker along each part of the
+circuit.
 
-The source cannot, however, be used directly from the browser, and it is not
-complete for every lap of every race. Two conditions are therefore attached to
-the go decision:
+Three facts shape the design:
 
-1. **A build-time data pipeline is mandatory.** Raw telemetry is ~4.5 MB per
-   driver per session (~100 MB per race). The deliverable must pre-compute a
-   compact, track-relative JSON snapshot per race (target: < 200 KB/race) and
-   ship those files with the static page.
-2. **Lap selection must be telemetry-aware.** The position stream is occasionally
-   truncated (observed: Monaco 2026 stops after 60 of 120 minutes). The pipeline
-   must pick the fastest lap *that has usable position data*, validate it, and
-   disclose the choice in the UI.
+1. **A build-time pipeline is mandatory.** Raw position data is ~4.5 MB per
+   driver per session; a race is ~100 MB. The static site must read a compact,
+   pre-computed snapshot (target < 100 KB per race).
+2. **Telemetry coverage is not guaranteed.** Monaco 2026 stops at 14:00 for a
+   15:00 race and is sparse (~1–2 Hz). Lap choice must be coverage-aware and
+   disclosed.
+3. **A naive position-based segment comparison is noise-dominated.** A
+   same-driver control produced 81 lead changes and 188/218 "decided" 25 m
+   segments. The revised method compares **car speed on a shared centreline**
+   and uses a neutral band; only then is the picture honest.
 
-With those conditions the source supports the full requested experience: choose
-a race, choose two drivers by name and team, and colour every part of the
-circuit by the faster driver.
+The board accepted these findings and voted **GO WITH CONDITIONS** (5–0) with
+the conditions in §8.
 
 ## 2. What the product needs
 
@@ -36,135 +36,143 @@ circuit by the faster driver.
 | --- | --- |
 | Choose a race | Season calendar, race session IDs, circuit names |
 | Choose two drivers by name and team | Driver number, full name, acronym, team, team colour |
-| Compare "fast" per part of the circuit | Position (`x`, `y`) and time at sufficient frequency for each driver's lap |
-| Show lap-level context | Lap time, sector times, top speed |
-| Static single page + JSON, no backend | Small, pre-computed, browser-friendly files |
+| Compare "fast" per part of the circuit | Position and speed at sufficient frequency for each driver's lap |
+| Lap-level context | Official lap time, sector times, top speed, tyre |
+| Static page + JSON, no backend | Small, pre-computed, browser-friendly files |
 
 ## 3. What OpenF1 provides (verified 2026-10-30)
 
-OpenF1 is a free, unofficial, community-run API. Access requires **no key and no
-sign-up**; CORS is open (`access-control-allow-origin: *`). Historical data is
-available from the 2023 season onwards. The documented free-tier limits are
-**3 requests/second and 30 requests/minute**; supporter tiers raise them.
+OpenF1 is a free, unofficial, community-run API. Access needs **no key or
+sign-up**; CORS is open (`access-control-allow-origin: *`). Historical data
+starts in 2023. The free tier allows **3 requests/second and 30 requests/minute**.
 
-Relevant endpoints observed:
-
-| Endpoint | Contents | Use in this project |
+| Endpoint | Contents | Use |
 | --- | --- | --- |
-| `/v1/sessions` | Session key, type, circuit, start/end, year | Race picker |
-| `/v1/meetings` | Grand Prix names and weekend dates | Race picker labels |
-| `/v1/drivers` | Number, full name, acronym, team, team colour | Driver picker, colours |
-| `/v1/laps` | Lap time, three sector times, `date_start`, pit-out flag, speed trap | Lap selection, official totals |
-| `/v1/location` | `x`, `y` (track plane) and `z` (elevation) at ~3.7 Hz | Track geometry and time/distance |
-| `/v1/car_data` | Speed, RPM, gear, throttle, brake, DRS at ~3.7 Hz | Optional speed context |
-| `/v1/session_result` | Classification, laps, points, status | Optional context |
-| `/v1/position`, `/v1/intervals` | Running order / gaps | Not needed for v1 |
+| `/v1/sessions` | Session key, type, circuit, start/end, year | Race calendar |
+| `/v1/meetings` | Grand Prix names and weekend dates | Race labels |
+| `/v1/drivers` | Number, name, acronym, team, team colour | Driver picker, colours |
+| `/v1/laps` | Lap time, 3 sector times, `date_start`, pit-out flag, speed trap | Lap selection, official facts |
+| `/v1/location` | `x`, `y` track plane, `z` elevation, ~4 Hz | Centreline and position |
+| `/v1/car_data` | Speed, RPM, gear, throttle, brake, DRS | Speed profile (core) |
+| `/v1/stints` | Compound and stint lap range | Tyre context |
+| `/v1/session_result` | Classification, laps, status | Optional context |
 
-### Verified properties
+Verified properties:
 
-- The 2026 calendar returns 25 race sessions: 18 completed, 2 cancelled, 5 future
-  (as of the assessment date). Each completed race has 22 drivers.
-- `location` samples arrive every ~0.27 s (3.7 Hz), occasionally 0.5–0.8 s apart.
-- Track coordinates are **decimetres**: dividing `x` and `y` by 10 reproduces
-  known circuit lengths (Austin 5.49 km vs 5.51 km official; Melbourne 5.35 km vs
-  5.28 km official). `z` is elevation (Austin range ≈ 30 m).
-- `laps[].date_start` is the lap start timestamp and is accurate enough to slice
-  the position stream.
-- Official lap and sector times are present and internally consistent.
-- Position coverage was checked for all 18 completed races. **17 of 18** have
-  samples through the end of the race. **Monaco is truncated**: the stream stops
-  at 14:00 despite a 15:00 session end (8,087 samples vs 33k–39k elsewhere), so
-  only the first ~60 minutes of that race can be compared. Kuala Lumpur has an
-  unusually long stream (57k samples), which is harmless but further evidence
-  that coverage must be validated per race rather than assumed.
+- 2026: **25 Grands Prix** — 18 completed, 2 cancelled, 5 future. Six Sprints
+  also have `session_type: "Race"`; filter with `session_name === "Race"`.
+- `location` median interval **0.24 s** (~4.2 Hz), p90 0.38 s, occasional gaps
+  up to 1.1 s. It is not a steady 3.7 Hz stream.
+- Coordinates are **decimetres**: `x/10`, `y/10` metres reproduce known circuit
+  lengths within ~2 %. `z` is absolute elevation.
+- Lap and sector times are internally consistent (S1+S2+S3 = lap duration in
+  all 1,166 Austin rows).
+- Position coverage through the end of the race is present for **17 of 18**
+  completed races. **Monaco is truncated** at 14:00 (8,087 samples vs ~35k
+  elsewhere), confirmed on two drivers, and sparse.
 
-## 4. Feasibility prototype (evidence)
+## 4. Volume, rate limits and access
 
-A prototype was run against the 2026 United States Grand Prix (Austin, session
-`11396`) comparing the fastest laps of Charles Leclerc (16) and Max Verstappen
-(3):
+| Item | Measured |
+| --- | --- |
+| `location`, one driver, one race weekend | ~4.5 MB (32k–42k samples) |
+| `car_data`, one driver | ~5.9 MB |
+| All 22 drivers, one race | ~100 MB raw |
+| Free-tier rate | 30 requests/minute → ~22 s per driver pair |
+| Pre-computed race file | target < 100 KB (measured in the sizing spike) |
+| Free licence | **CC BY-NC-SA 4.0**, no authentication |
 
-| Metric | Leclerc | Verstappen |
-| --- | --- | --- |
-| Lap time | 97.976 s | 99.231 s |
-| Sector 1 / 2 / 3 | 26.289 / 38.906 / 32.781 | 25.972 / 39.715 / 33.544 |
-| GPS-derived lap length | 5,485 m | 5,479 m |
-| Position samples | 377 | 386 |
+A build for five races needs ~5 × (sessions, meetings, drivers, laps, stints,
+22 × [location + car_data]) ≈ 170 requests, roughly 6–8 minutes. Raw responses
+are cached; the build is resumable.
 
-Method: smooth `x`/`y` over three samples, accumulate distance, interpolate
-elapsed time on a 25 m grid, compare per-segment times, smooth the delta over
-five segments, classify each segment.
+## 5. Method: how "faster" is computed
 
-Results:
+The first prototype compared each driver on his own position-derived distance
+axis. The board's review and a same-driver control showed this is not reliable:
+lap lengths differ by ~1–2 %, grid index *i* is not the same physical point, and
+GPS jitter dominates 25 m deltas. **That method is rejected.**
 
-- The telemetry-derived cumulative delta over the lap was **−1.11 s** vs the
-  official **−1.255 s** (error 0.15 s, 12 % of the gap).
-- Sector pattern matched: Leclerc loses S1 (+0.40 s estimated vs +0.32 s
-  official), then gains through S2 (−0.60 vs −0.81) and S3 (−1.21 vs −0.76).
-- On a second pair (Norris vs Verstappen, official gap 0.580 s) the estimate was
-  0.63–0.84 s depending on start alignment; the absolute error is 0.05–0.26 s.
-- Segment-level classification is visually stable after smoothing, with roughly
-  20–35 lead changes around a 5.5 km lap — plausible corner-by-corner behaviour.
+The accepted method:
 
-**Interpretation:** the source is accurate enough for an indicative track
-dominance visualisation. It is *not* a timing-grade tool; the UI must present
-the official lap times as fact and the spatial breakdown as "based on GPS
-telemetry, indicative".
+1. Build one **reference centreline** from the faster lap (resampled every 5 m).
+2. Project each driver's `car_data` samples onto that centreline. Segment *i*
+   is now the same physical track for both drivers.
+3. Integrate `ds / v` over 5 m, scale the whole lap to the official lap time,
+   then aggregate into 25 m bins.
+4. The client sums four bins per **100 m visual segment**, smooths the delta
+   over three segments, and colours a segment only when |Δ| ≥ **0.02 s**.
+   Otherwise it is neutral ("too close to call").
+5. Official lap and sector times are displayed as fact. The spatial split is
+   labelled "GPS-derived, indicative".
 
-### Data volume and runtime
+### Calibration and accuracy (Austin 2026)
 
-- `location` for one driver over a full race weekend session: **~4.5 MB**
-  (32k–42k samples including pre-session running).
-- `car_data`: **~5.9 MB** per driver.
-- All 22 drivers: **~100 MB per race** raw. Fetching and computing a race takes
-  ~1–2 minutes at the free-tier rate limit; all 18 completed 2026 races ≈
-  15–20 minutes, run offline and cached. A coverage survey of one full driver
-  stream per race took ~1.5 minutes for 18 races at 27 requests/minute.
-- Pre-computed output: ~50–100 KB per race; the page loads one race file on
-  demand.
+| Check | Result |
+| --- | --- |
+| Same driver, two laps (Norris 42 vs 44, both 99.887 s) | RMS **0.014 s** per 100 m; 46/53 segments within ±20 ms; 14 sign changes |
+| Leclerc vs Verstappen (official gap 1.255 s) | 32/53 segments beyond ±20 ms; 11 lead changes |
+| Sector deltas, estimate vs official | **+0.21 vs +0.32 s**, **−0.70 vs −0.81 s**, **−0.76 vs −0.76 s** |
+| GPS lap length vs official | 5,395 m vs 5,513 m (−2.1 %); corrected by uniform time scaling |
+| Speed-integrated total vs official | ~1.1–1.4 % short before scaling |
 
-## 5. Gaps and limitations
+This is accurate enough for an **indicative** dominance map, not for timing
+analysis. The UI must show the deadband and the official times separately.
+
+## 6. Gaps and limitations
 
 | Gap | Impact | Mitigation |
 | --- | --- | --- |
-| Position stream not guaranteed for the whole race (Monaco 2026 ends at 60 min) | The outright fastest lap may have no telemetry | Try the 3 fastest candidate laps per driver; accept only laps with validated coverage; label the chosen lap |
-| No track outline, sector-distance or corner metadata | Geometry must be derived | Build the centreline from the reference lap; keep sector times official and show sector *time* wins, not spatial sector lines |
-| Coordinates noisy and in decimetres | Length and delta error | Smooth, validate length against the field median, reject outliers |
-| No `is_pit_in_lap` flag | Pit laps could be selected | Filter by duration band, pit-out flag, and telemetry validation |
-| Different fuel loads, tyres, traffic and track evolution | "Faster" is lap-condition-dependent | Compare each driver's fastest available lap; disclose method |
-| Rate limits (30 req/min) | Slow first build | Persistent cache in `tmp/`, one request at a time, resumable builds |
-| Unofficial source, no SLA | Data may change or disappear | Snapshot JSON in the repo; rebuild script; attribution; no runtime dependency |
-| F1 trademarks / data ownership | Redistribution constraints | Personal, non-commercial use; attribution; no official logos; note in README |
+| Position stream may be truncated/sparse (Monaco) | Official fastest lap may be undrawable | Try candidate laps; require ≥2 Hz, coverage ≥97 %, no gap >1.2 s; publish chosen lap and flag if not the official fastest |
+| No track outline or corner metadata | Geometry must be derived | Centreline from reference lap; sector marks from official sector times |
+| GPS noise / racing-line differences | False precision | Shared centreline, speed integration, 100 m segments, 0.02 s neutral band, published error |
+| Different fuel/tyre/traffic conditions | "Faster" is lap-condition-dependent | Show lap number, time, tyre compound/age, coverage; say "best available lap" |
+| Speed data is ~4 Hz and integer km/h | Local error | Integrate 5 m bins, scale to official lap time, 100 m visual segments |
+| Unofficial API, no SLA; CC BY-NC-SA | Availability and licensing | Snapshot JSON in repo, cache + checksum manifest, attribution, non-commercial, share-alike |
+| Example image not visually decoded | Visual target uncertain | Track-only concept implemented; CEO visual sign-off before release |
+
+### Evidence provenance
+
+The coverage survey in `tmp/coverage.json` queried **driver 1 only** for each
+race, then spot-checked Monaco with a second driver. It proves the Monaco
+truncation and general coverage; it does **not** prove that every driver's
+stream is complete. The build therefore validates every driver/lap pair.
+Early prototype lengths quoted in v1.0 (5,485 m) were inflated by including
+pre-start and post-finish samples; all values here are lap-bounded.
 
 ### Image reference
 
-`IMG_1141.PNG` is a phone screenshot containing the example track visualisation
-plus text/background scaffolding. The brief explicitly asks for **the track
-itself only**. The project will therefore reproduce the *concept* — a circuit
-drawn as a continuous line whose sections take the colour of the faster driver —
-without copying the surrounding UI, photography or typography. (The agent
-runtime cannot decode images; the interpretation is based on `setup.md` and the
-colour/structure analysis of the file.)
+`IMG_1141.PNG` is a 1170×2532 phone screenshot. The agent runtime cannot decode
+images, so the visual target is interpreted from `setup.md`: a circuit drawn as
+a continuous line, sections coloured by the faster driver, without the
+screenshot's text, photography or scaffolding. Dimensions and palette were
+inspected programmatically, but **the visual design requires CEO confirmation**
+before release.
 
-## 6. Alternatives considered
+## 7. Alternatives considered
 
 | Option | Why not chosen |
 | --- | --- |
-| **FastF1** (Python library) | Richer telemetry and track status, but needs a Python backend or a more complex build, and duplicates what OpenF1 already exposes. Reasonable future upgrade. |
-| **Official F1 timing/data** | Paid, licensed, overkill for a personal project. |
-| **Jolpica/Ergast** | Results and lap times only; no position telemetry, so cannot colour the track. |
+| **FastF1** (Python) | Richer telemetry/track status, but requires a Python backend or heavier build; sensible future upgrade. |
+| **Official F1 data** | Paid/licensed, overkill for a personal project. |
+| **Jolpica/Ergast** | Results and lap times only; no speed/position, cannot colour the track. |
 | **Scraping F1.com** | Fragile, legally murkier, no advantage. |
 
-## 7. Recommendation
+## 8. Recommendation and board conditions
 
-**GO**, with the two mandatory conditions in §1 and the mitigations in §5.
+**GO** with these conditions (consolidated from the five board votes):
 
-Scope recommendation for v1:
-
-- 2026 season, all completed races with usable data (18 at assessment time).
-- Two-driver comparison from each driver's fastest telemetry-covered lap.
-- Track-only hero visual (SVG), team-coloured segments, hover deltas, official
-  lap/sector context, clear methodology note.
-- Build script + cached snapshots; no runtime API calls, no backend.
-
-The board is asked to vote **GO / GO WITH CONDITIONS / NO-GO** on this basis.
+1. Shared centreline, equal-arc-length comparison, explicit start handling and
+   truncation disclosure.
+2. Uncertainty-aware rendering: 100 m segments, ≥0.02 s neutral band, minimum
+   run length, non-colour encoding.
+3. Per-driver/per-lap telemetry validation; fall back to fastest *covered* lap
+   and disclose; exclude pit/outlier laps.
+4. Official lap/sector times as fact; show lap, time, tyre, coverage; label the
+   split indicative.
+5. One-race sizing spike before the batch (size, build time, load time, Monaco
+   fallback).
+6. v1 = 3–5 curated races, not the whole calendar.
+7. CC BY-NC-SA 4.0 compliance and no F1 marks.
+8. Reproducible snapshot (cache, manifest, "as of", no runtime API).
+9. CEO visual sign-off on the wireframe/example interpretation.
