@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-30T13:09:53Z",
+  "as_of": "2026-10-30T13:09:53Z",
+  "git_sha": "78865b7",
+  "build_script": "scripts/build-data.mjs",
+  "request_count": 236,
+  "network_requests": 187,
+  "cache_hits": 49,
+  "retries": 1,
+  "not_found": 0,
+  "build_seconds": 467.7,
+  "files": [
+    {
+      "path": "data/catalog.json",
+      "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911",
+      "bytes": 1801
+    },
+    {
+      "path": "data/races/11326.json",
+      "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0",
+      "bytes": 50409
+    },
+    {
+      "path": "data/races/11334.json",
+      "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2",
+      "bytes": 57056
+    },
+    {
+      "path": "data/races/11361.json",
+      "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a",
+      "bytes": 47851
+    },
+    {
+      "path": "data/races/11388.json",
+      "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d",
+      "bytes": 43572
+    },
+    {
+      "path": "data/races/11396.json",
+      "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2",
+      "bytes": 47324
+    }
+  ]
+}

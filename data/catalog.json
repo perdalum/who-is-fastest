@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-30T13:09:53Z",
+  "source": {
+    "name": "OpenF1",
+    "url": "https://openf1.org/",
+    "licence": "CC BY-NC-SA 4.0",
+    "unofficial": true
+  },
+  "races": [
+    {
+      "session_key": 11326,
+      "name": "British Grand Prix",
+      "circuit": "Silverstone Circuit",
+      "location": "Silverstone",
+      "country": "United Kingdom",
+      "date": "2026-07-05",
+      "year": 2026,
+      "round": 9,
+      "driver_count": 22,
+      "file": "data/races/11326.json"
+    },
+    {
+      "session_key": 11334,
+      "name": "Belgian Grand Prix",
+      "circuit": "Circuit de Spa-Francorchamps",
+      "location": "Spa-Francorchamps",
+      "country": "Belgium",
+      "date": "2026-07-19",
+      "year": 2026,
+      "round": 10,
+      "driver_count": 21,
+      "file": "data/races/11334.json"
+    },
+    {
+      "session_key": 11361,
+      "name": "Italian Grand Prix",
+      "circuit": "Autodromo Nazionale Monza",
+      "location": "Monza",
+      "country": "Italy",
+      "date": "2026-09-06",
+      "year": 2026,
+      "round": 13,
+      "driver_count": 21,
+      "file": "data/races/11361.json"
+    },
+    {
+      "session_key": 11388,
+      "name": "Singapore Grand Prix",
+      "circuit": "Marina Bay Street Circuit",
+      "location": "Marina Bay",
+      "country": "Singapore",
+      "date": "2026-10-11",
+      "year": 2026,
+      "round": 17,
+      "driver_count": 22,
+      "file": "data/races/11388.json"
+    },
+    {
+      "session_key": 11396,
+      "name": "United States Grand Prix",
+      "circuit": "Circuit of the Americas",
+      "location": "Austin",
+      "country": "United States",
+      "date": "2026-10-25",
+      "year": 2026,
+      "round": 18,
+      "driver_count": 22,
+      "file": "data/races/11396.json"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+The derived data files in this directory (catalog.json, manifest.json and
+races/*.json) are derived from the OpenF1 API (https://openf1.org/).
+
+OpenF1 is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International licence
+(CC BY-NC-SA 4.0): https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+You may share and adapt the data for non-commercial purposes, provided you
+give appropriate credit to OpenF1, link to the licence, and distribute any
+derivative under the same licence.
+
+Formula 1 data and trademarks belong to their respective owners. OpenF1 is an
+unofficial project and is not affiliated with the Formula 1 companies. This
+project is a personal, non-commercial visualisation.
