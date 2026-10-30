@@ -1,0 +1,2806 @@
+{
+  "audit": "independent-data-audit",
+  "version": 1,
+  "generated_at": "2026-10-30T13:13:05.807Z",
+  "workspace": "/Users/au15929/work/who-is-the-fastest",
+  "source_snapshot": {
+    "catalog_bytes": 1801,
+    "manifest_bytes": 1256,
+    "race_files": [
+      {
+        "path": "data/races/11326.json",
+        "bytes": 50409
+      },
+      {
+        "path": "data/races/11334.json",
+        "bytes": 57056
+      },
+      {
+        "path": "data/races/11361.json",
+        "bytes": 47851
+      },
+      {
+        "path": "data/races/11388.json",
+        "bytes": 43572
+      },
+      {
+        "path": "data/races/11396.json",
+        "bytes": 47324
+      }
+    ],
+    "stable": true
+  },
+  "tolerances": {
+    "section_abs_s": 0.05,
+    "sector_sum_s": 0.1,
+    "full_coverage_dt_sum_s": 0.05,
+    "max_race_bytes": 153600,
+    "same_driver_neutral_share_min": 0.9,
+    "calibration_sector_error_max_s": 0.2
+  },
+  "summary": {
+    "status": "PASS",
+    "checks": 56,
+    "passed": 42,
+    "failed": 0,
+    "warnings": 14,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "dataset": {
+    "catalog": {
+      "schema_version": 1,
+      "generated_at": "2026-10-30T13:09:53Z",
+      "races": [
+        {
+          "session_key": 11326,
+          "name": "British Grand Prix",
+          "circuit": "Silverstone Circuit",
+          "location": "Silverstone",
+          "country": "United Kingdom",
+          "date": "2026-07-05",
+          "year": 2026,
+          "round": 9,
+          "driver_count": 22,
+          "file": "data/races/11326.json"
+        },
+        {
+          "session_key": 11334,
+          "name": "Belgian Grand Prix",
+          "circuit": "Circuit de Spa-Francorchamps",
+          "location": "Spa-Francorchamps",
+          "country": "Belgium",
+          "date": "2026-07-19",
+          "year": 2026,
+          "round": 10,
+          "driver_count": 21,
+          "file": "data/races/11334.json"
+        },
+        {
+          "session_key": 11361,
+          "name": "Italian Grand Prix",
+          "circuit": "Autodromo Nazionale Monza",
+          "location": "Monza",
+          "country": "Italy",
+          "date": "2026-09-06",
+          "year": 2026,
+          "round": 13,
+          "driver_count": 21,
+          "file": "data/races/11361.json"
+        },
+        {
+          "session_key": 11388,
+          "name": "Singapore Grand Prix",
+          "circuit": "Marina Bay Street Circuit",
+          "location": "Marina Bay",
+          "country": "Singapore",
+          "date": "2026-10-11",
+          "year": 2026,
+          "round": 17,
+          "driver_count": 22,
+          "file": "data/races/11388.json"
+        },
+        {
+          "session_key": 11396,
+          "name": "United States Grand Prix",
+          "circuit": "Circuit of the Americas",
+          "location": "Austin",
+          "country": "United States",
+          "date": "2026-10-25",
+          "year": 2026,
+          "round": 18,
+          "driver_count": 22,
+          "file": "data/races/11396.json"
+        }
+      ]
+    },
+    "manifest": {
+      "generated_at": "2026-10-30T13:09:53Z",
+      "as_of": "2026-10-30T13:09:53Z",
+      "git_sha": "78865b7",
+      "request_count": 236,
+      "files": [
+        {
+          "path": "data/catalog.json",
+          "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911",
+          "bytes": 1801
+        },
+        {
+          "path": "data/races/11326.json",
+          "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0",
+          "bytes": 50409
+        },
+        {
+          "path": "data/races/11334.json",
+          "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2",
+          "bytes": 57056
+        },
+        {
+          "path": "data/races/11361.json",
+          "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a",
+          "bytes": 47851
+        },
+        {
+          "path": "data/races/11388.json",
+          "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d",
+          "bytes": 43572
+        },
+        {
+          "path": "data/races/11396.json",
+          "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2",
+          "bytes": 47324
+        }
+      ]
+    },
+    "races": [
+      {
+        "path": "data/races/11326.json",
+        "bytes": 50409,
+        "session_key": 11326,
+        "name": "British Grand Prix",
+        "drivers": 22,
+        "track_length_m": 5805,
+        "dt_length": 233
+      },
+      {
+        "path": "data/races/11334.json",
+        "bytes": 57056,
+        "session_key": 11334,
+        "name": "Belgian Grand Prix",
+        "drivers": 21,
+        "track_length_m": 6920,
+        "dt_length": 277
+      },
+      {
+        "path": "data/races/11361.json",
+        "bytes": 47851,
+        "session_key": 11361,
+        "name": "Italian Grand Prix",
+        "drivers": 21,
+        "track_length_m": 5735,
+        "dt_length": 230
+      },
+      {
+        "path": "data/races/11388.json",
+        "bytes": 43572,
+        "session_key": 11388,
+        "name": "Singapore Grand Prix",
+        "drivers": 22,
+        "track_length_m": 4830,
+        "dt_length": 194
+      },
+      {
+        "path": "data/races/11396.json",
+        "bytes": 47324,
+        "session_key": 11396,
+        "name": "United States Grand Prix",
+        "drivers": 22,
+        "track_length_m": 5395,
+        "dt_length": 216
+      }
+    ],
+    "five_race_set": {
+      "present": [
+        11326,
+        11334,
+        11361,
+        11388,
+        11396
+      ],
+      "missing": [],
+      "mismatched": []
+    }
+  },
+  "section_recompute": {
+    "section_index": 20,
+    "distance_m": [
+      2000,
+      2100
+    ],
+    "reference_driver_number": 16,
+    "json_reference_driver_number": 16,
+    "centreline_length_m": 5395,
+    "values": {
+      "3": {
+        "acronym": "VER",
+        "json_s": 1.5798,
+        "audit_s": 1.5807,
+        "delta_s": 0.0009,
+        "abs_delta_s": 0.0009
+      },
+      "16": {
+        "acronym": "LEC",
+        "json_s": 1.5666,
+        "audit_s": 1.5688,
+        "delta_s": 0.0022,
+        "abs_delta_s": 0.0022
+      }
+    },
+    "pre_scale_shortfall_pct": 1.075,
+    "raw_sources": {
+      "laps": "cache",
+      "lec": {
+        "location": "cache",
+        "car_data": "cache"
+      },
+      "ver": {
+        "location": "cache",
+        "car_data": "cache"
+      }
+    },
+    "raw_rows": {
+      "lec_location": 383,
+      "lec_car_data": 377,
+      "ver_location": 391,
+      "ver_car_data": 379
+    }
+  },
+  "same_driver_control": {
+    "total_segments": 54,
+    "non_null_segments": 43,
+    "neutral_segments": 43,
+    "null_segments": 11,
+    "coloured_segments": 0,
+    "neutral_share_including_null": 1,
+    "neutral_share_decided": 1,
+    "deadband_s": 0.03,
+    "boundary_classes": [
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "tooltip_boundary_warning": null,
+    "lec_ver_pair": {
+      "total_segments": 54,
+      "non_null_segments": 49,
+      "raw_beyond_30ms": 24,
+      "raw_neutral": 25,
+      "raw_null": 5,
+      "raw_sign_changes": 11,
+      "smoothed_coloured": 24,
+      "smoothed_neutral": 19,
+      "smoothed_null": 11,
+      "documented_docs01": {
+        "beyond_30ms": 17,
+        "neutral": 37,
+        "sign_changes": 11,
+        "total": 54
+      }
+    },
+    "documented_calibration": {
+      "source": "docs/01-data-source-assessment.md §5",
+      "laps": "NOR 42/44",
+      "rms_s": 0.014,
+      "within_30ms": 50,
+      "segments": 53,
+      "neutral_share": 0.9434,
+      "sign_changes": 14,
+      "acceptance_min": 0.9,
+      "note": "Documented reference only; this run uses the synthetic self-comparison from the JSON, which is the alternative permitted by the audit brief."
+    }
+  },
+  "raw_cache": {
+    "cache": 5,
+    "network": 0,
+    "errors": 0,
+    "ms": 0
+  },
+  "checks": [
+    {
+      "id": "dataset.catalog",
+      "title": "Catalog schema, source and race entries",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "races": 5
+      }
+    },
+    {
+      "id": "dataset.manifest",
+      "title": "Manifest SHA-256 and byte sizes",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "files": [
+          {
+            "path": "data/catalog.json",
+            "bytes": 1801,
+            "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911"
+          },
+          {
+            "path": "data/races/11326.json",
+            "bytes": 50409,
+            "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0"
+          },
+          {
+            "path": "data/races/11334.json",
+            "bytes": 57056,
+            "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2"
+          },
+          {
+            "path": "data/races/11361.json",
+            "bytes": 47851,
+            "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a"
+          },
+          {
+            "path": "data/races/11388.json",
+            "bytes": 43572,
+            "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d"
+          },
+          {
+            "path": "data/races/11396.json",
+            "bytes": 47324,
+            "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.schema",
+      "title": "Race schema",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 50409,
+        "session_key": 11326
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.constants",
+      "title": "Grid / segment / deadband constants",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "grid_m": 25,
+        "segment_m": 100,
+        "deadband_s": 0.03
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.track",
+      "title": "Track geometry and sector marks",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "length_m": 5805,
+        "points": 582,
+        "sector_marks_m": [
+          1825,
+          4250
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.drivers",
+      "title": "Drivers: count, identity and fields",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "count": 22,
+        "numbers": [
+          12,
+          3,
+          6,
+          44,
+          63,
+          1,
+          55,
+          16,
+          81,
+          27,
+          41,
+          30,
+          5,
+          23,
+          10,
+          43,
+          87,
+          31,
+          11,
+          14,
+          77,
+          18
+        ],
+        "acronyms": [
+          "ANT",
+          "VER",
+          "HAD",
+          "HAM",
+          "RUS",
+          "NOR",
+          "SAI",
+          "LEC",
+          "PIA",
+          "HUL",
+          "LIN",
+          "LAW",
+          "BOR",
+          "ALB",
+          "GAS",
+          "COL",
+          "BEA",
+          "OCO",
+          "PER",
+          "ALO",
+          "BOT",
+          "STR"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.colour",
+      "title": "Team colours are 6-digit hex",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "unique": 11,
+        "colours": [
+          "00D7B6",
+          "4781D7",
+          "ED1131",
+          "F47600",
+          "1868DB",
+          "F50537",
+          "6C98FF",
+          "00A1E8",
+          "9C9FA2",
+          "909090",
+          "229971"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.dt",
+      "title": "dt length, nulls and positive finite values",
+      "status": "WARN",
+      "detail": "data/races/11326.json: ANT has 15 null dt bin(s); sum 85.274 s is 6.503 s below lap_time (null-rule, not bridged); data/races/11326.json: VER has 3 null dt bin(s); sum 90.834 s is 1.267 s below lap_time (null-rule, not bridged); data/races/11326.json: HAD has 12 null dt bin(s); sum 88.257 s is 4.011 s below lap_time (null-rule, not bridged); data/races/11326.json: HAM has 4 null dt bin(s); sum 90.915 s is 1.394 s below lap_time (null-rule, not bridged); data/races/11326.json: RUS has 13 null dt bin(s); sum 86.084 s is 6.405 s below lap_time (null-rule, not bridged); data/races/11326.json: NOR has 9 null dt bin(s); sum 88.443 s is 4.182 s below lap_time (null-rule, not bridged); data/races/11326.json: SAI has 9 null dt bin(s); sum 88.746 s is 3.988 s below lap_time (null-rule, not bridged); data/races/11326.json: LEC has 11 null dt bin(s); sum 88.399 s is 4.472 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: ANT has 15 null dt bin(s); sum 85.274 s is 6.503 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: VER has 3 null dt bin(s); sum 90.834 s is 1.267 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HAD has 12 null dt bin(s); sum 88.257 s is 4.011 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HAM has 4 null dt bin(s); sum 90.915 s is 1.394 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: RUS has 13 null dt bin(s); sum 86.084 s is 6.405 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: NOR has 9 null dt bin(s); sum 88.443 s is 4.182 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: SAI has 9 null dt bin(s); sum 88.746 s is 3.988 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LEC has 11 null dt bin(s); sum 88.399 s is 4.472 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: PIA has 8 null dt bin(s); sum 89.068 s is 3.849 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HUL has 21 null dt bin(s); sum 86.092 s is 7.341 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LIN has 10 null dt bin(s); sum 87.908 s is 5.724 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LAW has 11 null dt bin(s); sum 88.789 s is 4.859 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BOR has 6 null dt bin(s); sum 90.431 s is 3.219 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: ALB has 17 null dt bin(s); sum 86.615 s is 7.252 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: GAS has 16 null dt bin(s); sum 88.832 s is 5.347 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: COL has 11 null dt bin(s); sum 90.548 s is 3.733 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BEA has 13 null dt bin(s); sum 89.924 s is 4.531 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: OCO has 4 null dt bin(s); sum 91.515 s is 3.277 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: PER has 9 null dt bin(s); sum 91.78 s is 3.74 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: ALO has 11 null dt bin(s); sum 90.336 s is 5.491 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BOT has 5 null dt bin(s); sum 93.386 s is 2.507 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: STR has 10 null dt bin(s); sum 93.694 s is 3.538 s below lap_time (null-rule, not bridged)"
+      ],
+      "metrics": {
+        "drivers": 22,
+        "lengths": [
+          {
+            "driver": 12,
+            "length": 233,
+            "nulls": 15
+          },
+          {
+            "driver": 3,
+            "length": 233,
+            "nulls": 3
+          },
+          {
+            "driver": 6,
+            "length": 233,
+            "nulls": 12
+          },
+          {
+            "driver": 44,
+            "length": 233,
+            "nulls": 4
+          },
+          {
+            "driver": 63,
+            "length": 233,
+            "nulls": 13
+          },
+          {
+            "driver": 1,
+            "length": 233,
+            "nulls": 9
+          },
+          {
+            "driver": 55,
+            "length": 233,
+            "nulls": 9
+          },
+          {
+            "driver": 16,
+            "length": 233,
+            "nulls": 11
+          },
+          {
+            "driver": 81,
+            "length": 233,
+            "nulls": 8
+          },
+          {
+            "driver": 27,
+            "length": 233,
+            "nulls": 21
+          },
+          {
+            "driver": 41,
+            "length": 233,
+            "nulls": 10
+          },
+          {
+            "driver": 30,
+            "length": 233,
+            "nulls": 11
+          },
+          {
+            "driver": 5,
+            "length": 233,
+            "nulls": 6
+          },
+          {
+            "driver": 23,
+            "length": 233,
+            "nulls": 17
+          },
+          {
+            "driver": 10,
+            "length": 233,
+            "nulls": 16
+          },
+          {
+            "driver": 43,
+            "length": 233,
+            "nulls": 11
+          },
+          {
+            "driver": 87,
+            "length": 233,
+            "nulls": 13
+          },
+          {
+            "driver": 31,
+            "length": 233,
+            "nulls": 4
+          },
+          {
+            "driver": 11,
+            "length": 233,
+            "nulls": 9
+          },
+          {
+            "driver": 14,
+            "length": 233,
+            "nulls": 11
+          },
+          {
+            "driver": 77,
+            "length": 233,
+            "nulls": 5
+          },
+          {
+            "driver": 18,
+            "length": 233,
+            "nulls": 10
+          }
+        ],
+        "expected": 233,
+        "null_bins": 228,
+        "min": 0.0677,
+        "max": 1.1808
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.coverage",
+      "title": "Coverage is within 0-100",
+      "status": "WARN",
+      "detail": "data/races/11326.json: 19/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 92.1-96.6",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: 19/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 92.1-96.6"
+      ],
+      "metrics": {
+        "min": 92.1,
+        "max": 98.6,
+        "below_97": [
+          {
+            "driver": "ANT",
+            "coverage_pct": 92.9
+          },
+          {
+            "driver": "HAD",
+            "coverage_pct": 95.7
+          },
+          {
+            "driver": "RUS",
+            "coverage_pct": 93.1
+          },
+          {
+            "driver": "NOR",
+            "coverage_pct": 95.5
+          },
+          {
+            "driver": "SAI",
+            "coverage_pct": 95.7
+          },
+          {
+            "driver": "LEC",
+            "coverage_pct": 95.2
+          },
+          {
+            "driver": "PIA",
+            "coverage_pct": 95.9
+          },
+          {
+            "driver": "HUL",
+            "coverage_pct": 92.1
+          },
+          {
+            "driver": "LIN",
+            "coverage_pct": 93.9
+          },
+          {
+            "driver": "LAW",
+            "coverage_pct": 94.8
+          },
+          {
+            "driver": "BOR",
+            "coverage_pct": 96.6
+          },
+          {
+            "driver": "ALB",
+            "coverage_pct": 92.3
+          },
+          {
+            "driver": "GAS",
+            "coverage_pct": 94.3
+          },
+          {
+            "driver": "COL",
+            "coverage_pct": 96
+          },
+          {
+            "driver": "BEA",
+            "coverage_pct": 95.2
+          },
+          {
+            "driver": "OCO",
+            "coverage_pct": 96.5
+          },
+          {
+            "driver": "PER",
+            "coverage_pct": 96.1
+          },
+          {
+            "driver": "ALO",
+            "coverage_pct": 94.3
+          },
+          {
+            "driver": "STR",
+            "coverage_pct": 96.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.official",
+      "title": "Official best fields and sector sum",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "sector_max_error": 1.4210854715202004e-14,
+        "telemetry_limited": 0
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.analysis",
+      "title": "Reference lap, pre-scale integral and calibration",
+      "status": "WARN",
+      "detail": "data/races/11326.json: pre_scale_shortfall_pct 0.37 is outside the expected 1-2% sanity band",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: pre_scale_shortfall_pct 0.37 is outside the expected 1-2% sanity band"
+      ],
+      "metrics": {
+        "reference_driver_number": 12,
+        "fastest_driver_number": 12,
+        "gps_vs_track_pct": 0.003,
+        "pre_scale_shortfall_pct": 0.37,
+        "reference_nulls": 15,
+        "calibration_max_error": 0.033
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.size",
+      "title": "Race file size under 150 KB",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 50409,
+        "limit_bytes": 153600,
+        "kb": 49.228
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.schema",
+      "title": "Race schema",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 57056,
+        "session_key": 11334
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.constants",
+      "title": "Grid / segment / deadband constants",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "grid_m": 25,
+        "segment_m": 100,
+        "deadband_s": 0.03
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.track",
+      "title": "Track geometry and sector marks",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "length_m": 6920,
+        "points": 693,
+        "sector_marks_m": [
+          2225,
+          5025
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.drivers",
+      "title": "Drivers: count, identity and fields",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "count": 21,
+        "numbers": [
+          1,
+          12,
+          6,
+          16,
+          44,
+          81,
+          3,
+          5,
+          27,
+          41,
+          30,
+          10,
+          87,
+          43,
+          55,
+          23,
+          31,
+          77,
+          14,
+          11,
+          18
+        ],
+        "acronyms": [
+          "NOR",
+          "ANT",
+          "HAD",
+          "LEC",
+          "HAM",
+          "PIA",
+          "VER",
+          "BOR",
+          "HUL",
+          "LIN",
+          "LAW",
+          "GAS",
+          "BEA",
+          "COL",
+          "SAI",
+          "ALB",
+          "OCO",
+          "BOT",
+          "ALO",
+          "PER",
+          "STR"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.colour",
+      "title": "Team colours are 6-digit hex",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "unique": 11,
+        "colours": [
+          "F47600",
+          "00D7B6",
+          "4781D7",
+          "ED1131",
+          "F50537",
+          "6C98FF",
+          "00A1E8",
+          "9C9FA2",
+          "1868DB",
+          "909090",
+          "229971"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.dt",
+      "title": "dt length, nulls and positive finite values",
+      "status": "WARN",
+      "detail": "data/races/11334.json: NOR has 8 null dt bin(s); sum 105.654 s is 3.236 s below lap_time (null-rule, not bridged); data/races/11334.json: ANT has 13 null dt bin(s); sum 102.317 s is 6.781 s below lap_time (null-rule, not bridged); data/races/11334.json: HAD has 7 null dt bin(s); sum 106.746 s is 2.552 s below lap_time (null-rule, not bridged); data/races/11334.json: LEC has 13 null dt bin(s); sum 104.511 s is 4.822 s below lap_time (null-rule, not bridged); data/races/11334.json: HAM has 10 null dt bin(s); sum 105.222 s is 4.232 s below lap_time (null-rule, not bridged); data/races/11334.json: PIA has 13 null dt bin(s); sum 104.86 s is 4.702 s below lap_time (null-rule, not bridged); data/races/11334.json: VER has 13 null dt bin(s); sum 103.053 s is 6.565 s below lap_time (null-rule, not bridged); data/races/11334.json: BOR has 25 null dt bin(s); sum 101.804 s is 8.53 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: NOR has 8 null dt bin(s); sum 105.654 s is 3.236 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ANT has 13 null dt bin(s); sum 102.317 s is 6.781 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HAD has 7 null dt bin(s); sum 106.746 s is 2.552 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LEC has 13 null dt bin(s); sum 104.511 s is 4.822 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HAM has 10 null dt bin(s); sum 105.222 s is 4.232 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: PIA has 13 null dt bin(s); sum 104.86 s is 4.702 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: VER has 13 null dt bin(s); sum 103.053 s is 6.565 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BOR has 25 null dt bin(s); sum 101.804 s is 8.53 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HUL has 8 null dt bin(s); sum 107.977 s is 2.526 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LIN has 11 null dt bin(s); sum 103.951 s is 6.585 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LAW has 15 null dt bin(s); sum 104.996 s is 6.079 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: GAS has 16 null dt bin(s); sum 105.712 s is 5.389 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BEA has 16 null dt bin(s); sum 104.577 s is 6.532 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: COL has 11 null dt bin(s); sum 104.942 s is 6.22 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: SAI has 8 null dt bin(s); sum 107.665 s is 3.698 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ALB has 17 null dt bin(s); sum 105.166 s is 6.728 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: OCO has 22 null dt bin(s); sum 102.794 s is 9.106 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BOT has 5 null dt bin(s); sum 110.004 s is 2.007 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ALO has 5 null dt bin(s); sum 109.88 s is 3.068 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: PER has 6 null dt bin(s); sum 110.197 s is 3.281 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: STR has 19 null dt bin(s); sum 104.515 s is 9.465 s below lap_time (null-rule, not bridged)"
+      ],
+      "metrics": {
+        "drivers": 21,
+        "lengths": [
+          {
+            "driver": 1,
+            "length": 277,
+            "nulls": 8
+          },
+          {
+            "driver": 12,
+            "length": 277,
+            "nulls": 13
+          },
+          {
+            "driver": 6,
+            "length": 277,
+            "nulls": 7
+          },
+          {
+            "driver": 16,
+            "length": 277,
+            "nulls": 13
+          },
+          {
+            "driver": 44,
+            "length": 277,
+            "nulls": 10
+          },
+          {
+            "driver": 81,
+            "length": 277,
+            "nulls": 13
+          },
+          {
+            "driver": 3,
+            "length": 277,
+            "nulls": 13
+          },
+          {
+            "driver": 5,
+            "length": 277,
+            "nulls": 25
+          },
+          {
+            "driver": 27,
+            "length": 277,
+            "nulls": 8
+          },
+          {
+            "driver": 41,
+            "length": 277,
+            "nulls": 11
+          },
+          {
+            "driver": 30,
+            "length": 277,
+            "nulls": 15
+          },
+          {
+            "driver": 10,
+            "length": 277,
+            "nulls": 16
+          },
+          {
+            "driver": 87,
+            "length": 277,
+            "nulls": 16
+          },
+          {
+            "driver": 43,
+            "length": 277,
+            "nulls": 11
+          },
+          {
+            "driver": 55,
+            "length": 277,
+            "nulls": 8
+          },
+          {
+            "driver": 23,
+            "length": 277,
+            "nulls": 17
+          },
+          {
+            "driver": 31,
+            "length": 277,
+            "nulls": 22
+          },
+          {
+            "driver": 77,
+            "length": 277,
+            "nulls": 5
+          },
+          {
+            "driver": 14,
+            "length": 277,
+            "nulls": 5
+          },
+          {
+            "driver": 11,
+            "length": 277,
+            "nulls": 6
+          },
+          {
+            "driver": 18,
+            "length": 277,
+            "nulls": 19
+          }
+        ],
+        "expected": 277,
+        "null_bins": 261,
+        "min": 0.2658,
+        "max": 1.2797
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.coverage",
+      "title": "Coverage is within 0-100",
+      "status": "WARN",
+      "detail": "data/races/11334.json: 15/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.7-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: 15/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.7-96.7"
+      ],
+      "metrics": {
+        "min": 91.7,
+        "max": 98.2,
+        "below_97": [
+          {
+            "driver": "ANT",
+            "coverage_pct": 93.8
+          },
+          {
+            "driver": "LEC",
+            "coverage_pct": 95.6
+          },
+          {
+            "driver": "HAM",
+            "coverage_pct": 96.1
+          },
+          {
+            "driver": "PIA",
+            "coverage_pct": 95.7
+          },
+          {
+            "driver": "VER",
+            "coverage_pct": 94
+          },
+          {
+            "driver": "BOR",
+            "coverage_pct": 92.3
+          },
+          {
+            "driver": "LIN",
+            "coverage_pct": 94
+          },
+          {
+            "driver": "LAW",
+            "coverage_pct": 94.5
+          },
+          {
+            "driver": "GAS",
+            "coverage_pct": 95.1
+          },
+          {
+            "driver": "BEA",
+            "coverage_pct": 94.1
+          },
+          {
+            "driver": "COL",
+            "coverage_pct": 94.4
+          },
+          {
+            "driver": "SAI",
+            "coverage_pct": 96.7
+          },
+          {
+            "driver": "ALB",
+            "coverage_pct": 94
+          },
+          {
+            "driver": "OCO",
+            "coverage_pct": 91.9
+          },
+          {
+            "driver": "STR",
+            "coverage_pct": 91.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.official",
+      "title": "Official best fields and sector sum",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "sector_max_error": 1.4210854715202004e-14,
+        "telemetry_limited": 0
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.analysis",
+      "title": "Reference lap, pre-scale integral and calibration",
+      "status": "WARN",
+      "detail": "data/races/11334.json: pre_scale_shortfall_pct 0.19 is outside the expected 1-2% sanity band",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: pre_scale_shortfall_pct 0.19 is outside the expected 1-2% sanity band"
+      ],
+      "metrics": {
+        "reference_driver_number": 1,
+        "fastest_driver_number": 1,
+        "gps_vs_track_pct": 0.04,
+        "pre_scale_shortfall_pct": 0.19,
+        "reference_nulls": 8,
+        "calibration_max_error": 0.114
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.size",
+      "title": "Race file size under 150 KB",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 57056,
+        "limit_bytes": 153600,
+        "kb": 55.719
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.schema",
+      "title": "Race schema",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 47851,
+        "session_key": 11361
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.constants",
+      "title": "Grid / segment / deadband constants",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "grid_m": 25,
+        "segment_m": 100,
+        "deadband_s": 0.03
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.track",
+      "title": "Track geometry and sector marks",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "length_m": 5735,
+        "points": 575,
+        "sector_marks_m": [
+          1900,
+          3700
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.drivers",
+      "title": "Drivers: count, identity and fields",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "count": 21,
+        "numbers": [
+          12,
+          3,
+          27,
+          63,
+          1,
+          10,
+          43,
+          81,
+          44,
+          23,
+          30,
+          55,
+          31,
+          41,
+          5,
+          22,
+          87,
+          11,
+          77,
+          14,
+          18
+        ],
+        "acronyms": [
+          "ANT",
+          "VER",
+          "HUL",
+          "RUS",
+          "NOR",
+          "GAS",
+          "COL",
+          "PIA",
+          "HAM",
+          "ALB",
+          "LAW",
+          "SAI",
+          "OCO",
+          "LIN",
+          "BOR",
+          "TSU",
+          "BEA",
+          "PER",
+          "BOT",
+          "ALO",
+          "STR"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.colour",
+      "title": "Team colours are 6-digit hex",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "unique": 11,
+        "colours": [
+          "00D7B6",
+          "4781D7",
+          "F50537",
+          "F47600",
+          "00A1E8",
+          "ED1131",
+          "1868DB",
+          "9C9FA2",
+          "6C98FF",
+          "909090",
+          "229971"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.dt",
+      "title": "dt length, nulls and positive finite values",
+      "status": "WARN",
+      "detail": "data/races/11361.json: ANT has 12 null dt bin(s); sum 79.468 s is 4.036 s below lap_time (null-rule, not bridged); data/races/11361.json: VER has 6 null dt bin(s); sum 81.736 s is 2.506 s below lap_time (null-rule, not bridged); data/races/11361.json: HUL has 15 null dt bin(s); sum 78.128 s is 6.236 s below lap_time (null-rule, not bridged); data/races/11361.json: RUS has 6 null dt bin(s); sum 82.106 s is 2.284 s below lap_time (null-rule, not bridged); data/races/11361.json: NOR has 9 null dt bin(s); sum 80.308 s is 4.556 s below lap_time (null-rule, not bridged); data/races/11361.json: GAS has 15 null dt bin(s); sum 77.825 s is 7.102 s below lap_time (null-rule, not bridged); data/races/11361.json: COL has 14 null dt bin(s); sum 80.156 s is 4.777 s below lap_time (null-rule, not bridged); data/races/11361.json: PIA has 11 null dt bin(s); sum 81.019 s is 4.106 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: ANT has 12 null dt bin(s); sum 79.468 s is 4.036 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: VER has 6 null dt bin(s); sum 81.736 s is 2.506 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: HUL has 15 null dt bin(s); sum 78.128 s is 6.236 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: RUS has 6 null dt bin(s); sum 82.106 s is 2.284 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: NOR has 9 null dt bin(s); sum 80.308 s is 4.556 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: GAS has 15 null dt bin(s); sum 77.825 s is 7.102 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: COL has 14 null dt bin(s); sum 80.156 s is 4.777 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: PIA has 11 null dt bin(s); sum 81.019 s is 4.106 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: HAM has 10 null dt bin(s); sum 81.733 s is 3.567 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: ALB has 17 null dt bin(s); sum 78.822 s is 6.519 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: LAW has 16 null dt bin(s); sum 79.325 s is 6.253 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: SAI has 9 null dt bin(s); sum 81.753 s is 3.93 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: OCO has 12 null dt bin(s); sum 80.273 s is 5.438 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: LIN has 10 null dt bin(s); sum 80.317 s is 5.711 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BOR has 12 null dt bin(s); sum 80.023 s is 6.165 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: TSU has 11 null dt bin(s); sum 81.905 s is 4.415 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BEA has 12 null dt bin(s); sum 79.638 s is 6.718 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: PER has 11 null dt bin(s); sum 82.918 s is 3.996 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BOT has 15 null dt bin(s); sum 79.974 s is 7.351 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: ALO has 8 null dt bin(s); sum 84.775 s is 3.186 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: STR has 10 null dt bin(s); sum 85.276 s is 3.139 s below lap_time (null-rule, not bridged)"
+      ],
+      "metrics": {
+        "drivers": 21,
+        "lengths": [
+          {
+            "driver": 12,
+            "length": 230,
+            "nulls": 12
+          },
+          {
+            "driver": 3,
+            "length": 230,
+            "nulls": 6
+          },
+          {
+            "driver": 27,
+            "length": 230,
+            "nulls": 15
+          },
+          {
+            "driver": 63,
+            "length": 230,
+            "nulls": 6
+          },
+          {
+            "driver": 1,
+            "length": 230,
+            "nulls": 9
+          },
+          {
+            "driver": 10,
+            "length": 230,
+            "nulls": 15
+          },
+          {
+            "driver": 43,
+            "length": 230,
+            "nulls": 14
+          },
+          {
+            "driver": 81,
+            "length": 230,
+            "nulls": 11
+          },
+          {
+            "driver": 44,
+            "length": 230,
+            "nulls": 10
+          },
+          {
+            "driver": 23,
+            "length": 230,
+            "nulls": 17
+          },
+          {
+            "driver": 30,
+            "length": 230,
+            "nulls": 16
+          },
+          {
+            "driver": 55,
+            "length": 230,
+            "nulls": 9
+          },
+          {
+            "driver": 31,
+            "length": 230,
+            "nulls": 12
+          },
+          {
+            "driver": 41,
+            "length": 230,
+            "nulls": 10
+          },
+          {
+            "driver": 5,
+            "length": 230,
+            "nulls": 12
+          },
+          {
+            "driver": 22,
+            "length": 230,
+            "nulls": 11
+          },
+          {
+            "driver": 87,
+            "length": 230,
+            "nulls": 12
+          },
+          {
+            "driver": 11,
+            "length": 230,
+            "nulls": 11
+          },
+          {
+            "driver": 77,
+            "length": 230,
+            "nulls": 15
+          },
+          {
+            "driver": 14,
+            "length": 230,
+            "nulls": 8
+          },
+          {
+            "driver": 18,
+            "length": 230,
+            "nulls": 10
+          }
+        ],
+        "expected": 230,
+        "null_bins": 241,
+        "min": 0.11,
+        "max": 1.3184
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.coverage",
+      "title": "Coverage is within 0-100",
+      "status": "WARN",
+      "detail": "data/races/11361.json: 19/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.6-96.5",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: 19/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.6-96.5"
+      ],
+      "metrics": {
+        "min": 91.6,
+        "max": 97.3,
+        "below_97": [
+          {
+            "driver": "ANT",
+            "coverage_pct": 95.2
+          },
+          {
+            "driver": "HUL",
+            "coverage_pct": 92.6
+          },
+          {
+            "driver": "NOR",
+            "coverage_pct": 94.6
+          },
+          {
+            "driver": "GAS",
+            "coverage_pct": 91.6
+          },
+          {
+            "driver": "COL",
+            "coverage_pct": 94.4
+          },
+          {
+            "driver": "PIA",
+            "coverage_pct": 95.2
+          },
+          {
+            "driver": "HAM",
+            "coverage_pct": 95.8
+          },
+          {
+            "driver": "ALB",
+            "coverage_pct": 92.4
+          },
+          {
+            "driver": "LAW",
+            "coverage_pct": 92.7
+          },
+          {
+            "driver": "SAI",
+            "coverage_pct": 95.4
+          },
+          {
+            "driver": "OCO",
+            "coverage_pct": 93.7
+          },
+          {
+            "driver": "LIN",
+            "coverage_pct": 93.4
+          },
+          {
+            "driver": "BOR",
+            "coverage_pct": 92.8
+          },
+          {
+            "driver": "TSU",
+            "coverage_pct": 94.9
+          },
+          {
+            "driver": "BEA",
+            "coverage_pct": 92.2
+          },
+          {
+            "driver": "PER",
+            "coverage_pct": 95.4
+          },
+          {
+            "driver": "BOT",
+            "coverage_pct": 91.6
+          },
+          {
+            "driver": "ALO",
+            "coverage_pct": 96.4
+          },
+          {
+            "driver": "STR",
+            "coverage_pct": 96.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.official",
+      "title": "Official best fields and sector sum",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "sector_max_error": 1.4210854715202004e-14,
+        "telemetry_limited": 0
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.analysis",
+      "title": "Reference lap, pre-scale integral and calibration",
+      "status": "WARN",
+      "detail": "data/races/11361.json: pre_scale_shortfall_pct 0.51 is outside the expected 1-2% sanity band; data/races/11361.json: calibration block missing; sector-delta acceptance cannot be checked",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: pre_scale_shortfall_pct 0.51 is outside the expected 1-2% sanity band",
+        "data/races/11361.json: calibration block missing; sector-delta acceptance cannot be checked"
+      ],
+      "metrics": {
+        "reference_driver_number": 12,
+        "fastest_driver_number": 12,
+        "gps_vs_track_pct": 0.028,
+        "pre_scale_shortfall_pct": 0.51,
+        "reference_nulls": 12
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.size",
+      "title": "Race file size under 150 KB",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 47851,
+        "limit_bytes": 153600,
+        "kb": 46.729
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.schema",
+      "title": "Race schema",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 43572,
+        "session_key": 11388
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.constants",
+      "title": "Grid / segment / deadband constants",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "grid_m": 25,
+        "segment_m": 100,
+        "deadband_s": 0.03
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.track",
+      "title": "Track geometry and sector marks",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "length_m": 4830,
+        "points": 484,
+        "sector_marks_m": [
+          1625,
+          3400
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.drivers",
+      "title": "Drivers: count, identity and fields",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "count": 22,
+        "numbers": [
+          16,
+          12,
+          81,
+          6,
+          3,
+          1,
+          63,
+          44,
+          27,
+          30,
+          10,
+          23,
+          87,
+          14,
+          31,
+          41,
+          55,
+          11,
+          18,
+          43,
+          77,
+          5
+        ],
+        "acronyms": [
+          "LEC",
+          "ANT",
+          "PIA",
+          "HAD",
+          "VER",
+          "NOR",
+          "RUS",
+          "HAM",
+          "HUL",
+          "LAW",
+          "GAS",
+          "ALB",
+          "BEA",
+          "ALO",
+          "OCO",
+          "LIN",
+          "SAI",
+          "PER",
+          "STR",
+          "COL",
+          "BOT",
+          "BOR"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.colour",
+      "title": "Team colours are 6-digit hex",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "unique": 11,
+        "colours": [
+          "ED1131",
+          "00D7B6",
+          "F47600",
+          "4781D7",
+          "F50537",
+          "6C98FF",
+          "00A1E8",
+          "1868DB",
+          "9C9FA2",
+          "229971",
+          "909090"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.dt",
+      "title": "dt length, nulls and positive finite values",
+      "status": "WARN",
+      "detail": "data/races/11388.json: LEC has 7 null dt bin(s); sum 91.56 s is 3.642 s below lap_time (null-rule, not bridged); data/races/11388.json: ANT has 5 null dt bin(s); sum 93.021 s is 2.568 s below lap_time (null-rule, not bridged); data/races/11388.json: PIA has 10 null dt bin(s); sum 91.632 s is 4.033 s below lap_time (null-rule, not bridged); data/races/11388.json: HAD has 12 null dt bin(s); sum 90.462 s is 5.455 s below lap_time (null-rule, not bridged); data/races/11388.json: VER has 5 null dt bin(s); sum 91.738 s is 4.463 s below lap_time (null-rule, not bridged); data/races/11388.json: NOR has 11 null dt bin(s); sum 88.537 s is 7.745 s below lap_time (null-rule, not bridged); data/races/11388.json: RUS has 8 null dt bin(s); sum 91.375 s is 5.347 s below lap_time (null-rule, not bridged); data/races/11388.json: HAM has 6 null dt bin(s); sum 92.163 s is 4.759 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11388.json: LEC has 7 null dt bin(s); sum 91.56 s is 3.642 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ANT has 5 null dt bin(s); sum 93.021 s is 2.568 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: PIA has 10 null dt bin(s); sum 91.632 s is 4.033 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HAD has 12 null dt bin(s); sum 90.462 s is 5.455 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: VER has 5 null dt bin(s); sum 91.738 s is 4.463 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: NOR has 11 null dt bin(s); sum 88.537 s is 7.745 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: RUS has 8 null dt bin(s); sum 91.375 s is 5.347 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HAM has 6 null dt bin(s); sum 92.163 s is 4.759 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HUL has 6 null dt bin(s); sum 93.884 s is 3.171 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: LAW has 12 null dt bin(s); sum 91.896 s is 5.297 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: GAS has 13 null dt bin(s); sum 91.613 s is 5.777 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ALB has 13 null dt bin(s); sum 90.133 s is 7.303 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BEA has 4 null dt bin(s); sum 94.356 s is 3.2 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ALO has 8 null dt bin(s); sum 93.232 s is 4.8 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: OCO has 8 null dt bin(s); sum 94.568 s is 3.561 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: LIN has 11 null dt bin(s); sum 93.189 s is 4.965 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: SAI has 12 null dt bin(s); sum 92.621 s is 5.705 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: PER has 7 null dt bin(s); sum 92.576 s is 5.998 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: STR has 15 null dt bin(s); sum 91.39 s is 7.747 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: COL has 15 null dt bin(s); sum 89.788 s is 9.477 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BOT has 10 null dt bin(s); sum 95.595 s is 4.576 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BOR has 12 null dt bin(s); sum 93.391 s is 7.095 s below lap_time (null-rule, not bridged)"
+      ],
+      "metrics": {
+        "drivers": 22,
+        "lengths": [
+          {
+            "driver": 16,
+            "length": 194,
+            "nulls": 7
+          },
+          {
+            "driver": 12,
+            "length": 194,
+            "nulls": 5
+          },
+          {
+            "driver": 81,
+            "length": 194,
+            "nulls": 10
+          },
+          {
+            "driver": 6,
+            "length": 194,
+            "nulls": 12
+          },
+          {
+            "driver": 3,
+            "length": 194,
+            "nulls": 5
+          },
+          {
+            "driver": 1,
+            "length": 194,
+            "nulls": 11
+          },
+          {
+            "driver": 63,
+            "length": 194,
+            "nulls": 8
+          },
+          {
+            "driver": 44,
+            "length": 194,
+            "nulls": 6
+          },
+          {
+            "driver": 27,
+            "length": 194,
+            "nulls": 6
+          },
+          {
+            "driver": 30,
+            "length": 194,
+            "nulls": 12
+          },
+          {
+            "driver": 10,
+            "length": 194,
+            "nulls": 13
+          },
+          {
+            "driver": 23,
+            "length": 194,
+            "nulls": 13
+          },
+          {
+            "driver": 87,
+            "length": 194,
+            "nulls": 4
+          },
+          {
+            "driver": 14,
+            "length": 194,
+            "nulls": 8
+          },
+          {
+            "driver": 31,
+            "length": 194,
+            "nulls": 8
+          },
+          {
+            "driver": 41,
+            "length": 194,
+            "nulls": 11
+          },
+          {
+            "driver": 55,
+            "length": 194,
+            "nulls": 12
+          },
+          {
+            "driver": 11,
+            "length": 194,
+            "nulls": 7
+          },
+          {
+            "driver": 18,
+            "length": 194,
+            "nulls": 15
+          },
+          {
+            "driver": 43,
+            "length": 194,
+            "nulls": 15
+          },
+          {
+            "driver": 77,
+            "length": 194,
+            "nulls": 10
+          },
+          {
+            "driver": 5,
+            "length": 194,
+            "nulls": 12
+          }
+        ],
+        "expected": 194,
+        "null_bins": 210,
+        "min": 0.0681,
+        "max": 1.3767
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.coverage",
+      "title": "Coverage is within 0-100",
+      "status": "WARN",
+      "detail": "data/races/11388.json: 21/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 90.5-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11388.json: 21/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 90.5-96.7"
+      ],
+      "metrics": {
+        "min": 90.5,
+        "max": 97.3,
+        "below_97": [
+          {
+            "driver": "LEC",
+            "coverage_pct": 96.2
+          },
+          {
+            "driver": "PIA",
+            "coverage_pct": 95.8
+          },
+          {
+            "driver": "HAD",
+            "coverage_pct": 94.3
+          },
+          {
+            "driver": "VER",
+            "coverage_pct": 95.4
+          },
+          {
+            "driver": "NOR",
+            "coverage_pct": 92
+          },
+          {
+            "driver": "RUS",
+            "coverage_pct": 94.5
+          },
+          {
+            "driver": "HAM",
+            "coverage_pct": 95.1
+          },
+          {
+            "driver": "HUL",
+            "coverage_pct": 96.7
+          },
+          {
+            "driver": "LAW",
+            "coverage_pct": 94.6
+          },
+          {
+            "driver": "GAS",
+            "coverage_pct": 94.1
+          },
+          {
+            "driver": "ALB",
+            "coverage_pct": 92.5
+          },
+          {
+            "driver": "BEA",
+            "coverage_pct": 96.7
+          },
+          {
+            "driver": "ALO",
+            "coverage_pct": 95.1
+          },
+          {
+            "driver": "OCO",
+            "coverage_pct": 96.4
+          },
+          {
+            "driver": "LIN",
+            "coverage_pct": 94.9
+          },
+          {
+            "driver": "SAI",
+            "coverage_pct": 94.2
+          },
+          {
+            "driver": "PER",
+            "coverage_pct": 93.9
+          },
+          {
+            "driver": "STR",
+            "coverage_pct": 92.2
+          },
+          {
+            "driver": "COL",
+            "coverage_pct": 90.5
+          },
+          {
+            "driver": "BOT",
+            "coverage_pct": 95.4
+          },
+          {
+            "driver": "BOR",
+            "coverage_pct": 92.9
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.official",
+      "title": "Official best fields and sector sum",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "sector_max_error": 1.4210854715202004e-14,
+        "telemetry_limited": 0
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.analysis",
+      "title": "Reference lap, pre-scale integral and calibration",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "reference_driver_number": 16,
+        "fastest_driver_number": 16,
+        "gps_vs_track_pct": 0.012,
+        "pre_scale_shortfall_pct": 1.39,
+        "reference_nulls": 7,
+        "calibration_max_error": 0.099
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.size",
+      "title": "Race file size under 150 KB",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 43572,
+        "limit_bytes": 153600,
+        "kb": 42.551
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.schema",
+      "title": "Race schema",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 47324,
+        "session_key": 11396
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.constants",
+      "title": "Grid / segment / deadband constants",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "grid_m": 25,
+        "segment_m": 100,
+        "deadband_s": 0.03
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.track",
+      "title": "Track geometry and sector marks",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "length_m": 5395,
+        "points": 541,
+        "sector_marks_m": [
+          1625,
+          3850
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.drivers",
+      "title": "Drivers: count, identity and fields",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "count": 22,
+        "numbers": [
+          16,
+          5,
+          44,
+          12,
+          3,
+          6,
+          41,
+          30,
+          1,
+          14,
+          63,
+          18,
+          10,
+          27,
+          81,
+          55,
+          43,
+          23,
+          31,
+          11,
+          77,
+          87
+        ],
+        "acronyms": [
+          "LEC",
+          "BOR",
+          "HAM",
+          "ANT",
+          "VER",
+          "HAD",
+          "LIN",
+          "LAW",
+          "NOR",
+          "ALO",
+          "RUS",
+          "STR",
+          "GAS",
+          "HUL",
+          "PIA",
+          "SAI",
+          "COL",
+          "ALB",
+          "OCO",
+          "PER",
+          "BOT",
+          "BEA"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.colour",
+      "title": "Team colours are 6-digit hex",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "unique": 11,
+        "colours": [
+          "ED1131",
+          "F50537",
+          "00D7B6",
+          "4781D7",
+          "6C98FF",
+          "F47600",
+          "229971",
+          "00A1E8",
+          "1868DB",
+          "9C9FA2",
+          "909090"
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.dt",
+      "title": "dt length, nulls and positive finite values",
+      "status": "WARN",
+      "detail": "data/races/11396.json: LEC has 10 null dt bin(s); sum 94.244 s is 3.732 s below lap_time (null-rule, not bridged); data/races/11396.json: HAM has 10 null dt bin(s); sum 93.318 s is 5.139 s below lap_time (null-rule, not bridged); data/races/11396.json: ANT has 5 null dt bin(s); sum 95.858 s is 3.228 s below lap_time (null-rule, not bridged); data/races/11396.json: HAD has 11 null dt bin(s); sum 92.936 s is 6.463 s below lap_time (null-rule, not bridged); data/races/11396.json: LIN has 12 null dt bin(s); sum 95.228 s is 4.194 s below lap_time (null-rule, not bridged); data/races/11396.json: LAW has 9 null dt bin(s); sum 95.66 s is 3.992 s below lap_time (null-rule, not bridged); data/races/11396.json: NOR has 6 null dt bin(s); sum 97.673 s is 2.138 s below lap_time (null-rule, not bridged); data/races/11396.json: ALO has 5 null dt bin(s); sum 96.411 s is 3.43 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11396.json: LEC has 10 null dt bin(s); sum 94.244 s is 3.732 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: HAM has 10 null dt bin(s); sum 93.318 s is 5.139 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ANT has 5 null dt bin(s); sum 95.858 s is 3.228 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: HAD has 11 null dt bin(s); sum 92.936 s is 6.463 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: LIN has 12 null dt bin(s); sum 95.228 s is 4.194 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: LAW has 9 null dt bin(s); sum 95.66 s is 3.992 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: NOR has 6 null dt bin(s); sum 97.673 s is 2.138 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ALO has 5 null dt bin(s); sum 96.411 s is 3.43 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: RUS has 11 null dt bin(s); sum 94.041 s is 5.887 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: STR has 13 null dt bin(s); sum 94.977 s is 5.212 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: GAS has 8 null dt bin(s); sum 97.176 s is 3.017 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: PIA has 11 null dt bin(s); sum 96.624 s is 3.704 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: SAI has 10 null dt bin(s); sum 95.066 s is 5.287 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: COL has 15 null dt bin(s); sum 94.436 s is 6.651 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ALB has 13 null dt bin(s); sum 92.161 s is 8.971 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: OCO has 13 null dt bin(s); sum 94.421 s is 6.997 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: PER has 11 null dt bin(s); sum 96.009 s is 5.671 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: BOT has 6 null dt bin(s); sum 99.238 s is 2.774 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: BEA has 18 null dt bin(s); sum 93.58 s is 8.527 s below lap_time (null-rule, not bridged)"
+      ],
+      "metrics": {
+        "drivers": 22,
+        "lengths": [
+          {
+            "driver": 16,
+            "length": 216,
+            "nulls": 10
+          },
+          {
+            "driver": 5,
+            "length": 216,
+            "nulls": 0
+          },
+          {
+            "driver": 44,
+            "length": 216,
+            "nulls": 10
+          },
+          {
+            "driver": 12,
+            "length": 216,
+            "nulls": 5
+          },
+          {
+            "driver": 3,
+            "length": 216,
+            "nulls": 0
+          },
+          {
+            "driver": 6,
+            "length": 216,
+            "nulls": 11
+          },
+          {
+            "driver": 41,
+            "length": 216,
+            "nulls": 12
+          },
+          {
+            "driver": 30,
+            "length": 216,
+            "nulls": 9
+          },
+          {
+            "driver": 1,
+            "length": 216,
+            "nulls": 6
+          },
+          {
+            "driver": 14,
+            "length": 216,
+            "nulls": 5
+          },
+          {
+            "driver": 63,
+            "length": 216,
+            "nulls": 11
+          },
+          {
+            "driver": 18,
+            "length": 216,
+            "nulls": 13
+          },
+          {
+            "driver": 10,
+            "length": 216,
+            "nulls": 8
+          },
+          {
+            "driver": 27,
+            "length": 216,
+            "nulls": 0
+          },
+          {
+            "driver": 81,
+            "length": 216,
+            "nulls": 11
+          },
+          {
+            "driver": 55,
+            "length": 216,
+            "nulls": 10
+          },
+          {
+            "driver": 43,
+            "length": 216,
+            "nulls": 15
+          },
+          {
+            "driver": 23,
+            "length": 216,
+            "nulls": 13
+          },
+          {
+            "driver": 31,
+            "length": 216,
+            "nulls": 13
+          },
+          {
+            "driver": 11,
+            "length": 216,
+            "nulls": 11
+          },
+          {
+            "driver": 77,
+            "length": 216,
+            "nulls": 6
+          },
+          {
+            "driver": 87,
+            "length": 216,
+            "nulls": 18
+          }
+        ],
+        "expected": 216,
+        "null_bins": 197,
+        "min": 0.2662,
+        "max": 1.2867
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.coverage",
+      "title": "Coverage is within 0-100",
+      "status": "WARN",
+      "detail": "data/races/11396.json: 16/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.1-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11396.json: 16/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.1-96.7"
+      ],
+      "metrics": {
+        "min": 91.1,
+        "max": 100,
+        "below_97": [
+          {
+            "driver": "LEC",
+            "coverage_pct": 96.2
+          },
+          {
+            "driver": "HAM",
+            "coverage_pct": 94.8
+          },
+          {
+            "driver": "ANT",
+            "coverage_pct": 96.7
+          },
+          {
+            "driver": "HAD",
+            "coverage_pct": 93.5
+          },
+          {
+            "driver": "LIN",
+            "coverage_pct": 95.8
+          },
+          {
+            "driver": "LAW",
+            "coverage_pct": 96
+          },
+          {
+            "driver": "ALO",
+            "coverage_pct": 96.6
+          },
+          {
+            "driver": "RUS",
+            "coverage_pct": 94.1
+          },
+          {
+            "driver": "STR",
+            "coverage_pct": 94.8
+          },
+          {
+            "driver": "PIA",
+            "coverage_pct": 96.3
+          },
+          {
+            "driver": "SAI",
+            "coverage_pct": 94.7
+          },
+          {
+            "driver": "COL",
+            "coverage_pct": 93.4
+          },
+          {
+            "driver": "ALB",
+            "coverage_pct": 91.1
+          },
+          {
+            "driver": "OCO",
+            "coverage_pct": 93.1
+          },
+          {
+            "driver": "PER",
+            "coverage_pct": 94.4
+          },
+          {
+            "driver": "BEA",
+            "coverage_pct": 91.6
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.official",
+      "title": "Official best fields and sector sum",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "sector_max_error": 1.4210854715202004e-14,
+        "telemetry_limited": 0
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.analysis",
+      "title": "Reference lap, pre-scale integral and calibration",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "reference_driver_number": 16,
+        "fastest_driver_number": 16,
+        "gps_vs_track_pct": 0.069,
+        "pre_scale_shortfall_pct": 1.09,
+        "reference_nulls": 10,
+        "calibration_max_error": 0.159
+      }
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.size",
+      "title": "Race file size under 150 KB",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 47324,
+        "limit_bytes": 153600,
+        "kb": 46.215
+      }
+    },
+    {
+      "id": "dataset.five_race_set",
+      "title": "Curated five-race set",
+      "status": "PASS",
+      "detail": "ok",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "expected": [
+          {
+            "session_key": 11326,
+            "name": "British Grand Prix",
+            "round": 9
+          },
+          {
+            "session_key": 11334,
+            "name": "Belgian Grand Prix",
+            "round": 10
+          },
+          {
+            "session_key": 11361,
+            "name": "Italian Grand Prix",
+            "round": 13
+          },
+          {
+            "session_key": 11388,
+            "name": "Singapore Grand Prix",
+            "round": 17
+          },
+          {
+            "session_key": 11396,
+            "name": "United States Grand Prix",
+            "round": 18
+          }
+        ],
+        "present": [
+          11326,
+          11334,
+          11361,
+          11388,
+          11396
+        ],
+        "missing": [],
+        "mismatched": []
+      }
+    },
+    {
+      "id": "audit.section",
+      "title": "Independent 100 m section from raw OpenF1",
+      "status": "PASS",
+      "detail": "section 20 (2000-2100 m): VER audit 1.5807 s vs JSON 1.5798 s (delta +0.0009 s); LEC audit 1.5688 s vs JSON 1.5666 s (delta +0.0022 s)",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "section_index": 20,
+        "distance_m": [
+          2000,
+          2100
+        ],
+        "reference_driver_number": 16,
+        "json_reference_driver_number": 16,
+        "centreline_length_m": 5395,
+        "values": {
+          "3": {
+            "acronym": "VER",
+            "json_s": 1.5798,
+            "audit_s": 1.5807,
+            "delta_s": 0.0009,
+            "abs_delta_s": 0.0009
+          },
+          "16": {
+            "acronym": "LEC",
+            "json_s": 1.5666,
+            "audit_s": 1.5688,
+            "delta_s": 0.0022,
+            "abs_delta_s": 0.0022
+          }
+        },
+        "pre_scale_shortfall_pct": 1.075,
+        "raw_sources": {
+          "laps": "cache",
+          "lec": {
+            "location": "cache",
+            "car_data": "cache"
+          },
+          "ver": {
+            "location": "cache",
+            "car_data": "cache"
+          }
+        },
+        "raw_rows": {
+          "lec_location": 383,
+          "lec_car_data": 377,
+          "ver_location": 391,
+          "ver_car_data": 379
+        }
+      }
+    },
+    {
+      "id": "audit.same_driver",
+      "title": "Same-driver control and deadband/null behaviour",
+      "status": "PASS",
+      "detail": "54 segments: 43 neutral, 11 no-data, 0 coloured; neutral share including no-data 100.0%, of decided 100.0%; deadband boundary [-1, -1, 0, 0, 0, 1, 1]",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "total_segments": 54,
+        "non_null_segments": 43,
+        "neutral_segments": 43,
+        "null_segments": 11,
+        "coloured_segments": 0,
+        "neutral_share_including_null": 1,
+        "neutral_share_decided": 1,
+        "deadband_s": 0.03,
+        "boundary_classes": [
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "tooltip_boundary_warning": null,
+        "lec_ver_pair": {
+          "total_segments": 54,
+          "non_null_segments": 49,
+          "raw_beyond_30ms": 24,
+          "raw_neutral": 25,
+          "raw_null": 5,
+          "raw_sign_changes": 11,
+          "smoothed_coloured": 24,
+          "smoothed_neutral": 19,
+          "smoothed_null": 11,
+          "documented_docs01": {
+            "beyond_30ms": 17,
+            "neutral": 37,
+            "sign_changes": 11,
+            "total": 54
+          }
+        },
+        "documented_calibration": {
+          "source": "docs/01-data-source-assessment.md §5",
+          "laps": "NOR 42/44",
+          "rms_s": 0.014,
+          "within_30ms": 50,
+          "segments": 53,
+          "neutral_share": 0.9434,
+          "sign_changes": 14,
+          "acceptance_min": 0.9,
+          "note": "Documented reference only; this run uses the synthetic self-comparison from the JSON, which is the alternative permitted by the audit brief."
+        }
+      }
+    },
+    {
+      "id": "audit.documented_calibration",
+      "title": "Documented calibration claims match the snapshot",
+      "status": "WARN",
+      "detail": "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)",
+      "errors": [],
+      "warnings": [
+        "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)"
+      ],
+      "metrics": {
+        "lec_ver": {
+          "total_segments": 54,
+          "non_null_segments": 49,
+          "raw_beyond_30ms": 24,
+          "raw_neutral": 25,
+          "raw_null": 5,
+          "raw_sign_changes": 11,
+          "smoothed_coloured": 24,
+          "smoothed_neutral": 19,
+          "smoothed_null": 11,
+          "documented_docs01": {
+            "beyond_30ms": 17,
+            "neutral": 37,
+            "sign_changes": 11,
+            "total": 54
+          }
+        },
+        "nor_reference": {
+          "source": "docs/01-data-source-assessment.md §5",
+          "laps": "NOR 42/44",
+          "rms_s": 0.014,
+          "within_30ms": 50,
+          "segments": 53,
+          "neutral_share": 0.9434,
+          "sign_changes": 14,
+          "acceptance_min": 0.9,
+          "note": "Documented reference only; this run uses the synthetic self-comparison from the JSON, which is the alternative permitted by the audit brief."
+        }
+      }
+    }
+  ],
+  "defects": [
+    {
+      "id": "dataset.race.data/races/11326.json.dt",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11326.json: ANT has 15 null dt bin(s); sum 85.274 s is 6.503 s below lap_time (null-rule, not bridged); data/races/11326.json: VER has 3 null dt bin(s); sum 90.834 s is 1.267 s below lap_time (null-rule, not bridged); data/races/11326.json: HAD has 12 null dt bin(s); sum 88.257 s is 4.011 s below lap_time (null-rule, not bridged); data/races/11326.json: HAM has 4 null dt bin(s); sum 90.915 s is 1.394 s below lap_time (null-rule, not bridged); data/races/11326.json: RUS has 13 null dt bin(s); sum 86.084 s is 6.405 s below lap_time (null-rule, not bridged); data/races/11326.json: NOR has 9 null dt bin(s); sum 88.443 s is 4.182 s below lap_time (null-rule, not bridged); data/races/11326.json: SAI has 9 null dt bin(s); sum 88.746 s is 3.988 s below lap_time (null-rule, not bridged); data/races/11326.json: LEC has 11 null dt bin(s); sum 88.399 s is 4.472 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: ANT has 15 null dt bin(s); sum 85.274 s is 6.503 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: VER has 3 null dt bin(s); sum 90.834 s is 1.267 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HAD has 12 null dt bin(s); sum 88.257 s is 4.011 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HAM has 4 null dt bin(s); sum 90.915 s is 1.394 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: RUS has 13 null dt bin(s); sum 86.084 s is 6.405 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: NOR has 9 null dt bin(s); sum 88.443 s is 4.182 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: SAI has 9 null dt bin(s); sum 88.746 s is 3.988 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LEC has 11 null dt bin(s); sum 88.399 s is 4.472 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: PIA has 8 null dt bin(s); sum 89.068 s is 3.849 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: HUL has 21 null dt bin(s); sum 86.092 s is 7.341 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LIN has 10 null dt bin(s); sum 87.908 s is 5.724 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: LAW has 11 null dt bin(s); sum 88.789 s is 4.859 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BOR has 6 null dt bin(s); sum 90.431 s is 3.219 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: ALB has 17 null dt bin(s); sum 86.615 s is 7.252 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: GAS has 16 null dt bin(s); sum 88.832 s is 5.347 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: COL has 11 null dt bin(s); sum 90.548 s is 3.733 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BEA has 13 null dt bin(s); sum 89.924 s is 4.531 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: OCO has 4 null dt bin(s); sum 91.515 s is 3.277 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: PER has 9 null dt bin(s); sum 91.78 s is 3.74 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: ALO has 11 null dt bin(s); sum 90.336 s is 5.491 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: BOT has 5 null dt bin(s); sum 93.386 s is 2.507 s below lap_time (null-rule, not bridged)",
+        "data/races/11326.json: STR has 10 null dt bin(s); sum 93.694 s is 3.538 s below lap_time (null-rule, not bridged)"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.coverage",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11326.json: 19/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 92.1-96.6",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: 19/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 92.1-96.6"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11326.json.analysis",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11326.json: pre_scale_shortfall_pct 0.37 is outside the expected 1-2% sanity band",
+      "errors": [],
+      "warnings": [
+        "data/races/11326.json: pre_scale_shortfall_pct 0.37 is outside the expected 1-2% sanity band"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.dt",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11334.json: NOR has 8 null dt bin(s); sum 105.654 s is 3.236 s below lap_time (null-rule, not bridged); data/races/11334.json: ANT has 13 null dt bin(s); sum 102.317 s is 6.781 s below lap_time (null-rule, not bridged); data/races/11334.json: HAD has 7 null dt bin(s); sum 106.746 s is 2.552 s below lap_time (null-rule, not bridged); data/races/11334.json: LEC has 13 null dt bin(s); sum 104.511 s is 4.822 s below lap_time (null-rule, not bridged); data/races/11334.json: HAM has 10 null dt bin(s); sum 105.222 s is 4.232 s below lap_time (null-rule, not bridged); data/races/11334.json: PIA has 13 null dt bin(s); sum 104.86 s is 4.702 s below lap_time (null-rule, not bridged); data/races/11334.json: VER has 13 null dt bin(s); sum 103.053 s is 6.565 s below lap_time (null-rule, not bridged); data/races/11334.json: BOR has 25 null dt bin(s); sum 101.804 s is 8.53 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: NOR has 8 null dt bin(s); sum 105.654 s is 3.236 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ANT has 13 null dt bin(s); sum 102.317 s is 6.781 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HAD has 7 null dt bin(s); sum 106.746 s is 2.552 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LEC has 13 null dt bin(s); sum 104.511 s is 4.822 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HAM has 10 null dt bin(s); sum 105.222 s is 4.232 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: PIA has 13 null dt bin(s); sum 104.86 s is 4.702 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: VER has 13 null dt bin(s); sum 103.053 s is 6.565 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BOR has 25 null dt bin(s); sum 101.804 s is 8.53 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: HUL has 8 null dt bin(s); sum 107.977 s is 2.526 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LIN has 11 null dt bin(s); sum 103.951 s is 6.585 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: LAW has 15 null dt bin(s); sum 104.996 s is 6.079 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: GAS has 16 null dt bin(s); sum 105.712 s is 5.389 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BEA has 16 null dt bin(s); sum 104.577 s is 6.532 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: COL has 11 null dt bin(s); sum 104.942 s is 6.22 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: SAI has 8 null dt bin(s); sum 107.665 s is 3.698 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ALB has 17 null dt bin(s); sum 105.166 s is 6.728 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: OCO has 22 null dt bin(s); sum 102.794 s is 9.106 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: BOT has 5 null dt bin(s); sum 110.004 s is 2.007 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: ALO has 5 null dt bin(s); sum 109.88 s is 3.068 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: PER has 6 null dt bin(s); sum 110.197 s is 3.281 s below lap_time (null-rule, not bridged)",
+        "data/races/11334.json: STR has 19 null dt bin(s); sum 104.515 s is 9.465 s below lap_time (null-rule, not bridged)"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.coverage",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11334.json: 15/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.7-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: 15/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.7-96.7"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11334.json.analysis",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11334.json: pre_scale_shortfall_pct 0.19 is outside the expected 1-2% sanity band",
+      "errors": [],
+      "warnings": [
+        "data/races/11334.json: pre_scale_shortfall_pct 0.19 is outside the expected 1-2% sanity band"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.dt",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11361.json: ANT has 12 null dt bin(s); sum 79.468 s is 4.036 s below lap_time (null-rule, not bridged); data/races/11361.json: VER has 6 null dt bin(s); sum 81.736 s is 2.506 s below lap_time (null-rule, not bridged); data/races/11361.json: HUL has 15 null dt bin(s); sum 78.128 s is 6.236 s below lap_time (null-rule, not bridged); data/races/11361.json: RUS has 6 null dt bin(s); sum 82.106 s is 2.284 s below lap_time (null-rule, not bridged); data/races/11361.json: NOR has 9 null dt bin(s); sum 80.308 s is 4.556 s below lap_time (null-rule, not bridged); data/races/11361.json: GAS has 15 null dt bin(s); sum 77.825 s is 7.102 s below lap_time (null-rule, not bridged); data/races/11361.json: COL has 14 null dt bin(s); sum 80.156 s is 4.777 s below lap_time (null-rule, not bridged); data/races/11361.json: PIA has 11 null dt bin(s); sum 81.019 s is 4.106 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: ANT has 12 null dt bin(s); sum 79.468 s is 4.036 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: VER has 6 null dt bin(s); sum 81.736 s is 2.506 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: HUL has 15 null dt bin(s); sum 78.128 s is 6.236 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: RUS has 6 null dt bin(s); sum 82.106 s is 2.284 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: NOR has 9 null dt bin(s); sum 80.308 s is 4.556 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: GAS has 15 null dt bin(s); sum 77.825 s is 7.102 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: COL has 14 null dt bin(s); sum 80.156 s is 4.777 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: PIA has 11 null dt bin(s); sum 81.019 s is 4.106 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: HAM has 10 null dt bin(s); sum 81.733 s is 3.567 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: ALB has 17 null dt bin(s); sum 78.822 s is 6.519 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: LAW has 16 null dt bin(s); sum 79.325 s is 6.253 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: SAI has 9 null dt bin(s); sum 81.753 s is 3.93 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: OCO has 12 null dt bin(s); sum 80.273 s is 5.438 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: LIN has 10 null dt bin(s); sum 80.317 s is 5.711 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BOR has 12 null dt bin(s); sum 80.023 s is 6.165 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: TSU has 11 null dt bin(s); sum 81.905 s is 4.415 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BEA has 12 null dt bin(s); sum 79.638 s is 6.718 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: PER has 11 null dt bin(s); sum 82.918 s is 3.996 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: BOT has 15 null dt bin(s); sum 79.974 s is 7.351 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: ALO has 8 null dt bin(s); sum 84.775 s is 3.186 s below lap_time (null-rule, not bridged)",
+        "data/races/11361.json: STR has 10 null dt bin(s); sum 85.276 s is 3.139 s below lap_time (null-rule, not bridged)"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.coverage",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11361.json: 19/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.6-96.5",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: 19/21 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.6-96.5"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11361.json.analysis",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11361.json: pre_scale_shortfall_pct 0.51 is outside the expected 1-2% sanity band; data/races/11361.json: calibration block missing; sector-delta acceptance cannot be checked",
+      "errors": [],
+      "warnings": [
+        "data/races/11361.json: pre_scale_shortfall_pct 0.51 is outside the expected 1-2% sanity band",
+        "data/races/11361.json: calibration block missing; sector-delta acceptance cannot be checked"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.dt",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11388.json: LEC has 7 null dt bin(s); sum 91.56 s is 3.642 s below lap_time (null-rule, not bridged); data/races/11388.json: ANT has 5 null dt bin(s); sum 93.021 s is 2.568 s below lap_time (null-rule, not bridged); data/races/11388.json: PIA has 10 null dt bin(s); sum 91.632 s is 4.033 s below lap_time (null-rule, not bridged); data/races/11388.json: HAD has 12 null dt bin(s); sum 90.462 s is 5.455 s below lap_time (null-rule, not bridged); data/races/11388.json: VER has 5 null dt bin(s); sum 91.738 s is 4.463 s below lap_time (null-rule, not bridged); data/races/11388.json: NOR has 11 null dt bin(s); sum 88.537 s is 7.745 s below lap_time (null-rule, not bridged); data/races/11388.json: RUS has 8 null dt bin(s); sum 91.375 s is 5.347 s below lap_time (null-rule, not bridged); data/races/11388.json: HAM has 6 null dt bin(s); sum 92.163 s is 4.759 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11388.json: LEC has 7 null dt bin(s); sum 91.56 s is 3.642 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ANT has 5 null dt bin(s); sum 93.021 s is 2.568 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: PIA has 10 null dt bin(s); sum 91.632 s is 4.033 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HAD has 12 null dt bin(s); sum 90.462 s is 5.455 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: VER has 5 null dt bin(s); sum 91.738 s is 4.463 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: NOR has 11 null dt bin(s); sum 88.537 s is 7.745 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: RUS has 8 null dt bin(s); sum 91.375 s is 5.347 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HAM has 6 null dt bin(s); sum 92.163 s is 4.759 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: HUL has 6 null dt bin(s); sum 93.884 s is 3.171 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: LAW has 12 null dt bin(s); sum 91.896 s is 5.297 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: GAS has 13 null dt bin(s); sum 91.613 s is 5.777 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ALB has 13 null dt bin(s); sum 90.133 s is 7.303 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BEA has 4 null dt bin(s); sum 94.356 s is 3.2 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: ALO has 8 null dt bin(s); sum 93.232 s is 4.8 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: OCO has 8 null dt bin(s); sum 94.568 s is 3.561 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: LIN has 11 null dt bin(s); sum 93.189 s is 4.965 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: SAI has 12 null dt bin(s); sum 92.621 s is 5.705 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: PER has 7 null dt bin(s); sum 92.576 s is 5.998 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: STR has 15 null dt bin(s); sum 91.39 s is 7.747 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: COL has 15 null dt bin(s); sum 89.788 s is 9.477 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BOT has 10 null dt bin(s); sum 95.595 s is 4.576 s below lap_time (null-rule, not bridged)",
+        "data/races/11388.json: BOR has 12 null dt bin(s); sum 93.391 s is 7.095 s below lap_time (null-rule, not bridged)"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11388.json.coverage",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11388.json: 21/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 90.5-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11388.json: 21/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 90.5-96.7"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.dt",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11396.json: LEC has 10 null dt bin(s); sum 94.244 s is 3.732 s below lap_time (null-rule, not bridged); data/races/11396.json: HAM has 10 null dt bin(s); sum 93.318 s is 5.139 s below lap_time (null-rule, not bridged); data/races/11396.json: ANT has 5 null dt bin(s); sum 95.858 s is 3.228 s below lap_time (null-rule, not bridged); data/races/11396.json: HAD has 11 null dt bin(s); sum 92.936 s is 6.463 s below lap_time (null-rule, not bridged); data/races/11396.json: LIN has 12 null dt bin(s); sum 95.228 s is 4.194 s below lap_time (null-rule, not bridged); data/races/11396.json: LAW has 9 null dt bin(s); sum 95.66 s is 3.992 s below lap_time (null-rule, not bridged); data/races/11396.json: NOR has 6 null dt bin(s); sum 97.673 s is 2.138 s below lap_time (null-rule, not bridged); data/races/11396.json: ALO has 5 null dt bin(s); sum 96.411 s is 3.43 s below lap_time (null-rule, not bridged)",
+      "errors": [],
+      "warnings": [
+        "data/races/11396.json: LEC has 10 null dt bin(s); sum 94.244 s is 3.732 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: HAM has 10 null dt bin(s); sum 93.318 s is 5.139 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ANT has 5 null dt bin(s); sum 95.858 s is 3.228 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: HAD has 11 null dt bin(s); sum 92.936 s is 6.463 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: LIN has 12 null dt bin(s); sum 95.228 s is 4.194 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: LAW has 9 null dt bin(s); sum 95.66 s is 3.992 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: NOR has 6 null dt bin(s); sum 97.673 s is 2.138 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ALO has 5 null dt bin(s); sum 96.411 s is 3.43 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: RUS has 11 null dt bin(s); sum 94.041 s is 5.887 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: STR has 13 null dt bin(s); sum 94.977 s is 5.212 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: GAS has 8 null dt bin(s); sum 97.176 s is 3.017 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: PIA has 11 null dt bin(s); sum 96.624 s is 3.704 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: SAI has 10 null dt bin(s); sum 95.066 s is 5.287 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: COL has 15 null dt bin(s); sum 94.436 s is 6.651 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: ALB has 13 null dt bin(s); sum 92.161 s is 8.971 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: OCO has 13 null dt bin(s); sum 94.421 s is 6.997 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: PER has 11 null dt bin(s); sum 96.009 s is 5.671 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: BOT has 6 null dt bin(s); sum 99.238 s is 2.774 s below lap_time (null-rule, not bridged)",
+        "data/races/11396.json: BEA has 18 null dt bin(s); sum 93.58 s is 8.527 s below lap_time (null-rule, not bridged)"
+      ]
+    },
+    {
+      "id": "dataset.race.data/races/11396.json.coverage",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "data/races/11396.json: 16/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.1-96.7",
+      "errors": [],
+      "warnings": [
+        "data/races/11396.json: 16/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.1-96.7"
+      ]
+    },
+    {
+      "id": "audit.documented_calibration",
+      "status": "WARN",
+      "severity": "P3",
+      "detail": "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)",
+      "errors": [],
+      "warnings": [
+        "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)"
+      ]
+    }
+  ]
+}
