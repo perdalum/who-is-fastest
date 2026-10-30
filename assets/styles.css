@@ -1448,6 +1448,10 @@ body.is-loading .controls {
   .tt__delta { font-size: 0.78rem; }
 }
 
+@media (max-width: 360px) {
+  .track-layer__hit { stroke-width: 96; }
+}
+
 @media (max-width: 359px) {
   .driver-grid { grid-template-columns: minmax(0, 1fr); }
 }

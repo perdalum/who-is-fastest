@@ -1,4 +1,4 @@
-# Test report — v1.0.0
+# Test report — v1.0.1
 
 **Date:** 2026-10-30  
 **Scope:** five curated 2026 races (Silverstone, Spa, Monza, Singapore,
@@ -15,7 +15,7 @@ all pass. This is a personal, indicative visualisation, not timing-grade.
 | Unit + data contract | `npm test` | **42 pass / 0 fail** |
 | Browser core | `node tests/e2e/run.mjs` | **21 pass / 0 fail / 0 skip** |
 | Adversarial / accessibility | `node tests/e2e/adversarial.mjs` | **8 pass / 0 fail / 0 skip** |
-| Independent audit | `node tests/audit/audit.mjs` | **42 pass / 0 fail / 14 warnings** |
+| Independent audit | `node tests/audit/audit.mjs` | **43 pass / 0 fail / 13 warnings** |
 
 The browser suites use real Chrome headless (Playwright `chromium` channel),
 not a mock DOM. Screenshots: `tmp/e2e/desktop.png` (1440×1000),
@@ -25,14 +25,14 @@ not a mock DOM. Screenshots: `tmp/e2e/desktop.png` (1440×1000),
 
 | Session | Race | Round | Drivers | File |
 |---|---|---:|---:|---:|
-| 11326 | British Grand Prix | 9 | 22 | 50,409 B |
-| 11334 | Belgian Grand Prix | 10 | 21 | 57,056 B |
-| 11361 | Italian Grand Prix | 13 | 21 | 47,851 B |
-| 11388 | Singapore Grand Prix | 17 | 22 | 43,572 B |
-| 11396 | United States Grand Prix | 18 | 22 | 47,324 B |
+| 11326 | British Grand Prix | 9 | 22 | 51,064 B |
+| 11334 | Belgian Grand Prix | 10 | 21 | 57,694 B |
+| 11361 | Italian Grand Prix | 13 | 21 | 48,491 B |
+| 11388 | Singapore Grand Prix | 17 | 22 | 44,231 B |
+| 11396 | United States Grand Prix | 18 | 22 | 47,983 B |
 
 - All six manifest outputs (catalog + five races) match SHA-256 and byte size.
-- Largest race file 57,056 B (55.7 KB), under the 150 KB budget.
+- Largest race file 57,694 B (56.3 KB), under the 150 KB budget.
 - All schemas, grids (25 m), segments (100 m), deadband (0.03 s), dt lengths,
   sector marks, official-best fields and colour values validate.
 - `sum(dt) + null_duration = lap_time` (within 0.06 s) for every driver; the
@@ -89,8 +89,9 @@ closed:
 | Integrity identity | **closed** | `data.test.mjs` asserts `sum(dt) ≈ lap_time × coverage`; audit independently checks null counts. |
 | One contiguous null run ≤ 2 s | **closed** | Measured max 1.5 s. |
 | Monza explicit | **closed** | Method panel says the race is not independently calibrated; no LEC option is offered. |
-| One scale factor per comparison | **open P3** | Build scales each lap to its own official time by design; the factor is not persisted as a separate field. |
+| One scale factor per comparison | **partial** | Per-driver `scale_factor` is now persisted, but each lap is still scaled to its own official time; a shared factor is an open P3. |
 | Prefer 100 %-covered lap within 0.3 s | **open P3** | Build takes the fastest valid lap; no coverage-preference pass. |
+| Touch target at 320 px | **closed** | 96-unit hit stroke → 25.2 CSS px at 320; 76 → 25.2 at 390. |
 | Alternate Monza calibration | **accepted as n/a** | Board allowed an explicit uncalibrated label. |
 
 The independent audit reproduced the structural contract and the Austin
@@ -133,14 +134,13 @@ historical evidence in `docs/01`, not a shipped-test result.
    claim a complete-lap comparison.
 4. **Monza has no calibration block.** No LEC lap passed the gap rule; the
    method panel states this.
-5. **Open P3s** (scale factor, coverage-preference fallback, touch target at
-   320 px) are recorded, not hidden. The 390 px exact-centre tap works; the
-   effective lane is ~24 CSS px after the 76-unit hit stroke.
+5. **Open P3s:** the coverage-preference fallback and a shared calibration
+   factor are recorded, not hidden. The touch target is now ~25 CSS px at both
+   320 and 390 px.
 6. **Monaco** is excluded from v1 because its position stream has no complete
    lap; this is a scope cut, not a data-quality pass.
 
 ## 8. Release recommendation
 
 **GO for personal, non-commercial use**, with the limitations above visible in
-the product and the three open P3 conditions scheduled before any wider
-release. No P1/P2 defect remains in the tested paths.
+the product and the remaining P3 conditions scheduled before any wider release. No P1/P2 defect remains in the tested paths.

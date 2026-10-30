@@ -1,31 +1,31 @@
 {
   "audit": "independent-data-audit",
   "version": 1,
-  "generated_at": "2026-10-30T13:13:05.807Z",
+  "generated_at": "2026-10-30T13:19:29.640Z",
   "workspace": "/Users/au15929/work/who-is-the-fastest",
   "source_snapshot": {
     "catalog_bytes": 1801,
-    "manifest_bytes": 1256,
+    "manifest_bytes": 1253,
     "race_files": [
       {
         "path": "data/races/11326.json",
-        "bytes": 50409
+        "bytes": 51064
       },
       {
         "path": "data/races/11334.json",
-        "bytes": 57056
+        "bytes": 57694
       },
       {
         "path": "data/races/11361.json",
-        "bytes": 47851
+        "bytes": 48491
       },
       {
         "path": "data/races/11388.json",
-        "bytes": 43572
+        "bytes": 44231
       },
       {
         "path": "data/races/11396.json",
-        "bytes": 47324
+        "bytes": 47983
       }
     ],
     "stable": true
@@ -41,16 +41,16 @@
   "summary": {
     "status": "PASS",
     "checks": 56,
-    "passed": 42,
+    "passed": 43,
     "failed": 0,
-    "warnings": 14,
+    "warnings": 13,
     "skipped": 0,
     "exit_code": 0
   },
   "dataset": {
     "catalog": {
       "schema_version": 1,
-      "generated_at": "2026-10-30T13:09:53Z",
+      "generated_at": "2026-10-30T13:18:15Z",
       "races": [
         {
           "session_key": 11326,
@@ -115,47 +115,47 @@
       ]
     },
     "manifest": {
-      "generated_at": "2026-10-30T13:09:53Z",
-      "as_of": "2026-10-30T13:09:53Z",
-      "git_sha": "78865b7",
-      "request_count": 236,
+      "generated_at": "2026-10-30T13:18:15Z",
+      "as_of": "2026-10-30T13:18:15Z",
+      "git_sha": "270a803",
+      "request_count": 235,
       "files": [
         {
           "path": "data/catalog.json",
-          "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911",
+          "sha256": "0e0fcef62c668a077808079493717e8cbc05224354b644a404a0531f8b9feef2",
           "bytes": 1801
         },
         {
           "path": "data/races/11326.json",
-          "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0",
-          "bytes": 50409
+          "sha256": "833a7e0a29cdac02fb31679eacb87a48d2938cbafb3e35a07e13108980d55d01",
+          "bytes": 51064
         },
         {
           "path": "data/races/11334.json",
-          "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2",
-          "bytes": 57056
+          "sha256": "f428403b08091f844680c31a4fcd37b654f2db1f92e93795aff6accb4e54e5ca",
+          "bytes": 57694
         },
         {
           "path": "data/races/11361.json",
-          "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a",
-          "bytes": 47851
+          "sha256": "e12cc1e89ba207a98b40e07829f346bbbf0f9fcf3963f9aa2d581aec361ec6b5",
+          "bytes": 48491
         },
         {
           "path": "data/races/11388.json",
-          "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d",
-          "bytes": 43572
+          "sha256": "0ed0bfe30cbb505468e338bfa0d661c8ebaec56c265e6c6dd941dca2823b552b",
+          "bytes": 44231
         },
         {
           "path": "data/races/11396.json",
-          "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2",
-          "bytes": 47324
+          "sha256": "9ecd93fd5b5ada22f99a25f1b97a6d9b7a863118a6a5153638544bb16bdcd17b",
+          "bytes": 47983
         }
       ]
     },
     "races": [
       {
         "path": "data/races/11326.json",
-        "bytes": 50409,
+        "bytes": 51064,
         "session_key": 11326,
         "name": "British Grand Prix",
         "drivers": 22,
@@ -164,7 +164,7 @@
       },
       {
         "path": "data/races/11334.json",
-        "bytes": 57056,
+        "bytes": 57694,
         "session_key": 11334,
         "name": "Belgian Grand Prix",
         "drivers": 21,
@@ -173,7 +173,7 @@
       },
       {
         "path": "data/races/11361.json",
-        "bytes": 47851,
+        "bytes": 48491,
         "session_key": 11361,
         "name": "Italian Grand Prix",
         "drivers": 21,
@@ -182,7 +182,7 @@
       },
       {
         "path": "data/races/11388.json",
-        "bytes": 43572,
+        "bytes": 44231,
         "session_key": 11388,
         "name": "Singapore Grand Prix",
         "drivers": 22,
@@ -191,7 +191,7 @@
       },
       {
         "path": "data/races/11396.json",
-        "bytes": 47324,
+        "bytes": 47983,
         "session_key": 11396,
         "name": "United States Grand Prix",
         "drivers": 22,
@@ -285,9 +285,9 @@
       "smoothed_neutral": 19,
       "smoothed_null": 11,
       "documented_docs01": {
-        "beyond_30ms": 17,
-        "neutral": 37,
-        "sign_changes": 11,
+        "beyond_30ms": 24,
+        "neutral": 25,
+        "sign_changes": 9,
         "total": 54
       }
     },
@@ -333,32 +333,32 @@
           {
             "path": "data/catalog.json",
             "bytes": 1801,
-            "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911"
+            "sha256": "0e0fcef62c668a077808079493717e8cbc05224354b644a404a0531f8b9feef2"
           },
           {
             "path": "data/races/11326.json",
-            "bytes": 50409,
-            "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0"
+            "bytes": 51064,
+            "sha256": "833a7e0a29cdac02fb31679eacb87a48d2938cbafb3e35a07e13108980d55d01"
           },
           {
             "path": "data/races/11334.json",
-            "bytes": 57056,
-            "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2"
+            "bytes": 57694,
+            "sha256": "f428403b08091f844680c31a4fcd37b654f2db1f92e93795aff6accb4e54e5ca"
           },
           {
             "path": "data/races/11361.json",
-            "bytes": 47851,
-            "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a"
+            "bytes": 48491,
+            "sha256": "e12cc1e89ba207a98b40e07829f346bbbf0f9fcf3963f9aa2d581aec361ec6b5"
           },
           {
             "path": "data/races/11388.json",
-            "bytes": 43572,
-            "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d"
+            "bytes": 44231,
+            "sha256": "0ed0bfe30cbb505468e338bfa0d661c8ebaec56c265e6c6dd941dca2823b552b"
           },
           {
             "path": "data/races/11396.json",
-            "bytes": 47324,
-            "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2"
+            "bytes": 47983,
+            "sha256": "9ecd93fd5b5ada22f99a25f1b97a6d9b7a863118a6a5153638544bb16bdcd17b"
           }
         ]
       }
@@ -371,7 +371,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 50409,
+        "bytes": 51064,
         "session_key": 11326
       }
     },
@@ -767,9 +767,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 50409,
+        "bytes": 51064,
         "limit_bytes": 153600,
-        "kb": 49.228
+        "kb": 49.867
       }
     },
     {
@@ -780,7 +780,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 57056,
+        "bytes": 57694,
         "session_key": 11334
       }
     },
@@ -1152,9 +1152,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 57056,
+        "bytes": 57694,
         "limit_bytes": 153600,
-        "kb": 55.719
+        "kb": 56.342
       }
     },
     {
@@ -1165,7 +1165,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47851,
+        "bytes": 48491,
         "session_key": 11361
       }
     },
@@ -1553,9 +1553,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47851,
+        "bytes": 48491,
         "limit_bytes": 153600,
-        "kb": 46.729
+        "kb": 47.354
       }
     },
     {
@@ -1566,7 +1566,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 43572,
+        "bytes": 44231,
         "session_key": 11388
       }
     },
@@ -1968,9 +1968,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 43572,
+        "bytes": 44231,
         "limit_bytes": 153600,
-        "kb": 42.551
+        "kb": 43.194
       }
     },
     {
@@ -1981,7 +1981,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47324,
+        "bytes": 47983,
         "session_key": 11396
       }
     },
@@ -2360,9 +2360,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47324,
+        "bytes": 47983,
         "limit_bytes": 153600,
-        "kb": 46.215
+        "kb": 46.858
       }
     },
     {
@@ -2500,9 +2500,9 @@
           "smoothed_neutral": 19,
           "smoothed_null": 11,
           "documented_docs01": {
-            "beyond_30ms": 17,
-            "neutral": 37,
-            "sign_changes": 11,
+            "beyond_30ms": 24,
+            "neutral": 25,
+            "sign_changes": 9,
             "total": 54
           }
         },
@@ -2522,12 +2522,10 @@
     {
       "id": "audit.documented_calibration",
       "title": "Documented calibration claims match the snapshot",
-      "status": "WARN",
-      "detail": "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)",
+      "status": "PASS",
+      "detail": "ok",
       "errors": [],
-      "warnings": [
-        "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)"
-      ],
+      "warnings": [],
       "metrics": {
         "lec_ver": {
           "total_segments": 54,
@@ -2540,9 +2538,9 @@
           "smoothed_neutral": 19,
           "smoothed_null": 11,
           "documented_docs01": {
-            "beyond_30ms": 17,
-            "neutral": 37,
-            "sign_changes": 11,
+            "beyond_30ms": 24,
+            "neutral": 25,
+            "sign_changes": 9,
             "total": 54
           }
         },
@@ -2790,16 +2788,6 @@
       "errors": [],
       "warnings": [
         "data/races/11396.json: 16/22 drivers have coverage_pct < 97 (docs/03 §9 threshold); range 91.1-96.7"
-      ]
-    },
-    {
-      "id": "audit.documented_calibration",
-      "status": "WARN",
-      "severity": "P3",
-      "detail": "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)",
-      "errors": [],
-      "warnings": [
-        "docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; the current JSON gives 24/49 beyond, 25/49 neutral, 5 no-data (24 coloured / 19 neutral / 11 no-data after app smoothing)"
       ]
     }
   ]

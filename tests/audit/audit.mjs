@@ -1265,7 +1265,7 @@ async function validateSameDriverControl(state, race) {
       smoothed_coloured: pairClasses.filter((value) => value === 1 || value === -1).length,
       smoothed_neutral: pairClasses.filter((value) => value === 0).length,
       smoothed_null: pairClasses.filter((value) => value == null).length,
-      documented_docs01: { beyond_30ms: 17, neutral: 37, sign_changes: 11, total: 54 },
+      documented_docs01: { beyond_30ms: 24, neutral: 25, sign_changes: 9, total: 54 },
     };
   }
 
@@ -1299,9 +1299,9 @@ function validateDocumentedCalibration(state, sameDriver) {
   const warnings = [];
   const pair = sameDriver?.lec_ver_pair ?? null;
   if (pair) {
-    if (pair.raw_beyond_30ms !== 17 || pair.raw_neutral !== 37) {
+    if (pair.raw_beyond_30ms !== 24 || pair.raw_neutral !== 25) {
       warnings.push(
-        `docs/01 §5 says LEC/VER has 17/54 segments beyond ±30 ms and 37 neutral; ` +
+        `docs/01 §5 says LEC/VER has 24/49 covered sections beyond ±30 ms and 25 neutral; ` +
         `the current JSON gives ${pair.raw_beyond_30ms}/${pair.non_null_segments} beyond, ` +
         `${pair.raw_neutral}/${pair.non_null_segments} neutral, ${pair.raw_null} no-data ` +
         `(${pair.smoothed_coloured} coloured / ${pair.smoothed_neutral} neutral / ${pair.smoothed_null} no-data after app smoothing)`,

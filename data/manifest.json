@@ -1,45 +1,45 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-30T13:09:53Z",
-  "as_of": "2026-10-30T13:09:53Z",
-  "git_sha": "78865b7",
+  "generated_at": "2026-10-30T13:18:15Z",
+  "as_of": "2026-10-30T13:18:15Z",
+  "git_sha": "270a803",
   "build_script": "scripts/build-data.mjs",
-  "request_count": 236,
-  "network_requests": 187,
-  "cache_hits": 49,
-  "retries": 1,
+  "request_count": 235,
+  "network_requests": 0,
+  "cache_hits": 235,
+  "retries": 0,
   "not_found": 0,
-  "build_seconds": 467.7,
+  "build_seconds": 1.3,
   "files": [
     {
       "path": "data/catalog.json",
-      "sha256": "5a2be65712f3d8dd9b16c976250224168c7f33fb66b83e520dd015d879e38911",
+      "sha256": "0e0fcef62c668a077808079493717e8cbc05224354b644a404a0531f8b9feef2",
       "bytes": 1801
     },
     {
       "path": "data/races/11326.json",
-      "sha256": "a8b56d868ee4e7ac8cee71f292c0d03387816ad418ca755b711adbaa5b78bba0",
-      "bytes": 50409
+      "sha256": "833a7e0a29cdac02fb31679eacb87a48d2938cbafb3e35a07e13108980d55d01",
+      "bytes": 51064
     },
     {
       "path": "data/races/11334.json",
-      "sha256": "3dc1b0aa98b7d262742f1760c5be1f72898a85a298faca51f548a742e63dd9f2",
-      "bytes": 57056
+      "sha256": "f428403b08091f844680c31a4fcd37b654f2db1f92e93795aff6accb4e54e5ca",
+      "bytes": 57694
     },
     {
       "path": "data/races/11361.json",
-      "sha256": "195540f51fbe4e87cce557b69ef006f90644e76d93f4cc9b9eb6e12fd7aaf10a",
-      "bytes": 47851
+      "sha256": "e12cc1e89ba207a98b40e07829f346bbbf0f9fcf3963f9aa2d581aec361ec6b5",
+      "bytes": 48491
     },
     {
       "path": "data/races/11388.json",
-      "sha256": "28734dbaf915d270a6c9423f07472a182a24906911a63eb81f274c14a30acf9d",
-      "bytes": 43572
+      "sha256": "0ed0bfe30cbb505468e338bfa0d661c8ebaec56c265e6c6dd941dca2823b552b",
+      "bytes": 44231
     },
     {
       "path": "data/races/11396.json",
-      "sha256": "db75019c62cfa93ff3b8e84733561f7e73eafafad447d83c53a1ed7930b925a2",
-      "bytes": 47324
+      "sha256": "9ecd93fd5b5ada22f99a25f1b97a6d9b7a863118a6a5153638544bb16bdcd17b",
+      "bytes": 47983
     }
   ]
 }

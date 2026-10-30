@@ -4,6 +4,17 @@ All notable changes to **Who is the fastest?** are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-10-30
+
+### Fixed
+- Persist a per-driver `scale_factor` and the reference factor in every race
+  JSON, so the GPS-to-official scaling is auditable.
+- Raise the 320 px touch hit lane to ~25 CSS px.
+
+### Added
+- `npm run build:curated` rebuilds the five shipped races from the cache.
+- Independent audit updated to the current raw LEC/VER counts.
+
 ## [1.0.0] — 2026-10-30
 
 ### Added

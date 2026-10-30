@@ -1,9 +1,9 @@
-# CEO report — Who is the fastest? v1.0.0
+# CEO report — Who is the fastest? v1.0.1
 
 **To:** CEO / product owner  
 **From:** delivery team  
 **Date:** 2026-10-30  
-**Decision requested:** accept v1.0.0 for personal use, and give the visual
+**Decision requested:** accept v1.0.1 for personal use, and give the visual
 sign-off against `IMG_1141.PNG`.
 
 ## 1. Executive summary
@@ -45,11 +45,11 @@ test defects are fixed. Three P3 conditions remain open and are listed in §6.
 | Unit + data contract | 42 / 42 pass |
 | Browser core | 21 / 21 pass |
 | Adversarial / accessibility | 8 / 8 pass |
-| Independent audit | 42 pass, 0 fail, 14 P3 warnings |
+| Independent audit | 43 pass, 0 fail, 13 P3 warnings |
 | Independent section (Austin, 2000–2100 m) | LEC +0.0022 s, VER +0.0009 s vs JSON |
 | Austin sector errors (LEC/VER) | −0.159 / +0.118 / +0.041 s (≤ 0.20) |
 | Other calibrated races, max sector error | 0.114 s |
-| Largest race file | 57,056 B (55.7 KB), budget 150 KB |
+| Largest race file | 57,694 B (56.3 KB), budget 150 KB |
 | Console errors / failed requests | 0 |
 | Horizontal overflow at 390 / 1440 | 0 |
 | Cold load, five race entries | < 2 s locally |
@@ -94,13 +94,11 @@ single-run cap; and 0–2 % pre-scale sanity. The amendment and conditions are i
 
 **Open P3s (not release blockers for personal use):**
 
-1. The build scales each lap to its own official time but does not persist a
-   separate `scale_factor` field. A future build should record it.
+1. Each lap still carries its own `scale_factor` (now persisted); a shared
+   factor for both laps in a comparison is not adopted.
 2. Selection takes the fastest valid lap; it does not yet prefer a
    100 %-covered lap within 0.3 s. This can change which lap is shown.
-3. At 320 px the effective touch lane is below 24 CSS px; at 390 px it is
-   ~24 px after the hit-stroke increase. The exact-centre tap works.
-4. The older same-driver 0.014 s RMS / 50-of-53 result is historical
+3. The older same-driver 0.014 s RMS / 50-of-53 result is historical
    development evidence; the independent audit did not reproduce it from the
    committed files. The shipped validation is the sector/segment audit above.
 
@@ -127,7 +125,7 @@ Screenshots for review: `tmp/e2e/desktop.png` (1440×1000),
 
 ## 8. Recommendation and next actions
 
-**Recommendation: GO for personal, non-commercial use as v1.0.0**, with the
+**Recommendation: GO for personal, non-commercial use as v1.0.1**, with the
 limitations above accepted and the visual sign-off completed.
 
 Next, in order:

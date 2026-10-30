@@ -9,7 +9,7 @@ the lap in less time. Hover or tap a section to see the raw times and delta.
 Official lap and sector times are shown as facts; the spatial split is
 GPS-derived and labelled indicative.
 
-> **Status: v1.0.0 — five curated 2026 races.** See
+> **Status: v1.0.1 — five curated 2026 races.** See
 > [`docs/07-ceo-report.md`](docs/07-ceo-report.md) for the release decision and
 > known limits. This is a personal, non-commercial project.
 
