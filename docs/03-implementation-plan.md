@@ -121,7 +121,7 @@ bins per visual segment, which keeps aggregation and deadband logic in one place
    session-relative band) sorted by time. Try up to 8 candidates until one
    passes telemetry validation:
    - `location`: ≥ 2 samples/s, span ≥ 97 % of lap, max gap ≤ 1.2 s, no
-     `(0,0)`, lap-bounded.
+     `(0,0)`, lap-bounded. (Monaco fails this for every lap; it is excluded.)
    - `car_data`: ≥ 2 samples/s, span ≥ 97 %, max gap ≤ 1.2 s.
    - GPS length within 10 % of the field median.
 4. **Reference centreline:** fastest valid driver lap; smooth positions

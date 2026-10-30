@@ -68,8 +68,11 @@ Verified properties:
 - Lap and sector times are internally consistent (S1+S2+S3 = lap duration in
   all 1,166 Austin rows).
 - Position coverage through the end of the race is present for **17 of 18**
-  completed races. **Monaco is truncated** at 14:00 (8,087 samples vs ~35k
-  elsewhere), confirmed on two drivers, and sparse.
+  completed races. **Monaco is not usable**: its stream covers only 13:02–13:09
+  inside the race (plus a few samples at 13:59–14:00), so no complete 79 s lap
+  has continuous position data, even though 8,087 samples exist. It is excluded.
+  The other candidates (Austin, Monza, Spa, Singapore, Silverstone) end at the
+  chequered flag.
 
 ## 4. Volume, rate limits and access
 
@@ -123,7 +126,7 @@ analysis. The UI must show the deadband and the official times separately.
 
 | Gap | Impact | Mitigation |
 | --- | --- | --- |
-| Position stream may be truncated/sparse (Monaco) | Official fastest lap may be undrawable | Try candidate laps; require ≥2 Hz, coverage ≥97 %, no gap >1.2 s; publish chosen lap and flag if not the official fastest |
+| Position stream may be truncated/sparse (Monaco) | Official fastest lap may be undrawable | Try candidate laps; require ≥2 Hz, coverage ≥97 %, no gap >1.2 s; publish chosen lap and flag if not the official fastest. Monaco has **no** fully covered lap and is excluded. |
 | No track outline or corner metadata | Geometry must be derived | Centreline from reference lap; sector marks from official sector times |
 | GPS noise / racing-line differences | False precision | Shared centreline, speed integration, 100 m segments, 0.02 s neutral band, published error |
 | Different fuel/tyre/traffic conditions | "Faster" is lap-condition-dependent | Show lap number, time, tyre compound/age, coverage; say "best available lap" |
