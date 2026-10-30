@@ -25,7 +25,7 @@ Three facts shape the design:
 3. **A naive position-based segment comparison is noise-dominated.** A
    same-driver control produced 81 lead changes and 188/218 "decided" 25 m
    segments. The revised method compares **car speed on a shared centreline**
-   and uses a neutral band; only then is the picture honest.
+   and uses a 0.03 s neutral band; only then is the picture honest.
 
 The board accepted these findings and voted **GO WITH CONDITIONS** (5–0) with
 the conditions in §8.
@@ -82,12 +82,12 @@ Verified properties:
 | `car_data`, one driver | ~5.9 MB |
 | All 22 drivers, one race | ~100 MB raw |
 | Free-tier rate | 30 requests/minute → ~22 s per driver pair |
-| Pre-computed race file | target < 100 KB (measured in the sizing spike) |
+| Pre-computed race file | target < 100 KB, measured at milestone M3 |
 | Free licence | **CC BY-NC-SA 4.0**, no authentication |
 
 A build for five races needs ~5 × (sessions, meetings, drivers, laps, stints,
-22 × [location + car_data]) ≈ 170 requests, roughly 6–8 minutes. Raw responses
-are cached; the build is resumable.
+22 × [location + car_data]) ≈ 245 requests, roughly 9–10 minutes at the free
+tier. Raw responses are cached; the build is resumable.
 
 ## 5. Method: how "faster" is computed
 
@@ -104,8 +104,9 @@ The accepted method:
 3. Integrate `ds / v` over 5 m, scale the whole lap to the official lap time,
    then aggregate into 25 m bins.
 4. The client sums four bins per **100 m visual segment**, smooths the delta
-   over three segments, and colours a segment only when |Δ| ≥ **0.02 s**.
-   Otherwise it is neutral ("too close to call").
+   over three segments, and colours a segment only when |Δ| ≥ **0.03 s**
+   (≈2σ of the same-driver control). Otherwise it is neutral ("too close to
+   call"). Uncovered bins stay neutral; gaps are never bridged.
 5. Official lap and sector times are displayed as fact. The spatial split is
    labelled "GPS-derived, indicative".
 
@@ -113,11 +114,18 @@ The accepted method:
 
 | Check | Result |
 | --- | --- |
-| Same driver, two laps (Norris 42 vs 44, both 99.887 s) | RMS **0.014 s** per 100 m; 46/53 segments within ±20 ms; 14 sign changes |
-| Leclerc vs Verstappen (official gap 1.255 s) | 32/53 segments beyond ±20 ms; 11 lead changes |
+| Same driver, two laps (Norris 42 vs 44, both 99.887 s) | RMS **0.014 s** per 100 m; 50/53 segments within ±30 ms (94 %); 14 sign changes |
+| Leclerc vs Verstappen (official gap 1.255 s) | 27/53 segments beyond ±30 ms; 11 lead changes |
 | Sector deltas, estimate vs official | **+0.21 vs +0.32 s**, **−0.70 vs −0.81 s**, **−0.76 vs −0.76 s** |
 | GPS lap length vs official | 5,395 m vs 5,513 m (−2.1 %); corrected by uniform time scaling |
 | Speed-integrated total vs official | ~1.1–1.4 % short before scaling |
+
+**Caveat:** each lap's `dt` is scaled so its sum equals the official lap time.
+The lap total therefore matches *by construction*; it is not independent proof.
+What the table validates is the **spatial distribution** (which sector gains
+where) and the same-driver repeatability. The GPS length (5,395 m vs 5,513 m)
+remains a geometry approximation; the UI labels the track distance as
+GPS-derived and never claims the scaling corrects the shape.
 
 This is accurate enough for an **indicative** dominance map, not for timing
 analysis. The UI must show the deadband and the official times separately.
@@ -128,7 +136,7 @@ analysis. The UI must show the deadband and the official times separately.
 | --- | --- | --- |
 | Position stream may be truncated/sparse (Monaco) | Official fastest lap may be undrawable | Try candidate laps; require ≥2 Hz, coverage ≥97 %, no gap >1.2 s; publish chosen lap and flag if not the official fastest. Monaco has **no** fully covered lap and is excluded. |
 | No track outline or corner metadata | Geometry must be derived | Centreline from reference lap; sector marks from official sector times |
-| GPS noise / racing-line differences | False precision | Shared centreline, speed integration, 100 m segments, 0.02 s neutral band, published error |
+| GPS noise / racing-line differences | False precision | Shared centreline, speed integration, 100 m segments, 0.03 s neutral band, published error |
 | Different fuel/tyre/traffic conditions | "Faster" is lap-condition-dependent | Show lap number, time, tyre compound/age, coverage; say "best available lap" |
 | Speed data is ~4 Hz and integer km/h | Local error | Integrate 5 m bins, scale to official lap time, 100 m visual segments |
 | Unofficial API, no SLA; CC BY-NC-SA | Availability and licensing | Snapshot JSON in repo, cache + checksum manifest, attribution, non-commercial, share-alike |
@@ -167,7 +175,7 @@ before release.
 
 1. Shared centreline, equal-arc-length comparison, explicit start handling and
    truncation disclosure.
-2. Uncertainty-aware rendering: 100 m segments, ≥0.02 s neutral band, minimum
+2. Uncertainty-aware rendering: 100 m segments, ≥0.03 s neutral band, minimum
    run length, non-colour encoding.
 3. Per-driver/per-lap telemetry validation; fall back to fastest *covered* lap
    and disclose; exclude pit/outlier laps.

@@ -17,7 +17,7 @@ Release acceptance criteria:
 2. Race picker lists the five curated 2026 races; drivers are grouped by team
    and can be chosen by name/number.
 3. The track is split into 100 m sections. A section is coloured only when the
-   estimated time delta is ≥ 0.02 s; otherwise it is neutral ("too close to
+   estimated time delta is ≥ 0.03 s; otherwise it is neutral ("too close to
    call"). This rule is visible in the legend.
 4. Official lap times, sector results, lap number, tyre and coverage are shown
    as facts. The spatial split is labelled "GPS-derived, indicative".
@@ -67,7 +67,7 @@ dependencies) serves the static files.
     "session_key": 11396, "name": "United States Grand Prix",
     "circuit": "Circuit of the Americas", "location": "Austin",
     "country": "United States", "date": "2026-10-25", "year": 2026,
-    "round": 19, "driver_count": 22, "file": "data/races/11396.json"
+    "round": 18, "driver_count": 22, "file": "data/races/11396.json"
   }]
 }
 ```
@@ -79,9 +79,9 @@ dependencies) serves the static files.
   "schema_version": 1, "session_key": 11396,
   "name": "United States Grand Prix", "circuit": "Circuit of the Americas",
   "location": "Austin", "country": "United States",
-  "date": "2026-10-25", "year": 2026, "round": 19,
+  "date": "2026-10-25", "year": 2026, "round": 18,
   "generated_at": "2026-10-30T12:00:00Z",
-  "grid_m": 25, "segment_m": 100, "deadband_s": 0.02,
+  "grid_m": 25, "segment_m": 100, "deadband_s": 0.03,
   "track": {
     "length_m": 5395.0,
     "points": [[x, y]],
@@ -95,7 +95,7 @@ dependencies) serves the static files.
     "sectors": [26.289, 38.906, 32.781],
     "top_speed": 341, "compound": "SOFT", "tyre_age": 8,
     "coverage_pct": 100,
-    "dt": [/* seconds per 25 m bin, scaled to lap_time */]
+    "dt": [/* seconds per 25 m bin, scaled to lap_time; null = no data */]
   }],
   "analysis": {
     "lap_rule": "fastest lap with validated speed + position telemetry",
@@ -105,10 +105,14 @@ dependencies) serves the static files.
 }
 ```
 
-`t` is replaced by `dt`: time to traverse each 25 m bin. The client sums four
-bins per visual segment, which keeps aggregation and deadband logic in one place.
+`dt` is the time to traverse one **25 m** bin. The client sums **four** bins per
+**100 m** visual segment; `segment_m / grid_m = 4` is fixed and tested. A `null`
+bin means no trustworthy data: the client draws the segment neutral and never
+interpolates across it.
 `coverage_pct` is the share of the lap duration covered by both streams.
-`official_best_*` lets the UI flag a telemetry-limited lap choice.
+`official_best_*` lets the UI flag a telemetry-limited lap choice. `data/LICENSE`
+carries the CC BY-NC-SA 4.0 notice for the derived data; the source code carries
+its own licence file.
 
 ## 4. Build pipeline
 
@@ -120,25 +124,38 @@ bins per visual segment, which keeps aggregation and deadband logic in one place
 3. **Candidate lap per driver:** valid laps (duration, not pit-out, within a
    session-relative band) sorted by time. Try up to 8 candidates until one
    passes telemetry validation:
-   - `location`: ≥ 2 samples/s, span ≥ 97 % of lap, max gap ≤ 1.2 s, no
-     `(0,0)`, lap-bounded. (Monaco fails this for every lap; it is excluded.)
-   - `car_data`: ≥ 2 samples/s, span ≥ 97 %, max gap ≤ 1.2 s.
+   - `location`: ≥ 2 samples/s, span ≥ 97 % of lap, no `(0,0)`, lap-bounded.
+     Gaps > 0.6 s are allowed only locally: the affected 25 m bins become
+     `null` (neutral); if > 15 % of the lap is affected, reject the lap.
+     (Monaco fails every candidate; it is excluded.)
+   - `car_data`: ≥ 2 samples/s, span ≥ 97 %; same gap rule and neutral bins.
    - GPS length within 10 % of the field median.
-4. **Reference centreline:** fastest valid driver lap; smooth positions
+4. **Start-line interpolation:** interpolate position and speed at
+   `date_start` from the samples straddling the line; record the residual in the
+   metadata. Drop samples outside `[date_start, +duration]`.
+5. **Reference centreline:** fastest valid driver lap; smooth positions
    (3-sample), resample every 5 m, keep the lap-bounded length.
-5. **Speed profile:** project each `car_data` sample's interpolated position
-   onto the centreline (monotonic ±30-point window). Interpolate speed at 5 m.
-6. **dt:** `5 / max(v, 5 km/h)` per 5 m; scale the whole lap so the sum equals
-   the official lap time; aggregate to 25 m bins.
-7. **Track geometry:** reference centreline at 10 m for the SVG; sector marks
-   from cumulative `dt` at the official sector times.
-8. **Write + manifest:** race JSON, catalog rebuilt from files present,
-   `manifest.json` with SHA-256 of every file and a timestamp.
-9. **Fail loudly:** a race with < 2 valid drivers is skipped with a clear log;
-   a season build fails if fewer than the requested races succeed.
+6. **Speed profile:** project each `car_data` sample's interpolated position
+   onto the centreline (monotonic ±30-point window, with a wrap guard at the
+   start/finish seam). Interpolate speed at 5 m.
+7. **dt:** `5 / max(v, 5 km/h)` per 5 m; record the pre-scale integral (expected
+   1–2 % short of the official lap), then scale the whole lap so the sum equals
+   the official lap time; aggregate to 25 m bins. The total is **defined** to
+   equal the official time; spatial trust comes from the sector/calibration
+   checks, not the total.
+8. **Track geometry:** reference centreline at 10 m for the SVG (GPS-derived
+   length, ~2 % short; labelled as such); sector marks from cumulative `dt` at
+   the official sector times.
+9. **Write + manifest:** race JSON, catalog rebuilt from files present,
+   `manifest.json` with SHA-256 of every file, the build script's git SHA,
+   request count and "as of" timestamp. Raw cache is checksummed and retained
+   locally so a snapshot can be audited/rebuild.
+10. **Fail loudly:** a race with < 2 valid drivers is skipped with a clear log;
+    a season build fails if fewer than the requested races succeed.
 
 Rate limiting: one request at a time, ≥2.2 s apart, exponential backoff on
-429/5xx, persistent cache keyed by URL hash. `--force` bypasses cache.
+429/5xx, persistent cache keyed by URL hash. `--force` bypasses cache. Request
+count for five races ≈ 245, build time ≈ 9–10 minutes.
 
 ## 5. Algorithm details that must not be lost
 
@@ -147,10 +164,15 @@ Rate limiting: one request at a time, ≥2.2 s apart, exponential backoff on
 - **Start/finish:** lap windows are `[date_start, date_start + duration]`;
   positions outside are dropped. Scale compensates for the first sample being
   ~0.2 s after the line.
-- **Uncertainty:** deadband 0.02 s per 100 m (calibrated from same-driver RMS
-  0.014 s); delta smoothing over 3 segments; no colour inside the band.
+- **Uncertainty:** deadband **0.03 s** per 100 m (≈2σ; same-driver RMS 0.014 s,
+  50/53 neutral); delta smoothing over 3 segments; no colour inside the band;
+  uncovered bins are neutral and never bridged.
 - **Minimum run:** merge single-segment runs into the neighbourhood colour to
   avoid 100 m confetti; document this rule.
+- **Round number:** sequential count of non-cancelled Grands Prix (Austin is
+  round 18, not 19).
+- **Edge bins:** the first/last partial bins use the nearest valid speed and are
+  flagged in the metadata; the start/finish shape remains GPS-derived.
 - **Official facts:** lap/sector times are never derived from GPS. If the
   chosen lap is slower than the official best, show "telemetry-limited lap".
 
@@ -164,14 +186,25 @@ Rate limiting: one request at a time, ≥2.2 s apart, exponential backoff on
   100 m segments (round caps, slight overlap), subtle wide translucent underlay
   for glow, neutral "too close" colour, start/finish tick, sector marks.
 - **Interaction:** hover/focus shows tooltip with distance, both segment times,
-  signed delta and ±0.02 s caveat; touch pins; ←/→ moves selection when the
+  signed delta and ±0.03 s caveat; touch pins; ←/→ moves selection when the
   track has focus; Esc clears.
+- **Method panel:** visible in the UI (not only README): source, "quicker on
+  their best available laps", 100 m/0.03 s/calibration, coverage caveat, licence
+  and attribution.
+- **Primary copy:** "Quicker on their best available laps" appears next to the
+  track; if the chosen lap differs from the official best, a
+  **telemetry-limited** badge shows the official best lap/time.
 - **Stats:** driver cards (colour, name, lap, gap, top speed, compound/age,
   coverage); sector result chips from official times; segment tally
   (A / neutral / B); distance-won bar; "telemetry-limited" badge.
 - **States:** skeleton, error + retry, no-telemetry race, same-driver prevention.
-- **Accessibility:** labels, `aria-live` summary, keyboard, 3:1 contrast,
-  patterns/outlines for same-team pairs, colour never the only channel.
+- **Accessibility:** labels, `aria-live` summary, keyboard, 3:1 contrast;
+  secondary encoding (pattern/outline/dash) for **any** pair whose colours are
+  too close (same team or ΔE below threshold), not only same-team; colour never
+  the only channel.
+- **Rendering:** butt caps/joins per segment to avoid colour bleed; no adjacent
+  overlap. Glow comes from a wide translucent underlay.
+- **Budget:** initial JS/CSS < 250 KB uncompressed; race file < 150 KB.
 - **Responsive:** side-by-side ≥ 960 px; stacked below; tooltip becomes a fixed
   panel on touch widths.
 
@@ -196,7 +229,7 @@ File ownership avoids simultaneous edits.
 | --- | --- | --- |
 | M0 Assessment | Board GO WITH CONDITIONS | `v0.1.0` |
 | M1 Plan approved | Board approves v1.1 | `v0.2.0` |
-| M2 Skeleton | Page loads; fixture race renders | — |
+| M2 Skeleton | Page loads; fixture race renders; CEO wireframe/visual checklist issued | — |
 | M3 Pipeline spike | Austin built; size/time measured; Monaco fallback shown | — |
 | M4 Feature complete | Controls/track/stats/tooltip/states | `v0.3.0` |
 | M5 Dataset | Five races + manifest validated | `v0.4.0` |
@@ -224,15 +257,19 @@ File ownership avoids simultaneous edits.
 | Race file size | < 150 KB |
 | Local load (cold, 5 races) | < 2 s |
 | dt sum vs official lap | < 0.05 s |
-| Same-driver neutral share at 100 m | ≥ 80 % |
+| Same-driver neutral share at 100 m (0.03 s band) | ≥ 90 % |
 | Austin sector delta error (LEC/VER) | ≤ 0.20 s per sector |
+| Pre-scale speed integral vs official | 1–2 % short (sanity, not equality) |
+| Telemetry-limited badge fixture | badge + official best lap/time visible |
+| Five-minute usability check | unfamiliar user answers "who was quicker where?" in < 10 s |
+| CEO visual sign-off | recorded before release |
 | Console errors / failed requests | 0 |
 
 ## 10. Risks and mitigations
 
 | Risk | Mitigation |
 | --- | --- |
-| GPS noise produces false dominance | Shared centreline, speed integration, 100 m, 0.02 s band, published calibration |
+| GPS noise produces false dominance | Shared centreline, speed integration, 100 m, 0.03 s band, published calibration |
 | Coverage gaps / truncated streams | Candidate fallback, per-lap validation, flag chosen lap, Monaco excluded |
 | Rate limits slow the build | Cache, 2.2 s spacing, resumable, only 5 races |
 | Different lap conditions | Explicit "best available lap", lap/tyre/coverage shown |
@@ -243,6 +280,8 @@ File ownership avoids simultaneous edits.
 ## 11. Definition of done
 
 All §1 criteria met, board approves this plan and later the test report, no
-P1/P2 issues, docs/changelog/README/licence complete, `v1.0.0` tagged, and the
-CEO report states what works, how it was verified, measured limitations and the
-one-command path to add races.
+P1/P2 issues, docs/changelog/README/licence complete, CEO visual sign-off and
+usability check recorded, `v1.0.0` tagged, and the CEO report states what works,
+how it was verified, measured limitations and the one-command path to add races.
+The report must explicitly record the five-race scope decision and the expansion
+command, since the CEO did not pre-approve that cut.

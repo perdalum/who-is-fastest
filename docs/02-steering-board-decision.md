@@ -77,7 +77,7 @@ independent position-derived time axes:
 3. Integrate `ds / v` over 5 m, scale the lap uniformly to the official lap time,
    aggregate to 25 m bins.
 4. The browser sums four bins per **100 m segment**, smooths the delta over
-   three segments, and treats |Δ| < **0.02 s** as "too close to call".
+   three segments, and treats |Δ| < **0.03 s** as "too close to call".
 
 Calibration on Austin:
 
@@ -98,7 +98,7 @@ The board's individual conditions collapse to these:
 1. **Shared centreline and equal-arc-length comparison**, with the start/finish
    crossing handled explicitly and truncation disclosed.
 2. **Uncertainty-aware rendering:** 100 m visual segments, calibrated neutral
-   band (≥0.02 s), minimum run length, no colour-only encoding.
+   band (≥0.03 s), minimum run length, no colour-only encoding.
 3. **Per-driver, per-lap telemetry validation:** density, coverage, gaps, length;
    fall back to the fastest *covered* lap and disclose when it is not the
    official fastest; exclude pit-out/in and outlier laps.
