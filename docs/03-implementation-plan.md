@@ -139,7 +139,7 @@ its own licence file.
    onto the centreline (monotonic ±30-point window, with a wrap guard at the
    start/finish seam). Interpolate speed at 5 m.
 7. **dt:** `5 / max(v, 5 km/h)` per 5 m; record the pre-scale integral (expected
-   1–2 % short of the official lap), then scale the whole lap so the sum equals
+   0–2 % short of the official lap), then scale the whole lap so the sum equals
    the official lap time; aggregate to 25 m bins. The total is **defined** to
    equal the official time; spatial trust comes from the sector/calibration
    checks, not the total.
@@ -240,8 +240,10 @@ File ownership avoids simultaneous edits.
 
 - **Unit:** smoothing, projection, speed→dt, scaling, aggregation, deadband,
   run merging, sector marks, hash parsing.
-- **Data:** schema, ≥2 drivers, dt sums ≈ lap_time (±0.05 s), monotonic bins,
-  track length 2–8 km, coverage ≥ 97 %, sector marks ordered, manifest hashes.
+- **Data:** schema, ≥2 drivers, `sum(dt) + null_duration = lap_time` (nulls
+  excluded, never bridged; ±0.05 s only for 100 %-covered laps), monotonic
+  bins, track length 2–8 km, duration coverage ≥ 90 %, one contiguous null run
+  ≤ 2 s, sector marks ordered, manifest hashes.
 - **Browser (Playwright + installed Chrome):** load, change race/drivers,
   neutral band rendering, tooltip, keyboard, deep link, mobile 390 px, no
   console errors, no clipping.
@@ -259,7 +261,7 @@ File ownership avoids simultaneous edits.
 | dt sum vs official lap | < 0.05 s |
 | Same-driver neutral share at 100 m (0.03 s band) | ≥ 90 % |
 | Austin sector delta error (LEC/VER) | ≤ 0.20 s per sector |
-| Pre-scale speed integral vs official | 1–2 % short (sanity, not equality) |
+| Pre-scale speed integral vs official | 0–2 % short (sanity, not equality) |
 | Telemetry-limited badge fixture | badge + official best lap/time visible |
 | Five-minute usability check | unfamiliar user answers "who was quicker where?" in < 10 s |
 | CEO visual sign-off | recorded before release |

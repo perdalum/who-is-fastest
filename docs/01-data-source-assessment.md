@@ -115,8 +115,9 @@ The accepted method:
 | Check | Result |
 | --- | --- |
 | Same driver, two laps (Norris 42 vs 44, both 99.887 s) | RMS **0.014 s** per 100 m; 50/53 segments within ±30 ms (94 %); 14 sign changes |
-| Leclerc vs Verstappen (official gap 1.255 s) | 27/53 segments beyond ±30 ms; 11 lead changes |
-| Sector deltas, estimate vs official | **+0.21 vs +0.32 s**, **−0.70 vs −0.81 s**, **−0.76 vs −0.76 s** |
+| Leclerc vs Verstappen (official gap 1.255 s) | 21/54 sections decided at 0.03 s (17 LEC, 4 VER), 22 too close, 11 no data; 9 lead changes |
+| Sector deltas, estimate vs official | **+0.16 vs +0.32 s**, **−0.69 vs −0.81 s**, **−0.72 vs −0.76 s** |
+| Sector delta errors | **−0.16 / +0.12 / +0.04 s** (all within the 0.20 s gate) |
 | GPS lap length vs official | 5,395 m vs 5,513 m (−2.1 %); corrected by uniform time scaling |
 | Speed-integrated total vs official | ~1.1–1.4 % short before scaling |
 

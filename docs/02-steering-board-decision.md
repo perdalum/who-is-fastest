@@ -137,3 +137,37 @@ respecting the board's "prove it before scaling" condition.
 
 Rewrite the implementation plan to incorporate §5–§7 and resubmit it to the
 board (step 4). Implementation does not start until that approval is recorded.
+
+---
+
+## Amendment round — measurement gates (2026-10-30)
+
+The implementation found three gates in the approved plan that were arithmetically
+incompatible with the board's null-never-bridge rule: a < 0.05 s full-lap
+`sum(dt)` cannot coexist with up to 15 % nulls; a ≥ 97 % coverage gate would
+discard most fastest laps because local gaps are deliberately nulled; and a
+hard 1–2 % pre-scale band treats a smaller integration error as a failure.
+The board was asked to ratify a narrow amendment, not to reopen scope.
+
+| Member | Vote | Conditions |
+|---|---|---|
+| Chair | **YES** | One time base: coverage = 1 − null_time / lap_time; null ≠ neutral; zero-bound pre-scale tolerance. |
+| Product | **YES** | Coverage is duration-based; 90 % is a fallback, not a target; cap a single null run; prominent partial-telemetry banner; Monza explicit. |
+| Quality & risk | **YES** | Pairwise coverage; exact sum ↔ coverage ↔ null identity; four visual states; log pre-scale; Monza labelled or replaced. |
+| UX | **YES** | Four legend states; pairwise tally denominators; visible coverage; Monza n/a in methodology; tests. |
+| Data engineering | **YES** | Identity `sum(dt) + null_duration = lap_time`; one scale factor per comparison; tally over covered intersection; prefer a 100 %-covered lap within 0.3 s; Monza alternative or label. |
+
+**Result: 5–0 YES.** The amendment is accepted with the conditions above.
+Closure status is tracked in `docs/06-test-report.md`; no condition is silently
+marked closed.
+
+### Amended gates
+
+- **Coverage:** selected lap duration coverage ≥ 90 %; a candidate with > 15 %
+  affected bins is rejected; a single contiguous null run must be ≤ 2.0 s.
+- **Integrity:** `sum(dt) + null_duration = lap_time` (nulls never bridged);
+  `< 0.05 s` is required only for 100 %-covered laps.
+- **Pre-scale:** 0–2 % short is sane; over-integration is a warning, not a pass.
+- **Calibration:** Austin LEC/VER sector errors ≤ 0.20 s; Monza is labelled
+  uncalibrated because no LEC lap passed the gap rule.
+- **Nulls:** a distinct fourth state, excluded from the A/B tally; pairwise.
