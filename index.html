@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who is the fastest? — F1 track dominance</title>
+  <meta name="description" content="Pick a Formula 1 race and two drivers, and see which one was quicker through every part of the circuit.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the comparison</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <div class="brand-text">
+        <p class="eyebrow">Formula 1 · track dominance</p>
+        <h1>Who is the fastest?</h1>
+      </div>
+    </div>
+    <p class="tagline">Pick a race. Pick two drivers. See exactly where one was quicker.</p>
+  </header>
+
+  <main id="main">
+    <section class="controls" aria-labelledby="controls-title">
+      <h2 class="sr-only" id="controls-title">Choose a race and two drivers</h2>
+
+      <div class="control control--race">
+        <label for="race-select">Race</label>
+        <div class="select-shell">
+          <select id="race-select" autocomplete="off"></select>
+        </div>
+      </div>
+
+      <div class="control control--driver">
+        <label for="driver-a">Driver A <span class="label-hint">reference</span></label>
+        <div class="select-shell">
+          <select id="driver-a" autocomplete="off"></select>
+        </div>
+      </div>
+
+      <button class="swap" id="swap-btn" type="button" aria-label="Swap the two drivers" title="Swap drivers">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M7 7h11l-3.5-3.5M17 17H6l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="control control--driver">
+        <label for="driver-b">Driver B <span class="label-hint">challenger</span></label>
+        <div class="select-shell">
+          <select id="driver-b" autocomplete="off"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" aria-live="polite">
+      <article class="track-card" aria-labelledby="race-title">
+        <header class="track-head">
+          <div class="race-heading">
+            <p class="race-meta" id="race-meta"></p>
+            <h2 id="race-title">Loading…</h2>
+          </div>
+          <p class="badge" id="coverage-badge" hidden></p>
+        </header>
+
+        <div class="legend" id="legend"></div>
+
+        <div class="track-wrap" id="track-wrap">
+          <svg id="track-svg" viewBox="0 0 1000 1000" role="img"
+               aria-labelledby="track-title track-desc" tabindex="0">
+            <title id="track-title">Circuit comparison</title>
+            <desc id="track-desc">The circuit is split into 100 metre sections. Each section is coloured for the driver who was quicker through it, or neutral when the two are within the uncertainty band.</desc>
+            <g id="track-layer"></g>
+          </svg>
+
+          <div class="track-tooltip" id="track-tooltip" role="status" hidden></div>
+
+          <div class="track-empty" id="track-empty" hidden>
+            <p class="track-empty__title">No drawable telemetry for this pair</p>
+            <p class="track-empty__body">Pick another driver or race. The data source sometimes has gaps in the position stream.</p>
+          </div>
+
+          <p class="track-caption" id="track-caption">
+            Quicker on their best available laps · GPS-derived, indicative
+          </p>
+        </div>
+
+        <div class="sector-strip" id="sector-strip" aria-label="Official sector results"></div>
+      </article>
+
+      <aside class="stats" aria-label="Comparison summary">
+        <div class="delta-card" id="delta-card"></div>
+        <div class="driver-grid" id="driver-cards"></div>
+        <div class="tally-card" id="tally-card"></div>
+      </aside>
+    </section>
+
+    <details class="method" id="method-panel">
+      <summary>How this is calculated</summary>
+      <div class="method-body">
+        <div>
+          <h3>The comparison</h3>
+          <p>
+            For each driver the page uses their <strong>fastest lap with usable position
+            and speed telemetry</strong>. Both laps are projected onto one shared
+            centreline, split into 100 m sections, and compared section by section.
+            A section is coloured only when the estimated difference is at least
+            <strong>0.03 s</strong>; otherwise it stays neutral — “too close to call”.
+            Sections where either driver has no telemetry are hatched separately and
+            excluded from the tally.
+          </p>
+          <p>
+            Lap and sector times are official timing. The spatial split is derived
+            from ~4 Hz GPS speed and is <em>indicative</em>, not timing-grade.
+            Same-driver calibration was used to set the 0.03 s band; it is a heuristic, not a guarantee.
+          </p>
+          <p class="method-caveat" id="method-caveat"></p>
+        </div>
+        <div>
+          <h3>What it does not do</h3>
+          <p>
+            It does not compare laps from identical fuel, tyre or traffic conditions.
+            A later, lighter lap can look faster everywhere. It never invents data:
+            gaps longer than 0.6 s make the affected sections <strong>no telemetry</strong>,
+            which is distinct from “too close to call”. Monaco is excluded because its
+            position stream has no complete lap.
+          </p>
+        </div>
+        <div>
+          <h3>Data &amp; licence</h3>
+          <p>
+            Data from <a href="https://openf1.org/" target="_blank" rel="noopener">OpenF1</a>,
+            an unofficial community API, used under
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
+            This is a personal, non-commercial project, not affiliated with Formula 1.
+          </p>
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with <a href="https://openf1.org/" target="_blank" rel="noopener">OpenF1</a> data. Unofficial · personal project · not affiliated with Formula 1.</p>
+    <p class="footer-meta" id="footer-meta"></p>
+  </footer>
+
+  <div class="overlay" id="loading" role="status" aria-live="polite" hidden>
+    <div class="spinner" aria-hidden="true"></div>
+    <p>Loading race…</p>
+  </div>
+
+  <div class="error-panel" id="error-panel" role="alert" hidden>
+    <h2>Something went wrong</h2>
+    <p id="error-message">The race data could not be loaded.</p>
+    <button type="button" id="retry-btn" class="button">Try again</button>
+  </div>
+
+  <noscript>
+    <p class="noscript">This comparison needs JavaScript. Enable it and reload the page.</p>
+  </noscript>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>

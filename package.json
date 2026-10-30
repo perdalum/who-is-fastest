@@ -1,0 +1,20 @@
+{
+  "name": "who-is-the-fastest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static F1 track-dominance visualiser built on OpenF1 data",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build:data": "node scripts/build-data.mjs",
+    "build:austin": "node scripts/build-data.mjs --session 11396",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "node tests/e2e/run.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}
