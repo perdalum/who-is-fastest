@@ -1,0 +1,6 @@
+# Local scratch space (never committed)
+tmp/
+node_modules/
+.DS_Store
+playwright-report/
+test-results/
