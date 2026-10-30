@@ -10,6 +10,7 @@ assets/styles.css    dark responsive shell, SVG track styling
 data/*.json          committed OpenF1 snapshot
 scripts/serve.mjs    zero-dependency static server
 scripts/build-data.mjs + scripts/lib/*
+scripts/build-average.mjs
 ```
 
 No framework, no bundler, no CDN, no backend. ES modules load directly from the
@@ -21,6 +22,9 @@ one JSON file per race.
 1. `app.js` fetches `data/catalog.json`.
 2. The race picker loads `data/races/<session_key>.json`.
 3. Drivers are grouped by team; defaults are the fastest available lap plus a contrasting rival.
+   A basis switch selects either each driver's fastest record or their
+   `average` profile; the rendering contract is unchanged (`dt`, sectors,
+   lap time).
 4. `track.js` normalises the shared centreline, cuts it into 100 m segments,
    sums four 25 m `dt` bins per segment, smooths the delta over three segments,
    applies the ±0.03 s deadband, and merges one-segment runs.
@@ -43,7 +47,10 @@ one JSON file per race.
 See [implementation plan §3](../03-implementation-plan.md). Key points:
 `grid_m: 25`, `segment_m: 100`, `deadband_s: 0.03`, `dt` is seconds per 25 m
 bin (or `null`), `track.points` is a 10 m polyline, `sector_marks_m` are
-distances from the start line.
+distances from the start line. Each driver may also carry
+`average: { lap_time, sectors, top_speed, coverage_pct, lap_count,
+lap_numbers, scale_factor, dt }`; the client swaps that into the same render
+fields after the basis switch.
 
 ## Accessibility and performance
 
@@ -65,6 +72,8 @@ distances from the start line.
 ## Known limits
 
 - GPS length is ~2 % short of the official circuit.
-- One lap per driver; fuel/tyre/traffic differences are not modelled.
+- One fastest lap per driver, or a mean of clean laps; fuel/tyre/traffic
+  differences are not modelled. The average smooths them, it does not remove
+  them.
 - 2026 only in v1; the CLI accepts other years but the catalog is curated.
 - Monaco is excluded (no complete position lap).

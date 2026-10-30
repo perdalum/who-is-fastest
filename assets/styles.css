@@ -387,6 +387,79 @@ select option, select optgroup { background: var(--surface-2); color: var(--text
   opacity: 0.85;
 }
 
+/* ---------- Basis switch ---------- */
+.basis-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px 12px;
+  margin: -2px 0 10px;
+  padding: 6px 7px 6px 11px;
+  background: rgba(8, 13, 20, 0.62);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+
+.basis-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 9px;
+  min-width: 0;
+}
+
+.basis-label {
+  color: var(--text-soft);
+  font-size: 0.61rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.basis-note {
+  color: var(--muted);
+  font-size: 0.69rem;
+  line-height: 1.35;
+}
+
+.basis-switch {
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+  padding: 3px;
+  background: #080d15;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+}
+
+.basis-btn {
+  min-height: 30px;
+  padding: 5px 10px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+.basis-btn:hover:not(:disabled) { color: var(--text); }
+
+.basis-btn[aria-pressed="true"] {
+  color: #f1f5fb;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.basis-btn:disabled { opacity: 0.32; cursor: not-allowed; }
+
 /* ---------- Legend ---------- */
 
 .legend {
@@ -1347,6 +1420,11 @@ body.is-loading .controls {
   .race-heading h2 { font-size: 1.2rem; }
 
   .badge { padding: 4px 8px; font-size: 0.58rem; }
+
+  .basis-bar { margin-bottom: 8px; padding: 5px 5px 5px 8px; border-radius: 9px; }
+  .basis-label { font-size: 0.57rem; }
+  .basis-note { font-size: 0.62rem; }
+  .basis-btn { min-height: 29px; padding: 4px 8px; font-size: 0.61rem; }
 
   .legend { gap: 5px; margin-bottom: 2px; }
 

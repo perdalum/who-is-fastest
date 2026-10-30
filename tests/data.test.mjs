@@ -92,6 +92,33 @@ test('dt sums exclude null bins and match the declared coverage', () => {
   assert.ok(nullBins >= race.analysis.null_bins_reference);
 });
 
+test('average profiles are complete and internally consistent', () => {
+  for (const driver of race.drivers) {
+    assert.ok(driver.average, `driver ${driver.number} has no average profile`);
+    const avg = driver.average;
+    assert.equal(driver.average.lap_count, driver.average.lap_numbers.length);
+    assert.ok(avg.lap_count >= 1 && avg.lap_count <= 100);
+    assert.ok(avg.lap_time > 60 && avg.lap_time < 200);
+    assert.equal(avg.sectors.length, 3);
+    assert.ok(Math.abs(sum(avg.sectors) - avg.lap_time) < 0.06);
+    assert.equal(avg.dt.length, driver.dt.length);
+    assert.ok(avg.coverage_pct >= 90 && avg.coverage_pct <= 100);
+    assert.ok(avg.top_speed >= 200 && avg.top_speed <= 400);
+    assert.ok(avg.scale_factor > 0.9 && avg.scale_factor < 1.1);
+    for (const value of avg.dt) {
+      assert.ok(value === null || (Number.isFinite(value) && value > 0 && value < 20));
+    }
+    const covered = sum(avg.dt);
+    const expected = (avg.lap_time * avg.coverage_pct) / 100;
+    assert.ok(
+      Math.abs(covered - expected) < 0.06,
+      `driver ${driver.number} average: sum ${covered.toFixed(4)} vs lap*coverage ${expected.toFixed(4)}`,
+    );
+    assert.ok(covered <= avg.lap_time + 0.01);
+    assert.ok(avg.lap_numbers.every((n) => Number.isInteger(n) && n > 0 && n <= 90));
+  }
+});
+
 test('track geometry, sector marks and calibration are sane', () => {
   assert.ok(race.track.length_m >= 2000 && race.track.length_m <= 8000);
   assert.ok(race.track.points.length >= 100);

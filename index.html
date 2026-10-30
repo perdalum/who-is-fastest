@@ -66,13 +66,24 @@
           <p class="badge" id="coverage-badge" hidden></p>
         </header>
 
+        <div class="basis-bar">
+          <div class="basis-copy">
+            <span class="basis-label">Lap basis</span>
+            <span class="basis-note" id="basis-note">Fastest valid lap for each driver</span>
+          </div>
+          <div class="basis-switch" role="group" aria-label="Lap basis">
+            <button class="basis-btn" type="button" data-basis="fastest" aria-pressed="true">Fastest lap</button>
+            <button class="basis-btn" type="button" data-basis="average" aria-pressed="false">Average</button>
+          </div>
+        </div>
+
         <div class="legend" id="legend"></div>
 
         <div class="track-wrap" id="track-wrap">
           <svg id="track-svg" viewBox="0 0 1000 1000" role="img"
                aria-labelledby="track-title track-desc" tabindex="0">
             <title id="track-title">Circuit comparison</title>
-            <desc id="track-desc">The circuit is split into 100 metre sections. Each section is coloured for the driver who was quicker through it, or neutral when the two are within the uncertainty band.</desc>
+            <desc id="track-desc">The circuit is split into 100 metre sections. Each section is coloured for the driver who was quicker through it on the selected lap basis, or neutral when the two are within the uncertainty band.</desc>
             <g id="track-layer"></g>
           </svg>
 
@@ -104,13 +115,22 @@
         <div>
           <h3>The comparison</h3>
           <p>
-            For each driver the page uses their <strong>fastest lap with usable position
-            and speed telemetry</strong>. Both laps are projected onto one shared
-            centreline, split into 100 m sections, and compared section by section.
-            A section is coloured only when the estimated difference is at least
-            <strong>0.03 s</strong>; otherwise it stays neutral — “too close to call”.
-            Sections where either driver has no telemetry are hatched separately and
-            excluded from the tally.
+            Choose a <strong>lap basis</strong>. <em>Fastest lap</em> uses each driver’s
+            quickest lap with usable position and speed telemetry. <em>Average</em>
+            uses the mean of their clean laps: valid sectors, not a pit-out lap,
+            within 110% of their median lap, and at least 60% telemetry coverage. Both profiles are projected onto one
+            shared centreline, split into 100 m sections, and compared section by
+            section. A section is coloured only when the estimated difference is at
+            least <strong>0.03 s</strong>; otherwise it stays neutral — “too close to
+            call”. Sections where either driver has no telemetry are hatched
+            separately and excluded from the tally.
+          </p>
+          <p>
+            The average profile is built lap by lap from the same GPS streams and
+            normalised to each lap’s official time before averaging; it is not a
+            single “average lap” invented from sector times. Official lap and sector
+            means are shown beside it. The number of clean laps and the exclusion
+            rule are visible above the map.
           </p>
           <p>
             Lap and sector times are official timing. The spatial split is derived
@@ -123,7 +143,7 @@
           <h3>What it does not do</h3>
           <p>
             It does not compare laps from identical fuel, tyre or traffic conditions.
-            A later, lighter lap can look faster everywhere. It never invents data:
+            The average smooths those differences but does not remove them. It never invents data:
             gaps longer than 0.6 s make the affected sections <strong>no telemetry</strong>,
             which is distinct from “too close to call”. Monaco is excluded because its
             position stream has no complete lap.

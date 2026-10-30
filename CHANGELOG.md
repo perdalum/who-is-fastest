@@ -4,6 +4,26 @@ All notable changes to **Who is the fastest?** are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-10-30
+
+### Added
+- **Average lap basis.** A new `Fastest lap / Average` switch compares either
+  the fastest valid lap or the mean of each driver's clean laps (valid sectors,
+  not pit-out, within 110% of the driver's median lap).
+- Average profiles are built from whole-session GPS streams, projected lap by
+  lap onto the shared centreline, and persisted as `average.dt` with the lap
+  count, included lap numbers, mean sectors and coverage.
+- `npm run build:average` and the combined `npm run build:curated` command.
+- Average basis is recorded in the URL and in the method panel; the delta,
+  cards, legend, sectors and tooltip use basis-aware labels.
+- Browser test for the average deep link and both toggle directions; data
+  contract test for the average profile's identity and bounds.
+
+### Changed
+- Average mode explicitly excludes pit-out laps, laps more than 110% of the
+  driver's median, and laps with less than 60% telemetry coverage; the exact
+  included lap count is visible in the UI.
+
 ## [1.0.1] — 2026-10-30
 
 ### Fixed

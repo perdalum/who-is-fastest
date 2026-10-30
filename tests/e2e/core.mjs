@@ -834,6 +834,55 @@ async function runCoreSuite(context) {
   });
 
   /* ---------------------------------------------------------------- */
+  /* 7.7 Average lap basis                                              */
+  /* ---------------------------------------------------------------- */
+  const avgPage = await context.newPage();
+  instrumentPage(avgPage, 'average');
+  await check('7.7', 'Average basis loads from a deep link and switches back to fastest', async () => {
+    const avgA = raceData.drivers.find((driver) => driver.number === 16)?.average;
+    const avgB = raceData.drivers.find((driver) => driver.number === 3)?.average;
+    assert.ok(avgA && avgB, 'Austin LEC/VER data is missing average profiles');
+    await avgPage.goto(`${BASE}/#race=${AUSTIN.sessionKey}&a=16&b=3&basis=average`, { waitUntil: 'domcontentloaded' });
+    await waitForReady(avgPage, AUSTIN.title, AUSTIN.segments);
+
+    const averageState = await avgPage.evaluate(() => ({
+      hash: window.location.hash,
+      note: document.getElementById('basis-note').textContent,
+      pressed: document.querySelector('[data-basis="average"]').getAttribute('aria-pressed'),
+      delta: document.getElementById('delta-card').textContent,
+      cards: document.getElementById('driver-cards').textContent,
+      legend: document.getElementById('legend').textContent,
+      sectors: document.getElementById('sector-strip').textContent,
+      segments: document.querySelectorAll('.track-layer__segment').length,
+    }));
+    assert.match(averageState.hash, /basis=average/, `average hash missing basis: ${averageState.hash}`);
+    assert.equal(averageState.pressed, 'true', 'average button is not pressed');
+    assert.match(averageState.note, /Mean of \d+ clean laps/i);
+    assert.match(averageState.delta, /Average lap delta/i);
+    assert.ok(averageState.cards.includes(`Average of ${avgA.lap_count} clean laps`), 'LEC card does not show the clean-lap count');
+    assert.ok(averageState.cards.includes(`Average of ${avgB.lap_count} clean laps`), 'VER card does not show the clean-lap count');
+    assert.match(averageState.legend, /avg 1:/i, 'average legend is not labelled');
+    assert.match(averageState.sectors, /Official average sectors/i);
+    assert.equal(averageState.segments, AUSTIN.segments);
+
+    const expectedAverageGap = Math.abs(avgA.lap_time - avgB.lap_time).toFixed(3);
+    const averageValue = (await textOf(avgPage, '#delta-card .delta-card__value')).replace(/\s+/g, '');
+    assert.equal(averageValue, `${expectedAverageGap}s`, `average delta should be ${expectedAverageGap}s`);
+
+    await avgPage.locator('[data-basis="fastest"]').click();
+    await waitForHash(avgPage, `#race=${AUSTIN.sessionKey}&a=16&b=3`);
+    assert.match(await textOf(avgPage, '#delta-card'), /Official lap delta/i);
+    assert.equal(await avgPage.locator('[data-basis="average"]').getAttribute('aria-pressed'), 'false');
+
+    await avgPage.locator('[data-basis="average"]').click();
+    await avgPage.waitForFunction(() => window.location.hash.includes('basis=average'), null, { timeout: 5_000 });
+    await waitForAnimations(avgPage, '#track-svg');
+    await avgPage.screenshot({ path: path.join(OUT_DIR, 'average.png') });
+    return `average ${expectedAverageGap}s from ${avgA.lap_count}/${avgB.lap_count} laps; both toggles work`;
+  });
+  await avgPage.close();
+
+  /* ---------------------------------------------------------------- */
   /* 8. Console / page errors / failed requests                         */
   /* ---------------------------------------------------------------- */
   await check('8.1', 'No console errors or page errors', async () => {

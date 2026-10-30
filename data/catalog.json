@@ -18,7 +18,9 @@
       "year": 2026,
       "round": 9,
       "driver_count": 22,
-      "file": "data/races/11326.json"
+      "file": "data/races/11326.json",
+      "average_available": true,
+      "average_drivers": 22
     },
     {
       "session_key": 11334,
@@ -30,7 +32,9 @@
       "year": 2026,
       "round": 10,
       "driver_count": 21,
-      "file": "data/races/11334.json"
+      "file": "data/races/11334.json",
+      "average_available": true,
+      "average_drivers": 21
     },
     {
       "session_key": 11361,
@@ -42,7 +46,9 @@
       "year": 2026,
       "round": 13,
       "driver_count": 21,
-      "file": "data/races/11361.json"
+      "file": "data/races/11361.json",
+      "average_available": true,
+      "average_drivers": 21
     },
     {
       "session_key": 11388,
@@ -54,7 +60,9 @@
       "year": 2026,
       "round": 17,
       "driver_count": 22,
-      "file": "data/races/11388.json"
+      "file": "data/races/11388.json",
+      "average_available": true,
+      "average_drivers": 22
     },
     {
       "session_key": 11396,
@@ -66,7 +74,9 @@
       "year": 2026,
       "round": 18,
       "driver_count": 22,
-      "file": "data/races/11396.json"
+      "file": "data/races/11396.json",
+      "average_available": true,
+      "average_drivers": 22
     }
   ]
 }

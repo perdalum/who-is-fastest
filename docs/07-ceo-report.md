@@ -1,17 +1,18 @@
-# CEO report — Who is the fastest? v1.0.1
+# CEO report — Who is the fastest? v1.1.0
 
 **To:** CEO / product owner  
 **From:** delivery team  
 **Date:** 2026-10-30  
-**Decision requested:** accept v1.0.1 for personal use, and give the visual
+**Decision requested:** accept v1.1.0 for personal use, and give the visual
 sign-off against `IMG_1141.PNG`.
 
 ## 1. Executive summary
 
-The page is built and working: pick a 2026 race and two drivers, and the
-circuit is drawn in 100 m sections coloured by the driver who was quicker
-through that section. Official lap and sector times are shown as facts; the
-spatial split is GPS-derived and labelled indicative.
+The page is built and working: pick a 2026 race and two drivers, choose
+**Fastest lap** or **Average**, and the circuit is drawn in 100 m sections
+coloured by the driver who was quicker through that section. Average compares
+the mean of each driver’s clean laps. Official lap and sector times are shown as
+facts; the spatial split is GPS-derived and labelled indicative.
 
 **Five curated races ship:** Silverstone, Spa, Monza, Singapore and Austin.
 Monaco is excluded because its position stream has no complete lap. This is a
@@ -21,13 +22,16 @@ command, but each new race needs a data check.
 
 **Board result:** data source GO WITH CONDITIONS 5–0; implementation plan
 APPROVE WITH MINOR EDITS 5–0; measurement-gate amendment **5–0 YES**. All P1/P2
-test defects are fixed. Three P3 conditions remain open and are listed in §6.
+test defects are fixed. Two P3 conditions remain open and are listed in §6.
 
 ## 2. What was delivered
 
 - Static single page: `index.html`, ES modules, CSS, pre-built JSON; no backend,
   no runtime API, no key.
-- Five race files (43.6–57.1 KB each) plus catalog and manifest.
+- Fastest/average basis switch. Average is the mean of clean laps (valid
+  sectors, not pit-out, within 110 % of the driver’s median lap, at least 60 %
+  telemetry), built from whole-session GPS streams and projected lap by lap.
+- Five race files (80.4–103.3 KB each) plus catalog and manifest.
 - Build pipeline with hashed disk cache, 2.2 s request spacing, 429/5xx backoff,
   raw OpenF1 → 25 m `dt` bins → catalog/manifest.
 - Shared 5 m centreline; speed projected and integrated; 3-section smoothing;
@@ -42,14 +46,15 @@ test defects are fixed. Three P3 conditions remain open and are listed in §6.
 
 | Check | Result |
 |---|---|
-| Unit + data contract | 42 / 42 pass |
-| Browser core | 21 / 21 pass |
+| Unit + data contract | 43 / 43 pass |
+| Browser core | 22 / 22 pass |
 | Adversarial / accessibility | 8 / 8 pass |
 | Independent audit | 43 pass, 0 fail, 13 P3 warnings |
 | Independent section (Austin, 2000–2100 m) | LEC +0.0022 s, VER +0.0009 s vs JSON |
 | Austin sector errors (LEC/VER) | −0.159 / +0.118 / +0.041 s (≤ 0.20) |
 | Other calibrated races, max sector error | 0.114 s |
-| Largest race file | 57,694 B (56.3 KB), budget 150 KB |
+| Average-mode deep link + toggle | pass (22/22 browser checks) |
+| Largest race file | 103,265 B (100.8 KB), budget 150 KB |
 | Console errors / failed requests | 0 |
 | Horizontal overflow at 390 / 1440 | 0 |
 | Cold load, five race entries | < 2 s locally |
@@ -104,7 +109,10 @@ single-run cap; and 0–2 % pre-scale sanity. The amendment and conditions are i
 
 **Known limits visible in the product:** GPS is ~4 Hz and indicative; official
 sector boundaries are estimated from speed; laps are not fuel/tyre/traffic
-matched; a 3-section guard widens each no-data gap; no-data is not a tie.
+matched; a 3-section guard widens each no-data gap; no-data is not a tie. The
+average is the mean of clean laps (valid sectors, not pit-out, within 110 % of
+the driver's median, at least 60 % telemetry); it smooths those differences but
+does not remove them, and the included lap count is always shown.
 
 ## 7. Visual sign-off — required from the CEO
 
@@ -125,16 +133,17 @@ Screenshots for review: `tmp/e2e/desktop.png` (1440×1000),
 
 ## 8. Recommendation and next actions
 
-**Recommendation: GO for personal, non-commercial use as v1.0.1**, with the
+**Recommendation: GO for personal, non-commercial use as v1.1.0**, with the
 limitations above accepted and the visual sign-off completed.
 
 Next, in order:
 
 1. CEO visual sign-off; adjust track treatment if needed.
-2. Close the three P3s (scale factor, coverage-preference fallback, 320 px
-   touch target).
-3. Add races with `npm run build:data -- --session <key>`; verify coverage,
-   calibration and file size before adding to the catalog.
+2. Close the two P3s: prefer a 100 %-covered lap within 0.3 s, and adopt a
+   shared scale factor for both laps in a comparison.
+3. Add races with `npm run build:data -- --session <key>` and then
+   `npm run build:average -- --sessions <key>`; verify coverage, calibration and
+   file size before adding to the catalog.
 4. If the project is ever shared publicly, re-check the OpenF1 CC BY-NC-SA 4.0
    attribution and the non-commercial scope.
 

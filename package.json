@@ -1,6 +1,6 @@
 {
   "name": "who-is-the-fastest",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "Static F1 track-dominance visualiser built on OpenF1 data",
@@ -10,7 +10,8 @@
     "build:austin": "node scripts/build-data.mjs --session 11396",
     "test": "node --test tests/*.test.mjs",
     "test:e2e": "node tests/e2e/run.mjs",
-    "build:curated": "node scripts/build-data.mjs --sessions 11326,11334,11361,11388,11396"
+    "build:curated": "node scripts/build-data.mjs --sessions 11326,11334,11361,11388,11396 && node scripts/build-average.mjs --sessions 11326,11334,11361,11388,11396",
+    "build:average": "node scripts/build-average.mjs"
   },
   "engines": {
     "node": ">=20"

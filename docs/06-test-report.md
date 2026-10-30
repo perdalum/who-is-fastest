@@ -1,10 +1,10 @@
-# Test report — v1.0.1
+# Test report — v1.1.0
 
 **Date:** 2026-10-30  
 **Scope:** five curated 2026 races (Silverstone, Spa, Monza, Singapore,
 Austin); Monaco excluded.  
 **Verdict:** **PASS for the structural/data contract, with documented visual
-limits and three open P3 conditions.** The independent recompute, browser
+limits and two open P3 conditions.** The independent recompute, browser
 suites, error/retry path, keyboard, touch, same-team and colour-blind checks
 all pass. This is a personal, indicative visualisation, not timing-grade.
 
@@ -12,27 +12,28 @@ all pass. This is a personal, indicative visualisation, not timing-grade.
 
 | Layer | Command | Result |
 |---|---|---|
-| Unit + data contract | `npm test` | **42 pass / 0 fail** |
-| Browser core | `node tests/e2e/run.mjs` | **21 pass / 0 fail / 0 skip** |
+| Unit + data contract | `npm test` | **43 pass / 0 fail** |
+| Browser core | `node tests/e2e/run.mjs` | **22 pass / 0 fail / 0 skip** |
 | Adversarial / accessibility | `node tests/e2e/adversarial.mjs` | **8 pass / 0 fail / 0 skip** |
 | Independent audit | `node tests/audit/audit.mjs` | **43 pass / 0 fail / 13 warnings** |
 
 The browser suites use real Chrome headless (Playwright `chromium` channel),
 not a mock DOM. Screenshots: `tmp/e2e/desktop.png` (1440×1000),
-`tmp/e2e/mobile.png` (390×844), `tmp/e2e/tooltip.png`.
+`tmp/e2e/mobile.png` (390×844), `tmp/e2e/tooltip.png`; average-mode
+check 7.7 is in the core suite.
 
 ## 2. Dataset
 
 | Session | Race | Round | Drivers | File |
 |---|---|---:|---:|---:|
-| 11326 | British Grand Prix | 9 | 22 | 51,064 B |
-| 11334 | Belgian Grand Prix | 10 | 21 | 57,694 B |
-| 11361 | Italian Grand Prix | 13 | 21 | 48,491 B |
-| 11388 | Singapore Grand Prix | 17 | 22 | 44,231 B |
-| 11396 | United States Grand Prix | 18 | 22 | 47,983 B |
+| 11326 | British Grand Prix | 9 | 22 | 92,504 B |
+| 11334 | Belgian Grand Prix | 10 | 21 | 103,265 B |
+| 11361 | Italian Grand Prix | 13 | 21 | 87,873 B |
+| 11388 | Singapore Grand Prix | 17 | 22 | 80,373 B |
+| 11396 | United States Grand Prix | 18 | 22 | 87,396 B |
 
 - All six manifest outputs (catalog + five races) match SHA-256 and byte size.
-- Largest race file 57,694 B (56.3 KB), under the 150 KB budget.
+- Largest race file 103,265 B (100.8 KB), under the 150 KB budget.
 - All schemas, grids (25 m), segments (100 m), deadband (0.03 s), dt lengths,
   sector marks, official-best fields and colour values validate.
 - `sum(dt) + null_duration = lap_time` (within 0.06 s) for every driver; the
@@ -40,6 +41,20 @@ not a mock DOM. Screenshots: `tmp/e2e/desktop.png` (1440×1000),
 - Duration coverage 90.5–100 %; selected-lap floor is 90 %. The 97 % line in
   the original plan was incompatible with nulling local gaps; see §5.
 - Longest contiguous null run is **1.5 s** (6 × 25 m bins), below the 2 s cap.
+
+## 2a. Average basis
+
+The feature adds a second profile per driver, built from whole-session OpenF1
+streams and averaged lap by lap. The contract test verifies every Austin
+average: 216 bins, mean sectors sum to the mean lap, `sum(dt) ≈ average lap ×
+coverage`, `lap_count == lap_numbers.length`, coverage 100 %, and a bounded
+scale factor. The browser suite loads `#race=11396&a=16&b=3&basis=average`,
+checks the average delta, the clean-lap count, the `avg` legend, the average
+sector label and 54 segments, then toggles fastest → average and back.
+
+The average is **the mean of clean laps**, not a synthetic single lap: valid
+sectors, not pit-out, within 110 % of the driver's median lap, and at least
+60 % telemetry coverage. Included lap numbers are persisted per driver.
 
 ## 3. Independent recompute
 
@@ -134,10 +149,14 @@ historical evidence in `docs/01`, not a shipped-test result.
    claim a complete-lap comparison.
 4. **Monza has no calibration block.** No LEC lap passed the gap rule; the
    method panel states this.
-5. **Open P3s:** the coverage-preference fallback and a shared calibration
+5. **Average is clean-lap pace.** It excludes pit-out laps, laps >110 % of the
+   driver's median and laps below 60 % telemetry. It smooths fuel/tyre/traffic
+   differences but does not remove them. The included lap count and filter are
+   visible; a one-lap "average" is labelled with its count.
+6. **Open P3s:** the coverage-preference fallback and a shared calibration
    factor are recorded, not hidden. The touch target is now ~25 CSS px at both
    320 and 390 px.
-6. **Monaco** is excluded from v1 because its position stream has no complete
+7. **Monaco** is excluded from v1 because its position stream has no complete
    lap; this is a scope cut, not a data-quality pass.
 
 ## 8. Release recommendation

@@ -1,31 +1,31 @@
 {
   "audit": "independent-data-audit",
   "version": 1,
-  "generated_at": "2026-10-30T13:19:29.640Z",
+  "generated_at": "2026-10-30T21:13:41.685Z",
   "workspace": "/Users/au15929/work/who-is-the-fastest",
   "source_snapshot": {
-    "catalog_bytes": 1801,
-    "manifest_bytes": 1253,
+    "catalog_bytes": 2111,
+    "manifest_bytes": 1408,
     "race_files": [
       {
         "path": "data/races/11326.json",
-        "bytes": 51064
+        "bytes": 92504
       },
       {
         "path": "data/races/11334.json",
-        "bytes": 57694
+        "bytes": 103265
       },
       {
         "path": "data/races/11361.json",
-        "bytes": 48491
+        "bytes": 87873
       },
       {
         "path": "data/races/11388.json",
-        "bytes": 44231
+        "bytes": 80373
       },
       {
         "path": "data/races/11396.json",
-        "bytes": 47983
+        "bytes": 87396
       }
     ],
     "stable": true
@@ -62,7 +62,9 @@
           "year": 2026,
           "round": 9,
           "driver_count": 22,
-          "file": "data/races/11326.json"
+          "file": "data/races/11326.json",
+          "average_available": true,
+          "average_drivers": 22
         },
         {
           "session_key": 11334,
@@ -74,7 +76,9 @@
           "year": 2026,
           "round": 10,
           "driver_count": 21,
-          "file": "data/races/11334.json"
+          "file": "data/races/11334.json",
+          "average_available": true,
+          "average_drivers": 21
         },
         {
           "session_key": 11361,
@@ -86,7 +90,9 @@
           "year": 2026,
           "round": 13,
           "driver_count": 21,
-          "file": "data/races/11361.json"
+          "file": "data/races/11361.json",
+          "average_available": true,
+          "average_drivers": 21
         },
         {
           "session_key": 11388,
@@ -98,7 +104,9 @@
           "year": 2026,
           "round": 17,
           "driver_count": 22,
-          "file": "data/races/11388.json"
+          "file": "data/races/11388.json",
+          "average_available": true,
+          "average_drivers": 22
         },
         {
           "session_key": 11396,
@@ -110,52 +118,54 @@
           "year": 2026,
           "round": 18,
           "driver_count": 22,
-          "file": "data/races/11396.json"
+          "file": "data/races/11396.json",
+          "average_available": true,
+          "average_drivers": 22
         }
       ]
     },
     "manifest": {
       "generated_at": "2026-10-30T13:18:15Z",
       "as_of": "2026-10-30T13:18:15Z",
-      "git_sha": "270a803",
+      "git_sha": "c143974",
       "request_count": 235,
       "files": [
         {
           "path": "data/catalog.json",
-          "sha256": "0e0fcef62c668a077808079493717e8cbc05224354b644a404a0531f8b9feef2",
-          "bytes": 1801
+          "sha256": "98390f9041acbcec254247b95ecf5cca4ff6eb2cce7dc5e30c9fda3ce1a4024f",
+          "bytes": 2111
         },
         {
           "path": "data/races/11326.json",
-          "sha256": "833a7e0a29cdac02fb31679eacb87a48d2938cbafb3e35a07e13108980d55d01",
-          "bytes": 51064
+          "sha256": "13be86bf93f4f4969bf4a07c4223843c5a8427cf370b25c464c6d886f6c1008e",
+          "bytes": 92504
         },
         {
           "path": "data/races/11334.json",
-          "sha256": "f428403b08091f844680c31a4fcd37b654f2db1f92e93795aff6accb4e54e5ca",
-          "bytes": 57694
+          "sha256": "926ad2a8247a14b59ca8043fe22761389eb699fdfbbf93b7180de481a844243c",
+          "bytes": 103265
         },
         {
           "path": "data/races/11361.json",
-          "sha256": "e12cc1e89ba207a98b40e07829f346bbbf0f9fcf3963f9aa2d581aec361ec6b5",
-          "bytes": 48491
+          "sha256": "f88b5f0e5f09fc63ff4cc3f26c6178886ca9007d915b8e87d323b7c1955c675e",
+          "bytes": 87873
         },
         {
           "path": "data/races/11388.json",
-          "sha256": "0ed0bfe30cbb505468e338bfa0d661c8ebaec56c265e6c6dd941dca2823b552b",
-          "bytes": 44231
+          "sha256": "17f9d90ee9cf2069a51bcf0894eb0a3c9f5ddec2234297880eec9ab80b15b9c8",
+          "bytes": 80373
         },
         {
           "path": "data/races/11396.json",
-          "sha256": "9ecd93fd5b5ada22f99a25f1b97a6d9b7a863118a6a5153638544bb16bdcd17b",
-          "bytes": 47983
+          "sha256": "f67baf961b0e8530336aadfbef6fcaca317026018e32e14a4118dde05b0333ca",
+          "bytes": 87396
         }
       ]
     },
     "races": [
       {
         "path": "data/races/11326.json",
-        "bytes": 51064,
+        "bytes": 92504,
         "session_key": 11326,
         "name": "British Grand Prix",
         "drivers": 22,
@@ -164,7 +174,7 @@
       },
       {
         "path": "data/races/11334.json",
-        "bytes": 57694,
+        "bytes": 103265,
         "session_key": 11334,
         "name": "Belgian Grand Prix",
         "drivers": 21,
@@ -173,7 +183,7 @@
       },
       {
         "path": "data/races/11361.json",
-        "bytes": 48491,
+        "bytes": 87873,
         "session_key": 11361,
         "name": "Italian Grand Prix",
         "drivers": 21,
@@ -182,7 +192,7 @@
       },
       {
         "path": "data/races/11388.json",
-        "bytes": 44231,
+        "bytes": 80373,
         "session_key": 11388,
         "name": "Singapore Grand Prix",
         "drivers": 22,
@@ -191,7 +201,7 @@
       },
       {
         "path": "data/races/11396.json",
-        "bytes": 47983,
+        "bytes": 87396,
         "session_key": 11396,
         "name": "United States Grand Prix",
         "drivers": 22,
@@ -332,33 +342,33 @@
         "files": [
           {
             "path": "data/catalog.json",
-            "bytes": 1801,
-            "sha256": "0e0fcef62c668a077808079493717e8cbc05224354b644a404a0531f8b9feef2"
+            "bytes": 2111,
+            "sha256": "98390f9041acbcec254247b95ecf5cca4ff6eb2cce7dc5e30c9fda3ce1a4024f"
           },
           {
             "path": "data/races/11326.json",
-            "bytes": 51064,
-            "sha256": "833a7e0a29cdac02fb31679eacb87a48d2938cbafb3e35a07e13108980d55d01"
+            "bytes": 92504,
+            "sha256": "13be86bf93f4f4969bf4a07c4223843c5a8427cf370b25c464c6d886f6c1008e"
           },
           {
             "path": "data/races/11334.json",
-            "bytes": 57694,
-            "sha256": "f428403b08091f844680c31a4fcd37b654f2db1f92e93795aff6accb4e54e5ca"
+            "bytes": 103265,
+            "sha256": "926ad2a8247a14b59ca8043fe22761389eb699fdfbbf93b7180de481a844243c"
           },
           {
             "path": "data/races/11361.json",
-            "bytes": 48491,
-            "sha256": "e12cc1e89ba207a98b40e07829f346bbbf0f9fcf3963f9aa2d581aec361ec6b5"
+            "bytes": 87873,
+            "sha256": "f88b5f0e5f09fc63ff4cc3f26c6178886ca9007d915b8e87d323b7c1955c675e"
           },
           {
             "path": "data/races/11388.json",
-            "bytes": 44231,
-            "sha256": "0ed0bfe30cbb505468e338bfa0d661c8ebaec56c265e6c6dd941dca2823b552b"
+            "bytes": 80373,
+            "sha256": "17f9d90ee9cf2069a51bcf0894eb0a3c9f5ddec2234297880eec9ab80b15b9c8"
           },
           {
             "path": "data/races/11396.json",
-            "bytes": 47983,
-            "sha256": "9ecd93fd5b5ada22f99a25f1b97a6d9b7a863118a6a5153638544bb16bdcd17b"
+            "bytes": 87396,
+            "sha256": "f67baf961b0e8530336aadfbef6fcaca317026018e32e14a4118dde05b0333ca"
           }
         ]
       }
@@ -371,7 +381,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 51064,
+        "bytes": 92504,
         "session_key": 11326
       }
     },
@@ -767,9 +777,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 51064,
+        "bytes": 92504,
         "limit_bytes": 153600,
-        "kb": 49.867
+        "kb": 90.336
       }
     },
     {
@@ -780,7 +790,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 57694,
+        "bytes": 103265,
         "session_key": 11334
       }
     },
@@ -1152,9 +1162,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 57694,
+        "bytes": 103265,
         "limit_bytes": 153600,
-        "kb": 56.342
+        "kb": 100.845
       }
     },
     {
@@ -1165,7 +1175,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 48491,
+        "bytes": 87873,
         "session_key": 11361
       }
     },
@@ -1553,9 +1563,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 48491,
+        "bytes": 87873,
         "limit_bytes": 153600,
-        "kb": 47.354
+        "kb": 85.813
       }
     },
     {
@@ -1566,7 +1576,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 44231,
+        "bytes": 80373,
         "session_key": 11388
       }
     },
@@ -1968,9 +1978,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 44231,
+        "bytes": 80373,
         "limit_bytes": 153600,
-        "kb": 43.194
+        "kb": 78.489
       }
     },
     {
@@ -1981,7 +1991,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47983,
+        "bytes": 87396,
         "session_key": 11396
       }
     },
@@ -2360,9 +2370,9 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 47983,
+        "bytes": 87396,
         "limit_bytes": 153600,
-        "kb": 46.858
+        "kb": 85.348
       }
     },
     {

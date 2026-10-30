@@ -42,7 +42,9 @@ const els = {
   methodCaveat: $('method-caveat'),
   trackTitle: $('track-title'),
   trackDesc: $('track-desc'),
-  trackCard: document.querySelector('.track-card')
+  trackCard: document.querySelector('.track-card'),
+  basisButtons: [...document.querySelectorAll('.basis-btn')],
+  basisNote: $('basis-note')
 };
 
 const state = {
@@ -59,7 +61,8 @@ const state = {
   classes: [],
   selected: -1,
   pinned: false,
-  loadToken: 0
+  loadToken: 0,
+  basis: 'fastest'
 };
 
 /* ------------------------------------------------------------------ */
@@ -109,6 +112,32 @@ function colourDistance(a, b) {
 
 function teamStyle(driver) {
   return { colour: displayColour(driver.colour), raw: hexColour(driver.colour) };
+}
+
+function raceHasAverage(race = state.race) {
+  return Boolean(race?.drivers?.filter((driver) => driver.average?.dt?.length).length >= 2);
+}
+
+/** The fields the track and statistics consume for the selected lap basis. */
+function effectiveDriver(driver) {
+  if (!driver || state.basis !== 'average' || !driver.average) return driver;
+  const avg = driver.average;
+  return {
+    ...driver,
+    lap_time: avg.lap_time,
+    sectors: avg.sectors,
+    top_speed: avg.top_speed,
+    coverage_pct: avg.coverage_pct,
+    dt: avg.dt,
+    scale_factor: avg.scale_factor,
+    compound: null,
+    tyre_age: null,
+    lap_number: null,
+    official_best_lap: null,
+    official_best_time: null,
+    average_lap_count: avg.lap_count,
+    is_average: true
+  };
 }
 
 function escapeHtml(value) {
@@ -176,8 +205,9 @@ async function boot() {
     const hash = parseHash();
     const raceEntry = catalog.races.find((r) => String(r.session_key) === String(hash.race))
       || catalog.races[catalog.races.length - 1];
+    state.basis = hash.basis === 'average' ? 'average' : 'fastest';
     els.raceSelect.value = String(raceEntry.session_key);
-    await loadRace(raceEntry, hash.a, hash.b);
+    await loadRace(raceEntry, hash.a, hash.b, state.basis);
   } catch (error) {
     console.error(error);
     showError('The race catalog could not be loaded. Run npm run dev from the project folder and try again.');
@@ -203,7 +233,7 @@ function populateRaceSelect(races) {
   els.raceSelect.disabled = false;
 }
 
-async function loadRace(entry, wantedA, wantedB) {
+async function loadRace(entry, wantedA, wantedB, wantedBasis = state.basis) {
   const token = ++state.loadToken;
   setLoading(true, `Loading ${entry.name}…`);
   hideError();
@@ -215,8 +245,10 @@ async function loadRace(entry, wantedA, wantedB) {
     state.driverA = null;
     state.driverB = null;
     state.pair = null;
+    state.basis = wantedBasis === 'average' && raceHasAverage(race) ? 'average' : 'fastest';
 
     populateDrivers(race, wantedA, wantedB);
+    updateBasisControls();
     applyRaceHeader(race);
     render();
     updateHash();
@@ -291,12 +323,15 @@ function syncDriverOptions() {
 }
 
 function applyRaceHeader(race) {
+  const average = state.basis === 'average';
+  const a = effectiveDriver(state.driverA);
+  const b = effectiveDriver(state.driverB);
   els.raceMeta.textContent = `${race.year} · Round ${race.round} · ${race.location}`;
   els.raceTitle.textContent = race.name;
-  els.trackTitle.textContent = `${race.circuit} track comparison`;
+  els.trackTitle.textContent = `${race.circuit} ${average ? 'average' : 'track'} comparison`;
 
-  const limited = [state.driverA, state.driverB].some((d) => d && d.lap_time > d.official_best_time + 0.0005);
-  const partial = !limited && [state.driverA, state.driverB].some((d) => d && d.coverage_pct < 99.5);
+  const limited = !average && [a, b].some((d) => d && Number.isFinite(d.official_best_time) && d.lap_time > d.official_best_time + 0.0005);
+  const partial = [a, b].some((d) => d && d.coverage_pct < 99.5);
   els.coverageBadge.hidden = !limited && !partial;
   if (els.methodCaveat) {
     const cal = state.race?.calibration;
@@ -308,8 +343,52 @@ function applyRaceHeader(race) {
     els.coverageBadge.textContent = 'Telemetry-limited lap';
     els.coverageBadge.title = 'At least one driver is not on their official fastest lap because the position or speed stream is incomplete.';
   } else if (partial) {
-    els.coverageBadge.textContent = 'Partial telemetry';
-    els.coverageBadge.title = 'At least one lap has a short position/speed gap. The affected sections are neutral, never interpolated.';
+    els.coverageBadge.textContent = average ? 'Partial average' : 'Partial telemetry';
+    els.coverageBadge.title = average
+      ? 'At least one averaged profile has a short position/speed gap. The affected sections are neutral, never interpolated.'
+      : 'At least one lap has a short position/speed gap. The affected sections are neutral, never interpolated.';
+  }
+  updateBasisControls();
+}
+
+function updateBasisControls() {
+  const available = raceHasAverage();
+  for (const button of els.basisButtons) {
+    const active = button.dataset.basis === state.basis;
+    button.setAttribute('aria-pressed', String(active));
+    button.disabled = button.dataset.basis === 'average' && !available;
+    if (button.dataset.basis === 'average' && !available) {
+      button.title = 'Average profiles are not available for this race yet.';
+    } else {
+      button.title = button.dataset.basis === 'average'
+        ? 'Compare each driver’s mean clean-lap pace'
+        : 'Compare each driver’s fastest valid lap';
+    }
+  }
+  if (!els.basisNote) return;
+  if (state.basis === 'average' && state.driverA?.average && state.driverB?.average) {
+    const ca = state.driverA.average.lap_count;
+    const cb = state.driverB.average.lap_count;
+    const rule = 'excludes pit-out, >110% median, <60% coverage';
+    els.basisNote.textContent = ca === cb
+      ? `Mean of ${ca} clean laps each · ${rule}`
+      : `Mean of ${ca} / ${cb} clean laps · ${rule}`;
+  } else {
+    els.basisNote.textContent = 'Fastest valid lap for each driver';
+  }
+}
+
+function setBasis(basis) {
+  const next = basis === 'average' && raceHasAverage() ? 'average' : 'fastest';
+  if (next === state.basis) {
+    updateBasisControls();
+    return;
+  }
+  state.basis = next;
+  if (state.race) {
+    applyRaceHeader(state.race);
+    render();
+    updateHash();
   }
 }
 
@@ -319,8 +398,8 @@ function applyRaceHeader(race) {
 
 function render() {
   const race = state.race;
-  const a = state.driverA;
-  const b = state.driverB;
+  const a = effectiveDriver(state.driverA);
+  const b = effectiveDriver(state.driverB);
   if (!race) return;
 
   const ready = Boolean(a && b && race.track?.points?.length > 1);
@@ -529,16 +608,17 @@ function svgEl(tag, attrs = {}) {
 }
 
 function renderLegend(a, b, styleA, styleB, close = false) {
+  const prefix = state.basis === 'average' ? 'avg ' : '';
   els.legend.innerHTML = `
     <div class="legend__item">
       <span class="legend__swatch" style="--swatch:${styleA.colour}"></span>
       <span class="legend__label">${escapeHtml(a.acronym)} <span class="legend__name">${escapeHtml(a.name)}</span></span>
-      <span class="legend__sub">${formatTime(a.lap_time)}</span>
+      <span class="legend__sub">${prefix}${formatTime(a.lap_time)}</span>
     </div>
     <div class="legend__item">
       <span class="legend__swatch${close ? ' is-secondary' : ''}" style="--swatch:${styleB.colour}"></span>
       <span class="legend__label">${escapeHtml(b.acronym)} <span class="legend__name">${escapeHtml(b.name)}</span></span>
-      <span class="legend__sub">${formatTime(b.lap_time)}</span>
+      <span class="legend__sub">${prefix}${formatTime(b.lap_time)}</span>
     </div>
     <div class="legend__item legend__item--neutral">
       <span class="legend__swatch legend__swatch--neutral"></span>
@@ -553,29 +633,31 @@ function renderLegend(a, b, styleA, styleB, close = false) {
 }
 
 function renderStats(a, b, race, segments, classes) {
+  const average = state.basis === 'average';
   const gap = a.lap_time - b.lap_time;
   const winner = gap < 0 ? a : b;
   const loser = gap < 0 ? b : a;
   const identical = Math.abs(gap) < 0.0005;
 
   els.deltaCard.innerHTML = `
-    <p class="eyebrow">Official lap delta</p>
+    <p class="eyebrow">${average ? 'Average lap delta' : 'Official lap delta'}</p>
     <p class="delta-card__value" style="--accent:${winner === a ? 'var(--a-color)' : 'var(--b-color)'}">
       ${identical ? '0.000' : gapText(gap)}<span>s</span>
     </p>
     <p class="delta-card__caption">
       ${identical
         ? `${escapeHtml(a.acronym)} and ${escapeHtml(b.acronym)} set the same lap time.`
-        : `<strong>${escapeHtml(winner.acronym)}</strong> was ${gapText(gap)} s quicker over the lap than ${escapeHtml(loser.acronym)}.`}
+        : `<strong>${escapeHtml(winner.acronym)}</strong> was ${gapText(gap)} s quicker ${average ? `on average over ${a.average_lap_count} laps` : 'over the lap'} than ${escapeHtml(loser.acronym)}.`}
     </p>
-    <p class="delta-card__note">${escapeHtml(race.analysis?.lap_rule || 'Fastest available lap')} · GPS split indicative</p>`;
+    <p class="delta-card__note">${average ? 'Mean of clean laps' : escapeHtml(race.analysis?.lap_rule || 'Fastest available lap')} · GPS split indicative</p>`;
 
   const cards = [a, b].map((driver, index) => {
     const other = index === 0 ? b : a;
     const delta = driver.lap_time - other.lap_time;
     const style = index === 0 ? 'var(--a-color)' : 'var(--b-color)';
-    const limited = driver.lap_time > driver.official_best_time + 0.0005;
+    const limited = !average && Number.isFinite(driver.official_best_time) && driver.lap_time > driver.official_best_time + 0.0005;
     const metres = (driver.length_m || race.track.length_m).toFixed(0);
+    const tyre = average ? 'Mixed' : driver.compound ? `${escapeHtml(driver.compound)}${driver.tyre_age != null ? ` · ${driver.tyre_age} laps` : ''}` : '—';
     return `
       <article class="driver-card" style="--team:${style}">
         <div class="driver-card__top">
@@ -584,13 +666,15 @@ function renderStats(a, b, race, segments, classes) {
           <span class="driver-card__team">${escapeHtml(driver.team)}</span>
         </div>
         <div class="driver-card__stats">
-          <div><span>Lap</span><strong>${formatTime(driver.lap_time)}</strong></div>
+          <div><span>${average ? 'Average' : 'Lap'}</span><strong>${formatTime(driver.lap_time)}</strong></div>
           <div><span>Gap</span><strong>${delta === 0 ? '—' : `${delta > 0 ? '+' : '−'}${gapText(delta)}`}</strong></div>
-          <div><span>Top speed</span><strong>${driver.top_speed ? `${driver.top_speed} km/h` : '—'}</strong></div>
-          <div><span>Tyre</span><strong>${driver.compound ? `${escapeHtml(driver.compound)}${driver.tyre_age != null ? ` · ${driver.tyre_age} laps` : ''}` : '—'}</strong></div>
+          <div><span>${average ? 'Max speed' : 'Top speed'}</span><strong>${driver.top_speed ? `${driver.top_speed} km/h` : '—'}</strong></div>
+          <div><span>Tyre</span><strong>${tyre}</strong></div>
         </div>
         <p class="driver-card__meta">
-          Lap ${driver.lap_number} · ${Math.round(driver.coverage_pct ?? 100)}% telemetry · ${metres} m GPS
+          ${average
+            ? `Average of ${driver.average_lap_count} clean laps · ${Math.round(driver.coverage_pct ?? 100)}% telemetry · ${metres} m GPS`
+            : `Lap ${driver.lap_number} · ${Math.round(driver.coverage_pct ?? 100)}% telemetry · ${metres} m GPS`}
           ${limited ? `<span class="mini-badge" title="Official fastest: lap ${driver.official_best_lap}, ${formatTime(driver.official_best_time)}">telemetry-limited</span>` : ''}
         </p>
       </article>`;
@@ -651,14 +735,20 @@ function renderStats(a, b, race, segments, classes) {
       <small>${Math.abs(d) < 0.0005 ? '0.000' : `${d > 0 ? '+' : '−'}${gapText(d)}`} s</small>
     </div>`;
   });
-  els.sectorStrip.innerHTML = `<span class="sector-strip__label">Official sectors</span>${sectors.join('')}`;
+  els.sectorStrip.innerHTML = `<span class="sector-strip__label">${average ? 'Official average sectors' : 'Official sectors'}</span>${sectors.join('')}`;
 }
 
 function renderCaption(a, b, race) {
-  const limited = [a, b].filter((d) => d.lap_time > d.official_best_time + 0.0005);
+  const average = state.basis === 'average';
+  const limited = average ? [] : [a, b].filter((d) => Number.isFinite(d.official_best_time) && d.lap_time > d.official_best_time + 0.0005);
   const partial = [a, b].filter((d) => d.coverage_pct < 99.5);
-  const bits = [partial.length ? 'Best covered laps' : 'Best available laps', 'GPS-derived, indicative'];
-  if (partial.length && !limited.length) {
+  const averageCount = a.average_lap_count === b.average_lap_count
+    ? `${a.average_lap_count} clean laps each`
+    : `${a.average_lap_count} / ${b.average_lap_count} clean laps`;
+  const bits = average
+    ? [`Mean of ${averageCount}`, 'GPS-derived, indicative']
+    : [partial.length ? 'Best covered laps' : 'Best available laps', 'GPS-derived, indicative'];
+  if (partial.length) {
     bits.push(`partial telemetry: ${partial.map((d) => `${d.acronym} ${Math.round(d.coverage_pct)}%`).join(', ')}`);
   }
   if (limited.length) {
@@ -674,7 +764,8 @@ function updateTrackDescription(a, b, classes) {
   const noData = classes.filter((c) => c == null).length;
   const neutral = classes.filter((c) => c === 0).length;
   els.trackDesc.textContent =
-    `${a.name} versus ${b.name}. ${aCount} sections quicker for ${a.acronym}, ${bCount} for ${b.acronym}, ${neutral} too close to call, ${noData} with no telemetry. ` +
+    `${a.name} versus ${b.name}${state.basis === 'average' ? ' on their mean clean-lap pace' : ''}. ` +
+    `${aCount} sections quicker for ${a.acronym}, ${bCount} for ${b.acronym}, ${neutral} too close to call, ${noData} with no telemetry. ` +
     'Use the left and right arrow keys to inspect sections.';
 }
 
@@ -737,7 +828,7 @@ function showTooltip(index, point) {
     <p class="tt__title">${title}</p>
     ${rows}
     ${deltaLine}
-    <p class="tt__note">Raw section times · colour smoothed over 3 sections · GPS estimate</p>`;
+    <p class="tt__note">${state.basis === 'average' ? 'Mean section times' : 'Raw section times'} · colour smoothed over 3 sections · GPS estimate</p>`;
   els.tooltip.hidden = false;
 
   const wrapRect = els.wrapper.getBoundingClientRect();
@@ -762,6 +853,10 @@ function showTooltip(index, point) {
 /* ------------------------------------------------------------------ */
 /* Events                                                             */
 /* ------------------------------------------------------------------ */
+
+for (const button of els.basisButtons) {
+  button.addEventListener('click', () => setBasis(button.dataset.basis));
+}
 
 els.raceSelect.addEventListener('change', async () => {
   const entry = state.catalog.races.find((r) => String(r.session_key) === els.raceSelect.value);
@@ -858,7 +953,9 @@ window.addEventListener('hashchange', () => {
   const entry = state.catalog.races.find((r) => String(r.session_key) === String(hash.race));
   if (entry && entry.session_key !== state.race?.session_key) {
     els.raceSelect.value = String(entry.session_key);
-    loadRace(entry, hash.a, hash.b);
+    loadRace(entry, hash.a, hash.b, hash.basis);
+  } else if (hash.basis === 'average' || hash.basis === 'fastest') {
+    setBasis(hash.basis);
   }
 });
 
@@ -871,7 +968,8 @@ function parseHash() {
   return {
     race: params.get('race'),
     a: params.get('a'),
-    b: params.get('b')
+    b: params.get('b'),
+    basis: params.get('basis')
   };
 }
 
@@ -882,6 +980,7 @@ function updateHash() {
     a: String(state.driverA.number),
     b: String(state.driverB.number)
   });
+  if (state.basis === 'average') params.set('basis', 'average');
   const next = `#${params.toString()}`;
   if (location.hash !== next) history.replaceState(null, '', next);
 }
