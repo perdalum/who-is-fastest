@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
-import { extname, join, normalize, sep } from 'node:path';
+import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = normalize(join(fileURLToPath(new URL('.', import.meta.url)), '..'));
+const args = process.argv.slice(2);
+const dirArg = args.indexOf('--dir');
+if (dirArg !== -1 && !args[dirArg + 1]) {
+  console.error('Usage: node scripts/serve.mjs [--dir dist]');
+  process.exit(2);
+}
+const serveRoot = dirArg !== -1 ? args[dirArg + 1] : process.env.SERVE_DIR;
+const DEFAULT_ROOT = normalize(join(fileURLToPath(new URL('.', import.meta.url)), '..'));
+const ROOT = serveRoot ? resolve(process.cwd(), serveRoot) : DEFAULT_ROOT;
 const PORT = Number(process.env.PORT || 5173);
 const HOST = process.env.HOST || '127.0.0.1';
 
@@ -64,5 +72,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`Who is the fastest? → http://${HOST}:${PORT}`);
+  console.log(`Who is the fastest? → http://${HOST}:${PORT} (${ROOT})`);
 });

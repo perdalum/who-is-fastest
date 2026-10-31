@@ -1,9 +1,9 @@
-# CEO report — Who is the fastest? v1.1.0
+# CEO report — Who is the fastest? v1.2.0
 
 **To:** CEO / product owner  
 **From:** delivery team  
 **Date:** 2026-10-30  
-**Decision requested:** accept v1.1.0 for personal use, and give the visual
+**Decision requested:** accept v1.2.0 for personal use, and give the visual
 sign-off against `IMG_1141.PNG`.
 
 ## 1. Executive summary
@@ -41,6 +41,9 @@ test defects are fixed. Two P3 conditions remain open and are listed in §6.
   No-data sections are dashed/hollow and excluded from the tally.
 - Unit/data tests, two browser suites, independent audit, manuals and this
   report.
+- Production static build: `make build` produces a minified, content-hashed
+  `dist/`; no Node runtime is needed on the web server. See the
+  [deployment manual](manuals/deployment.md).
 
 ## 3. Evidence
 
@@ -133,7 +136,7 @@ Screenshots for review: `tmp/e2e/desktop.png` (1440×1000),
 
 ## 8. Recommendation and next actions
 
-**Recommendation: GO for personal, non-commercial use as v1.1.0**, with the
+**Recommendation: GO for personal, non-commercial use as v1.2.0**, with the
 limitations above accepted and the visual sign-off completed.
 
 Next, in order:

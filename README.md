@@ -9,7 +9,7 @@ of the driver who covered that part in less time. Hover or tap a section to see
 the times and delta. Official lap and sector times are shown as facts; the
 spatial split is GPS-derived and labelled indicative.
 
-> **Status: v1.1.0 — five curated 2026 races, fastest and average bases.** See
+> **Status: v1.2.0 — five curated 2026 races, fastest and average bases, production static build.** See
 > [`docs/07-ceo-report.md`](docs/07-ceo-report.md) for the release decision and
 > known limits. This is a personal, non-commercial project.
 
@@ -20,6 +20,9 @@ npm run dev        # serve at http://127.0.0.1:5173
 npm test           # 43 unit + data-contract tests
 npm run test:e2e   # 22 browser core + 8 adversarial checks (needs npm install)
 node tests/audit/audit.mjs   # independent data audit
+
+make build         # production build → dist/
+make preview       # build and serve dist/
 ```
 
 No API key is required. The page reads pre-built JSON, so it does not call
@@ -39,6 +42,15 @@ retries 429/5xx responses. A fresh five-race fastest-lap build takes roughly 8 m
 about 240 logical requests; the average pass adds one whole-session stream
 pair per driver (roughly 8 more minutes on a cold cache). See the
 [data pipeline manual](docs/manuals/data-pipeline.md).
+
+## Production build
+
+`make build` bundles and minifies `app.js` and `styles.css` with esbuild,
+content-hashes their filenames, rewrites `index.html`, and copies the data
+directory into `dist/`. Only `dist/` is uploaded; the web server needs no Node
+runtime. `make deploy RSYNC_TARGET=user@host:/path/` is optional, and
+[deployment.md](docs/manuals/deployment.md) covers Apache/nginx MIME and cache
+settings.
 
 ## Ships with
 

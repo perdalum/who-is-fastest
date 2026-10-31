@@ -12,3 +12,4 @@
 | [manuals/user-guide.md](manuals/user-guide.md) | How to use the page. |
 | [manuals/data-pipeline.md](manuals/data-pipeline.md) | How to rebuild/refresh the dataset. |
 | [manuals/architecture.md](manuals/architecture.md) | Code structure and design decisions. |
+| [manuals/deployment.md](manuals/deployment.md) | Production build, static hosting, Apache/nginx settings and release checklist. |

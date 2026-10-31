@@ -11,6 +11,8 @@ data/*.json          committed OpenF1 snapshot
 scripts/serve.mjs    zero-dependency static server
 scripts/build-data.mjs + scripts/lib/*
 scripts/build-average.mjs
+scripts/build-static.mjs   production dist/ build (esbuild)
+Makefile                   install / build / preview / check / deploy
 ```
 
 No framework, no bundler, no CDN, no backend. ES modules load directly from the

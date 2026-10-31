@@ -4,6 +4,23 @@ All notable changes to **Who is the fastest?** are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-10-31
+
+### Added
+- **Production static build.** `make build` / `npm run build` uses esbuild to
+  bundle and minify `assets/app.js` and `assets/styles.css`, content-hashes the
+  filenames, rewrites `index.html`, and copies the runtime data into `dist/`.
+- `make preview`, `make check`, `make clean` and an optional
+  `make deploy RSYNC_TARGET=...` target.
+- [Deployment manual](docs/manuals/deployment.md) with Apache/nginx MIME,
+  compression, cache and release-check guidance.
+- `esbuild` as the only new build-time dependency; production needs no Node
+  runtime.
+
+### Changed
+- `scripts/serve.mjs` accepts `--dir` / `SERVE_DIR`, so the built `dist/` can be
+  previewed with the same zero-dependency server.
+
 ## [1.1.0] — 2026-10-30
 
 ### Added

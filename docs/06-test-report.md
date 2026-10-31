@@ -1,4 +1,4 @@
-# Test report — v1.1.0
+# Test report — v1.2.0
 
 **Date:** 2026-10-30  
 **Scope:** five curated 2026 races (Silverstone, Spa, Monza, Singapore,
@@ -20,7 +20,9 @@ all pass. This is a personal, indicative visualisation, not timing-grade.
 The browser suites use real Chrome headless (Playwright `chromium` channel),
 not a mock DOM. Screenshots: `tmp/e2e/desktop.png` (1440×1000),
 `tmp/e2e/mobile.png` (390×844), `tmp/e2e/tooltip.png`; average-mode
-check 7.7 is in the core suite.
+check 7.7 is in the core suite. The production `dist/` build is additionally
+smoke-tested through `make preview` (54 segments, average deep link, zero
+console errors).
 
 ## 2. Dataset
 
