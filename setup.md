@@ -11,3 +11,4 @@ The project is a personal project and not for deployment nor sharing outside a f
 The product should be a single HTML/CSS/JS page maybe with a few JSON data files. No backend databases should be implemented.
 
 # I will act as the CEO of this project
+
